@@ -54,7 +54,7 @@ public class UIManager : MonoBehaviour
                     string.Format("[{0}/{1}]", toy.currentComponentIndex, toy.requiredComponents.Count);
                 listText += string.Format("{0}. {1} {2}\n", i + 1, toy.toyName, status);
                 
-                if (!toy.isCompleted && toy.currentComponentIndex < toys.Count)
+                if (!toy.isCompleted && toy.currentComponentIndex < toy.requiredComponents.Count)
                 {
                     listText += string.Format("   Next: {0}\n", toy.GetNextRequiredComponent());
                 }

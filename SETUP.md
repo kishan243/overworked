@@ -1,6 +1,6 @@
 # Unity Scene Setup Guide
 
-This guide explains how to set up a basic scene for the Christmas Overworked game.
+This guide explains how to set up a basic scene for the Christmas Overcooked game.
 
 ## Required GameObjects
 
