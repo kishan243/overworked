@@ -1,6 +1,6 @@
 Using pre-set license
 Built from '2022.3/staging' branch; Version is '2022.3.10f1 (ff3792e53c62) revision 16725906'; Using compiler version '192829333'; Build Type 'Release'
-OS: 'Windows 11  (10.0.22631) 64bit Core' Language: 'en' Physical Memory: 11976 MB
+OS: 'Windows 11  (10.0.26100) 64bit Professional' Language: 'en' Physical Memory: 65250 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
 
 COMMAND LINE ARGUMENTS:
@@ -11,13 +11,13 @@ C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Unity.exe
 -name
 AssetImportWorker0
 -projectPath
-C:/Users/L1ght/overworked
+C:/Users/patelk3/overworked
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-53217
-Successfully changed project path to: C:/Users/L1ght/overworked
-C:/Users/L1ght/overworked
+57478
+Successfully changed project path to: C:/Users/patelk3/overworked
+C:/Users/patelk3/overworked
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-bucket-allocator-granularity=16"
     "memorysetup-bucket-allocator-bucket-count=8"
@@ -49,67 +49,67 @@ C:/Users/L1ght/overworked
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [3920] Host "[IP] 192.168.6.1 [Port] 0 [Flags] 2 [Guid] 733069616 [EditorId] 733069616 [Version] 1048832 [Id] WindowsEditor(7,Laptop) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [18156] Host "[IP] 100.114.147.157 [Port] 0 [Flags] 2 [Guid] 2190278258 [EditorId] 2190278258 [Version] 1048832 [Id] WindowsEditor(7,006-24) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [3920] Host "[IP] 192.168.6.1 [Port] 0 [Flags] 2 [Guid] 733069616 [EditorId] 733069616 [Version] 1048832 [Id] WindowsEditor(7,Laptop) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [18156] Host "[IP] 100.114.147.157 [Port] 0 [Flags] 2 [Guid] 2190278258 [EditorId] 2190278258 [Version] 1048832 [Id] WindowsEditor(7,006-24) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
-[Physics::Module] Initialized MultithreadedJobDispatcher with 7 workers.
-Refreshing native plugins compatible for Editor in 17.37 ms, found 3 plugins.
+[Physics::Module] Initialized MultithreadedJobDispatcher with 23 workers.
+Refreshing native plugins compatible for Editor in 8.38 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.10f1 (ff3792e53c62)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path C:/Users/L1ght/overworked/Assets
+[Subsystems] Discovering subsystems at path C:/Users/patelk3/overworked/Assets
 GfxDevice: creating device client; threaded=0; jobified=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: Intel(R) UHD Graphics (ID=0x8a56)
+    Renderer: Intel(R) UHD Graphics 770 (ID=0x4680)
     Vendor:   Intel
-    VRAM:     5988 MB
-    Driver:   26.20.100.7926
+    VRAM:     32625 MB
+    Driver:   32.0.101.6129
 Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56144
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56112
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.023327 seconds.
-- Loaded All Assemblies, in  0.915 seconds
+Registered in 0.009485 seconds.
+- Loaded All Assemblies, in  0.428 seconds
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.600 seconds
-Domain Reload Profiling: 1511ms
-	BeginReloadAssembly (268ms)
+- Finished resetting the current domain, in  0.333 seconds
+Domain Reload Profiling: 760ms
+	BeginReloadAssembly (128ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (2ms)
-	RebuildCommonClasses (82ms)
-	RebuildNativeTypeToScriptingClass (31ms)
-	initialDomainReloadingComplete (160ms)
-	LoadAllAssembliesAndSetupDomain (368ms)
-		LoadAssemblies (265ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (42ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (73ms)
+	LoadAllAssembliesAndSetupDomain (171ms)
+		LoadAssemblies (126ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (364ms)
-			TypeCache.Refresh (361ms)
-				TypeCache.ScanAssembly (334ms)
+		AnalyzeDomain (168ms)
+			TypeCache.Refresh (167ms)
+				TypeCache.ScanAssembly (152ms)
 			ScanForSourceGeneratedMonoScriptInfo (1ms)
 			ResolveRequiredComponents (1ms)
-	FinalizeReload (601ms)
+	FinalizeReload (334ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (465ms)
+		SetupLoadedEditorAssemblies (254ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (20ms)
-			SetLoadedEditorAssemblies (12ms)
+			InitializePlatformSupportModulesInManaged (14ms)
+			SetLoadedEditorAssemblies (8ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (4ms)
-			ProcessInitializeOnLoadAttributes (313ms)
-			ProcessInitializeOnLoadMethodAttributes (115ms)
+			BeforeProcessingInitializeOnLoad (3ms)
+			ProcessInitializeOnLoadAttributes (166ms)
+			ProcessInitializeOnLoadMethodAttributes (62ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -117,8 +117,8 @@ Domain Reload Profiling: 1511ms
 ========================================================================
 Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  1.439 seconds
-Refreshing native plugins compatible for Editor in 5.97 ms, found 3 plugins.
+- Loaded All Assemblies, in  0.752 seconds
+Refreshing native plugins compatible for Editor in 2.81 ms, found 3 plugins.
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
 Package Manager log level set to [2]
@@ -126,48 +126,85 @@ Package Manager log level set to [2]
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.324 seconds
-Domain Reload Profiling: 2760ms
-	BeginReloadAssembly (352ms)
+- Finished resetting the current domain, in  0.929 seconds
+Domain Reload Profiling: 1679ms
+	BeginReloadAssembly (177ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (11ms)
+		DisableScriptedObjects (7ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (42ms)
-	RebuildCommonClasses (80ms)
-	RebuildNativeTypeToScriptingClass (27ms)
-	initialDomainReloadingComplete (94ms)
-	LoadAllAssembliesAndSetupDomain (881ms)
-		LoadAssemblies (698ms)
+		CreateAndSetChildDomain (22ms)
+	RebuildCommonClasses (40ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (52ms)
+	LoadAllAssembliesAndSetupDomain (467ms)
+		LoadAssemblies (364ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (407ms)
-			TypeCache.Refresh (357ms)
-				TypeCache.ScanAssembly (327ms)
-			ScanForSourceGeneratedMonoScriptInfo (38ms)
-			ResolveRequiredComponents (10ms)
-	FinalizeReload (1325ms)
+		AnalyzeDomain (208ms)
+			TypeCache.Refresh (185ms)
+				TypeCache.ScanAssembly (169ms)
+			ScanForSourceGeneratedMonoScriptInfo (17ms)
+			ResolveRequiredComponents (4ms)
+	FinalizeReload (929ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (985ms)
+		SetupLoadedEditorAssemblies (752ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (10ms)
-			SetLoadedEditorAssemblies (9ms)
+			InitializePlatformSupportModulesInManaged (9ms)
+			SetLoadedEditorAssemblies (5ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (91ms)
-			ProcessInitializeOnLoadAttributes (836ms)
-			ProcessInitializeOnLoadMethodAttributes (26ms)
-			AfterProcessingInitializeOnLoad (13ms)
-			EditorAssembliesLoaded (1ms)
+			BeforeProcessingInitializeOnLoad (73ms)
+			ProcessInitializeOnLoadAttributes (632ms)
+			ProcessInitializeOnLoadMethodAttributes (23ms)
+			AfterProcessingInitializeOnLoad (10ms)
+			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (14ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.09 seconds
-Refreshing native plugins compatible for Editor in 9.09 ms, found 3 plugins.
+		AwakeInstancesAfterBackupRestoration (9ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.08 seconds
+Refreshing native plugins compatible for Editor in 2.77 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 3070 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 31 unused Assets / (56.3 KB). Loaded Objects now: 3532.
-Memory consumption went from 114.2 MB to 114.1 MB.
-Total: 9.035800 ms (FindLiveObjects: 0.681700 ms CreateObjectMapping: 0.422600 ms MarkObjects: 7.721200 ms  DeleteObjects: 0.208600 ms)
+Memory consumption went from 115.1 MB to 115.0 MB.
+Total: 5.082000 ms (FindLiveObjects: 0.214600 ms CreateObjectMapping: 0.095400 ms MarkObjects: 4.660900 ms  DeleteObjects: 0.109800 ms)
 
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 3625.197925 seconds.
+  path: Assets/Materials
+  artifactKey: Guid(fbd7889885691e2428053718cf9002ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials using Guid(fbd7889885691e2428053718cf9002ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'df57edf4815efe5e0bc56d07c40bfb3a') in 0.002025 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.000284 seconds.
+  path: Assets/Materials/New Material.mat
+  artifactKey: Guid(e88136a823f720943b9fa69fca418ea4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/New Material.mat using Guid(e88136a823f720943b9fa69fca418ea4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd44070d67ab0e63731a0dfa8b6bfe9e6') in 0.152687 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Prepare
+Refreshing native plugins compatible for Editor in 3.16 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 1 unused Assets / (0.8 KB). Loaded Objects now: 3574.
+Memory consumption went from 71.1 MB to 71.1 MB.
+Total: 4.141800 ms (FindLiveObjects: 0.409500 ms CreateObjectMapping: 0.128000 ms MarkObjects: 3.583200 ms  DeleteObjects: 0.020300 ms)
+
+Prepare: number of updated asset objects reloaded= 0
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -183,17 +220,730 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 183984.033312 seconds.
-  path: Assets/Scenes/SampleScene.unity
+  Time since last request: 57.214234 seconds.
+  path: Assets/Scenes/Main.unity
   artifactKey: Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/SampleScene.unity using Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e1f59831343c0ffa1563c614994303d0') in 0.006195 seconds
+Start importing Assets/Scenes/Main.unity using Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '33499679b18557e6dabf29ade3a238b0') in 0.001220 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
 ========================================================================
 Received Import Request.
-  Time since last request: 0.657729 seconds.
-  path: Assets/Materials/New Material.mat
-  artifactKey: Guid(e88136a823f720943b9fa69fca418ea4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/New Material.mat using Guid(e88136a823f720943b9fa69fca418ea4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fa24e9a2e346c22660f0d99249cbe971') in 0.264068 seconds
+  Time since last request: 44.279043 seconds.
+  path: Assets/Scenes/Load-in.unity
+  artifactKey: Guid(4ae1cee0f8f654841b760c339d5b7bfd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Load-in.unity using Guid(4ae1cee0f8f654841b760c339d5b7bfd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f4b49d65dfa83094bc158e98320bf37') in 0.000826 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 18.428560 seconds.
+  path: Assets/Scenes/Instructions.unity
+  artifactKey: Guid(e12af3b4de0bc9b418fe1395f124154e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Instructions.unity using Guid(e12af3b4de0bc9b418fe1395f124154e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '271343a40c3fbcab28da45c68d2c2be6') in 0.000699 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 116.760911 seconds.
+  path: Assets/Scenes/New Scene.unity
+  artifactKey: Guid(8af402c8d09ffe54488c5f30e00daefd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/New Scene.unity using Guid(8af402c8d09ffe54488c5f30e00daefd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2afb5852f189c469a8aee42cf2ecdd20') in 0.001016 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 134.498532 seconds.
+  path: Assets/Scenes/Manual.unity
+  artifactKey: Guid(8af402c8d09ffe54488c5f30e00daefd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Manual.unity using Guid(8af402c8d09ffe54488c5f30e00daefd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '715f33c62d2f4542dfc78e0dc8743fc0') in 0.000956 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.526 seconds
+Refreshing native plugins compatible for Editor in 2.80 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.146 seconds
+Domain Reload Profiling: 1670ms
+	BeginReloadAssembly (185ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (5ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (40ms)
+	RebuildCommonClasses (39ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (34ms)
+	LoadAllAssembliesAndSetupDomain (252ms)
+		LoadAssemblies (324ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (26ms)
+			TypeCache.Refresh (9ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (8ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (1146ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (669ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (9ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (76ms)
+			ProcessInitializeOnLoadAttributes (548ms)
+			ProcessInitializeOnLoadMethodAttributes (22ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (9ms)
+Refreshing native plugins compatible for Editor in 2.66 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3064 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 22 unused Assets / (30.6 KB). Loaded Objects now: 3578.
+Memory consumption went from 118.7 MB to 118.6 MB.
+Total: 4.707400 ms (FindLiveObjects: 0.224400 ms CreateObjectMapping: 0.100100 ms MarkObjects: 4.332700 ms  DeleteObjects: 0.049200 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 231.425083 seconds.
+  path: Assets/Free 2D Cartoon Parallax Background
+  artifactKey: Guid(e92300557dd52eb4385e96ec96944a46) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free 2D Cartoon Parallax Background using Guid(e92300557dd52eb4385e96ec96944a46) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e4567f7f050a3f7f793f463250d2ef9c') in 0.002629 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 1.427015 seconds.
+  path: Assets/Free 2D Cartoon Parallax Background/4_Snow
+  artifactKey: Guid(1358260a5a240a244941ddbcd9f34c77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free 2D Cartoon Parallax Background/4_Snow using Guid(1358260a5a240a244941ddbcd9f34c77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1f75d33a40bd1c2e773591282249c466') in 0.000923 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.062097 seconds.
+  path: Assets/Free 2D Cartoon Parallax Background/4_Snow/Layer_0.png
+  artifactKey: Guid(a2d04d67b859524439e945022e0597ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free 2D Cartoon Parallax Background/4_Snow/Layer_0.png using Guid(a2d04d67b859524439e945022e0597ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f5b47cfbe65a6ee61b05d6215c1f91bc') in 0.095167 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000147 seconds.
+  path: Assets/Free 2D Cartoon Parallax Background/4_Snow/Layer_2.png
+  artifactKey: Guid(31eddef01407d664bb7dc07175c9797f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free 2D Cartoon Parallax Background/4_Snow/Layer_2.png using Guid(31eddef01407d664bb7dc07175c9797f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ca4a34e1be3896b33ba2d728582a3f88') in 0.029441 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000209 seconds.
+  path: Assets/Free 2D Cartoon Parallax Background/4_Snow/Layer_3.png
+  artifactKey: Guid(5363ba5ff6a4d25418d986e793446fdb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free 2D Cartoon Parallax Background/4_Snow/Layer_3.png using Guid(5363ba5ff6a4d25418d986e793446fdb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bc08d3afc51b055f909b2325ecaf696a') in 0.028256 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.516 seconds
+Refreshing native plugins compatible for Editor in 2.75 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.119 seconds
+Domain Reload Profiling: 1632ms
+	BeginReloadAssembly (178ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (7ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (38ms)
+	RebuildCommonClasses (40ms)
+	RebuildNativeTypeToScriptingClass (14ms)
+	initialDomainReloadingComplete (35ms)
+	LoadAllAssembliesAndSetupDomain (246ms)
+		LoadAssemblies (319ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (24ms)
+			TypeCache.Refresh (9ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (8ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (1119ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (663ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (9ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (75ms)
+			ProcessInitializeOnLoadAttributes (544ms)
+			ProcessInitializeOnLoadMethodAttributes (21ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (8ms)
+Refreshing native plugins compatible for Editor in 2.63 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3066 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 22 unused Assets / (30.5 KB). Loaded Objects now: 3586.
+Memory consumption went from 118.7 MB to 118.7 MB.
+Total: 4.418200 ms (FindLiveObjects: 0.219900 ms CreateObjectMapping: 0.089300 ms MarkObjects: 4.049900 ms  DeleteObjects: 0.057700 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 406.925230 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Bag_Gift_Christmas_B.prefab
+  artifactKey: Guid(d57212e3f523e134b88c84664362ce02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Bag_Gift_Christmas_B.prefab using Guid(d57212e3f523e134b88c84664362ce02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cf8f95168ad5b41dc7f6104aff81a704') in 0.386610 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Cracker_A_Christmas.prefab
+  artifactKey: Guid(934141e827233834a8e70bf5f52d3886) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Cracker_A_Christmas.prefab using Guid(934141e827233834a8e70bf5f52d3886) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8cf7e6c5ecc1ab630a641236ae4d1a7d') in 0.030954 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Chimney_Christmas_Top.prefab
+  artifactKey: Guid(bc25847744180f143a82f2f1fefa65f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Chimney_Christmas_Top.prefab using Guid(bc25847744180f143a82f2f1fefa65f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e84d895246157335d230bcd813273835') in 0.031394 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Bowl_Soup_Christmas.prefab
+  artifactKey: Guid(f0cc743abdc96a64bbf17e55265cb060) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Bowl_Soup_Christmas.prefab using Guid(f0cc743abdc96a64bbf17e55265cb060) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '818bce0c1dc4adbef33fa382a245ae82') in 0.031586 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Candle_Holder_Short_A_Unlit_Christmas.prefab
+  artifactKey: Guid(9678aca628b1ac3479d518b61ac9f14a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Candle_Holder_Short_A_Unlit_Christmas.prefab using Guid(9678aca628b1ac3479d518b61ac9f14a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8d88df227aa7fc6514ac57558bdbf9fd') in 0.031596 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Etagere_Christmas.prefab
+  artifactKey: Guid(b41440ce47bfd3e4c907975093dfd294) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Etagere_Christmas.prefab using Guid(b41440ce47bfd3e4c907975093dfd294) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0a834f29df94d53f507c8abd2971852a') in 0.031829 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Chimney_Christmas_1m.prefab
+  artifactKey: Guid(d96c47625b4b898448325ef3fab12c14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Chimney_Christmas_1m.prefab using Guid(d96c47625b4b898448325ef3fab12c14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '14ffc10fdc84c5eabcce67b01f3f939b') in 0.028353 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Christmas_Stockings.prefab
+  artifactKey: Guid(e61c9848e5f6c4144a3b0d6a431d9420) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Christmas_Stockings.prefab using Guid(e61c9848e5f6c4144a3b0d6a431d9420) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0045a9b799d6868823e0739b1f693740') in 0.029037 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Candle_Holder_Tall_A_Unlit_Christmas.prefab
+  artifactKey: Guid(a51341ef637f9a84aa5c92f8e900e0f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Candle_Holder_Tall_A_Unlit_Christmas.prefab using Guid(a51341ef637f9a84aa5c92f8e900e0f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f8adb697c4ed1500e4960d184b26a07f') in 0.029092 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Candle_Holder_Arch.prefab
+  artifactKey: Guid(7a3c4e719a0a8f44d9ea64492e926fc4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Candle_Holder_Arch.prefab using Guid(7a3c4e719a0a8f44d9ea64492e926fc4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '16704c8635a8925aabde889893fd210b') in 0.279111 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 13
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Bell_C_Christmas.prefab
+  artifactKey: Guid(325b87f9781ba1641a6d4d4c7a013f0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Bell_C_Christmas.prefab using Guid(325b87f9781ba1641a6d4d4c7a013f0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ffe51072ad5d5cc6a0b33e364c85c6ef') in 0.032037 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Cookie_Jam_Heart.prefab
+  artifactKey: Guid(4050e3ad3c6d44a4289459904206965b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Cookie_Jam_Heart.prefab using Guid(4050e3ad3c6d44a4289459904206965b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e58a82b3ba1427e8c6a10d6c6c6fe033') in 0.027753 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Fish_Carp.prefab
+  artifactKey: Guid(f414741cd310cc54d94c141896f3e162) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Fish_Carp.prefab using Guid(f414741cd310cc54d94c141896f3e162) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e3a249389c1e524fc0e36916bc5aaf6a') in 0.027418 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Candle_Holder_Tall_B_Lit_Christmas.prefab
+  artifactKey: Guid(0cd462eacafc84942b4f577b3f37ef6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Candle_Holder_Tall_B_Lit_Christmas.prefab using Guid(0cd462eacafc84942b4f577b3f37ef6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '23ae70d954fdccbaae3b02194f2f5526') in 0.029276 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 13
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Christmas_Pudding.prefab
+  artifactKey: Guid(a72aaf57bc9228949ad87082772d1922) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Christmas_Pudding.prefab using Guid(a72aaf57bc9228949ad87082772d1922) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ad4707037600e67c801a9b9b3f6ce6f') in 0.029785 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Bell_D_Christmas.prefab
+  artifactKey: Guid(fbb34b5496ce8e94f85f03dde3cfaf3f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Bell_D_Christmas.prefab using Guid(fbb34b5496ce8e94f85f03dde3cfaf3f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '33fdc2716a69db8c22237694f472febd') in 0.026715 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Fireplace_Brick_Large.prefab
+  artifactKey: Guid(389853f73f540ff4f873ba42549519bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Fireplace_Brick_Large.prefab using Guid(389853f73f540ff4f873ba42549519bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '16cac32a5956468cc565767a9ba3ca54') in 0.029115 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Candle_Decorated_Unlit_Christmas.prefab
+  artifactKey: Guid(638926b0816c71949899e0744fdf437e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Candle_Decorated_Unlit_Christmas.prefab using Guid(638926b0816c71949899e0744fdf437e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'af51c088778fb7e177a6026e8cc5a61d') in 0.028630 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Cube_A.prefab
+  artifactKey: Guid(0f1f8d44f93c0064f911e8f5fb0d8ed6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Cube_A.prefab using Guid(0f1f8d44f93c0064f911e8f5fb0d8ed6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5164a9ca95c0005521fe8f1cfcbc4fb2') in 0.028299 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Cookie_Jam_Circle.prefab
+  artifactKey: Guid(37604b821891aed418254c455dda0e37) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Cookie_Jam_Circle.prefab using Guid(37604b821891aed418254c455dda0e37) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a20bd2c8995ebe456708bb17776c17e') in 0.028631 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Cracker_Box_Christmas.prefab
+  artifactKey: Guid(2c5865b77234166419886bf941cb324b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Cracker_Box_Christmas.prefab using Guid(2c5865b77234166419886bf941cb324b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a97ed8a00eb42ba372640f92589741b8') in 0.032863 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Chair_Dinner_Christmas.prefab
+  artifactKey: Guid(5d24157eaef68444da179d32f640de98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Chair_Dinner_Christmas.prefab using Guid(5d24157eaef68444da179d32f640de98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7efe2ce9dcee85e2d0283dfc8c05348e') in 0.028971 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Bell_A_Christmas.prefab
+  artifactKey: Guid(bbd720a4a3b378b44a45d901c79582c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Bell_A_Christmas.prefab using Guid(bbd720a4a3b378b44a45d901c79582c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b61b33d4810f85265ffea47a324f0720') in 0.029004 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Candle_Holder_Tall_C_Unlit_Christmas.prefab
+  artifactKey: Guid(a46824b80592bea47af36fc855a82c2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Candle_Holder_Tall_C_Unlit_Christmas.prefab using Guid(a46824b80592bea47af36fc855a82c2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f34c6956737e2b1446a967625be22a8f') in 0.030031 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.527361 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Cube_Open_Base.prefab
+  artifactKey: Guid(444450ae4b22e2449ab1cd7c0df5f24f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Cube_Open_Base.prefab using Guid(444450ae4b22e2449ab1cd7c0df5f24f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3b0334126dabc4291d747a2dc2d641a5') in 0.027812 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Cylinder_A.prefab
+  artifactKey: Guid(8e8fa5c712d02d141b9e1930fb1ab999) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Cylinder_A.prefab using Guid(8e8fa5c712d02d141b9e1930fb1ab999) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b81b0215e90a37bbb14e2ba5d1eefbb1') in 0.028983 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Ginger_House.prefab
+  artifactKey: Guid(7317979e7e6948045b7182822ec3b5f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Ginger_House.prefab using Guid(7317979e7e6948045b7182822ec3b5f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c8f8034573a3d90c3ed64d62e518fe70') in 0.038012 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Long_A.prefab
+  artifactKey: Guid(ef01a6667944c434bbe2fd2001855cfa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Long_A.prefab using Guid(ef01a6667944c434bbe2fd2001855cfa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9699a887eb369d0d9be71a170e9be1d7') in 0.026677 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gingerbread_Star_B.prefab
+  artifactKey: Guid(c4d96fe03b4f3434693d009cbd8388c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gingerbread_Star_B.prefab using Guid(c4d96fe03b4f3434693d009cbd8388c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd9a601b451680bc379deabba0d34f678') in 0.026398 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Jingle_Bell_Christmas.prefab
+  artifactKey: Guid(9e63d060a71a489438bb99931dc4f8f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Jingle_Bell_Christmas.prefab using Guid(9e63d060a71a489438bb99931dc4f8f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dcbca9d1d664f7e6581adb47d8e076c7') in 0.028356 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Hat_Santa.prefab
+  artifactKey: Guid(d0e881a3109fdcf4a850143faf698d76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Hat_Santa.prefab using Guid(d0e881a3109fdcf4a850143faf698d76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5c764da0e5fbaa1b98a5c0229493969a') in 0.027125 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Long_Open_Lid.prefab
+  artifactKey: Guid(7f495781324ed2d4eb438e4cf6019d8e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Long_Open_Lid.prefab using Guid(7f495781324ed2d4eb438e4cf6019d8e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '55e81b256267b9b81941849a402018a2') in 0.024596 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Light_String_Color_Big_Vertical_3m_Christmas.prefab
+  artifactKey: Guid(a95a01c640c4a524f9edf85490bd2cb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Light_String_Color_Big_Vertical_3m_Christmas.prefab using Guid(a95a01c640c4a524f9edf85490bd2cb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b36eca0306ad8ef5cb2237b2ebc2823') in 0.027134 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gingerbread_Heart_B.prefab
+  artifactKey: Guid(4a311c70af69b2b46a31d284dae9aaa8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gingerbread_Heart_B.prefab using Guid(4a311c70af69b2b46a31d284dae9aaa8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fcb8849df64b6d4e6991e144e30a2436') in 0.026554 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Long_C.prefab
+  artifactKey: Guid(9e785b17cfba9c84b854d4a92781e1e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Long_C.prefab using Guid(9e785b17cfba9c84b854d4a92781e1e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '44bb013b5b569cdc44b628de26a3a6ef') in 0.028018 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Long_D.prefab
+  artifactKey: Guid(68389292e5019bf438100737b182802a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Long_D.prefab using Guid(68389292e5019bf438100737b182802a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f1b63fd1d6c0bcc6cea834daf1aa267e') in 0.025960 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Cylinder_Open_Lid.prefab
+  artifactKey: Guid(804e29121695fde47ada9301915331ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Cylinder_Open_Lid.prefab using Guid(804e29121695fde47ada9301915331ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f82265e9acce1010766fe829f67734c3') in 0.026647 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gingerbread_Star_A.prefab
+  artifactKey: Guid(41ebb487b837bc44698df435656c3aa9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gingerbread_Star_A.prefab using Guid(41ebb487b837bc44698df435656c3aa9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f04655f3fc34ab98b94cf7b06638eb5') in 0.027116 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gingerbread_Tree_B.prefab
+  artifactKey: Guid(4dce7315d2de9c64b8c8a63e92908610) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gingerbread_Tree_B.prefab using Guid(4dce7315d2de9c64b8c8a63e92908610) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2038e404ff9f65053fb62820a3972ef2') in 0.027645 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Holly_Plant.prefab
+  artifactKey: Guid(36ae1f716957059429fb562176a5fae6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Holly_Plant.prefab using Guid(36ae1f716957059429fb562176a5fae6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '39b09a48353ce62aad2860371fe6de99') in 0.027015 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000099 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Cylinder_Open_Base.prefab
+  artifactKey: Guid(d7b16977a93790d439630add5f3fb771) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Cylinder_Open_Base.prefab using Guid(d7b16977a93790d439630add5f3fb771) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '587ea3e719f279981b31434bf72fd988') in 0.030042 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Light_String_Color_Big_2m_Christmas.prefab
+  artifactKey: Guid(f81b5b9799f630241a64a7849e08c2ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Light_String_Color_Big_2m_Christmas.prefab using Guid(f81b5b9799f630241a64a7849e08c2ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f992ffe27046e59071c00ade1b8255cb') in 0.030416 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.442767 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Light_String_White_3m_Christmas.prefab
+  artifactKey: Guid(e42e48f25e1448b4a992e290f82cd854) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Light_String_White_3m_Christmas.prefab using Guid(e42e48f25e1448b4a992e290f82cd854) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '60064ccc5bfa451b525c738e3f270843') in 0.039969 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Mince_Pie.prefab
+  artifactKey: Guid(4f5c39ef93b182342924a20fdcc0dee0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Mince_Pie.prefab using Guid(4f5c39ef93b182342924a20fdcc0dee0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '44a3fdf98d4972d5fa76eb51f288264e') in 0.027021 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Mistletoe_A.prefab
+  artifactKey: Guid(ccc795b2310d71845acb838ee5564ef0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Mistletoe_A.prefab using Guid(ccc795b2310d71845acb838ee5564ef0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a2cfcde534bf5b2bd68fef164959e16e') in 0.030533 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Light_String_White_Small_5m_Christmas.prefab
+  artifactKey: Guid(9126c464565727448b1aaf3d668a9503) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Light_String_White_Small_5m_Christmas.prefab using Guid(9126c464565727448b1aaf3d668a9503) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c13453236b306b3e67653e325b741897') in 0.033912 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.231355 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Mug_Christmas.prefab
+  artifactKey: Guid(af75da6d544d7eb4bbda4b8ce25b18d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Mug_Christmas.prefab using Guid(af75da6d544d7eb4bbda4b8ce25b18d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7be4dc9bc775891420accbe8aace0617') in 0.029231 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Pinecone.prefab
+  artifactKey: Guid(594d0276bda3be24ab66e3b82a3bf2fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Pinecone.prefab using Guid(594d0276bda3be24ab66e3b82a3bf2fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '87cb7c4d094992fe2b43f259c4f4e3f4') in 0.031652 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Plate_Dinner_English.prefab
+  artifactKey: Guid(2e4ce174d6fedb649b3dd104c2df0083) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Plate_Dinner_English.prefab using Guid(2e4ce174d6fedb649b3dd104c2df0083) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '800aa303c09476a8dd38c6779cdb1299') in 0.027964 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Turkey_Roasted.prefab
+  artifactKey: Guid(f5f4af26cf92dd54d9fa86b0f2efd64c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Turkey_Roasted.prefab using Guid(f5f4af26cf92dd54d9fa86b0f2efd64c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '020003e0bab48d89647fdbee0be93c57') in 0.026341 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Tree_Christmas_Ball.prefab
+  artifactKey: Guid(0b7522220f7fb6f4591627b0456c6ad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Tree_Christmas_Ball.prefab using Guid(0b7522220f7fb6f4591627b0456c6ad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5ebd6fb7732fb42b9b999b8caa6007b2') in 0.026319 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Plate_Dinner_Czech_A.prefab
+  artifactKey: Guid(83f03c7d3bf7b6a45b1300d2719a3643) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Plate_Dinner_Czech_A.prefab using Guid(83f03c7d3bf7b6a45b1300d2719a3643) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '177b37ec48155caa2fd2532c9833f0eb') in 0.028517 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Plate_Dinner_Christmas.prefab
+  artifactKey: Guid(c06df0a04a4be8b42a8061de9105074b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Plate_Dinner_Christmas.prefab using Guid(c06df0a04a4be8b42a8061de9105074b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '84d2045959e0d163a0537f162b38c2fb') in 0.026736 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Table_Christmas_Dinner_English.prefab
+  artifactKey: Guid(1b1c580947b96324f81a7751d73caf16) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Table_Christmas_Dinner_English.prefab using Guid(1b1c580947b96324f81a7751d73caf16) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c7a1799de17c428f395c201a440eaf52') in 0.035596 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 360
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Toy_Teddy_Bear_A.prefab
+  artifactKey: Guid(f5cee404fa6c30e41a720db0974707a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Toy_Teddy_Bear_A.prefab using Guid(f5cee404fa6c30e41a720db0974707a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f224150b5d15ea2ddb4d80d8bd9331a') in 0.027427 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Toy_Teddy_Bear_B.prefab
+  artifactKey: Guid(07d61397d577553488ad3d51879c865d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Toy_Teddy_Bear_B.prefab using Guid(07d61397d577553488ad3d51879c865d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '479e6b1439e4e91a76dac3e5f7e26cb8') in 0.027264 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Tray_Christmas.prefab
+  artifactKey: Guid(79c2119c4d89a4d4fb14463acee970f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Tray_Christmas.prefab using Guid(79c2119c4d89a4d4fb14463acee970f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1caad0939ff92bc6cd5cc344448736bd') in 0.027109 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Sleigh_Wooden.prefab
+  artifactKey: Guid(b07b226a4007b804e8041ba51687016d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Sleigh_Wooden.prefab using Guid(b07b226a4007b804e8041ba51687016d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f10940c3e7260d58e280b797d9c5736') in 0.037424 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Table_Dinner_Christmas.prefab
+  artifactKey: Guid(1cf69fe270dbb0b4d86c5e11c50550bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Table_Dinner_Christmas.prefab using Guid(1cf69fe270dbb0b4d86c5e11c50550bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4651450630d50e2b0b2e6a96157111bb') in 0.027433 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Sleigh_Christmas.prefab
+  artifactKey: Guid(bdfcb529799320b45aa29f35ea838ab8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Sleigh_Christmas.prefab using Guid(bdfcb529799320b45aa29f35ea838ab8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '72ec104e0635eaede8f9316ea4c1e42d') in 0.030898 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 23
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Plate_Soup_Christmas.prefab
+  artifactKey: Guid(a747886a79633a649b9e82202d95d056) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Plate_Soup_Christmas.prefab using Guid(a747886a79633a649b9e82202d95d056) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e4181535b027b188a498238c0cca946f') in 0.028977 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Plate_Dinner_Czech_B.prefab
+  artifactKey: Guid(7dc62fa4f5d0c134cb3cf55d08dab295) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Plate_Dinner_Czech_B.prefab using Guid(7dc62fa4f5d0c134cb3cf55d08dab295) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '98584824c52706544ee61b23ea929d63') in 0.028340 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Toy_Train.prefab
+  artifactKey: Guid(f6aeb3670d1285f41846a506e9d6b48a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Toy_Train.prefab using Guid(f6aeb3670d1285f41846a506e9d6b48a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9d47680ba86668161dd29912c46a6b69') in 0.027698 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 32
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Snowman_A.prefab
+  artifactKey: Guid(d9514d19d7e5322418ca8534967ba021) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Snowman_A.prefab using Guid(d9514d19d7e5322418ca8534967ba021) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f0902c55b0f360bbb0cde71e6c3346c') in 0.027204 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: The I/O operation has been aborted because of either a thread exit or an application request.
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
