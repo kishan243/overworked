@@ -356,6 +356,7 @@
 "Assets/Free 2D Cartoon Parallax Background/Demo/Script/BackgroundControl_0.cs"
 "Assets/Free 2D Cartoon Parallax Background/Demo/Script/ParallaxBackground_0.cs"
 "Assets/Scripts/Movement.cs"
+"Assets/Scripts/Snow.cs"
 -langversion:9.0
 
 /deterministic

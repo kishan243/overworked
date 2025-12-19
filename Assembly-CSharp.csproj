@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Free 2D Cartoon Parallax Background\Demo\Script\BackgroundControl_0.cs" />
+    <Compile Include="Assets\Scripts\Snow.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
     <Compile Include="Assets\Free 2D Cartoon Parallax Background\Demo\Script\ParallaxBackground_0.cs" />
   </ItemGroup>
