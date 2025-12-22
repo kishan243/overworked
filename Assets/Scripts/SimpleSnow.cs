@@ -7,8 +7,9 @@ public class SimpleSnow : MonoBehaviour
         // Add the Particle System
         ParticleSystem ps = gameObject.AddComponent<ParticleSystem>();
 
+
         // 1. Point the object straight down
-        transform.position = new Vector3(0, 10, -24);
+        transform.position = new Vector3(0, 10, -22);
         transform.rotation = Quaternion.Euler(90, 0, 0);
 
         var main = ps.main;
