@@ -5,26 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-<<<<<<< HEAD
-      ticks: 639014534300089783
-    m_Hash: 2850356363
-=======
-      ticks: 639024696861855283
+      ticks: 639024725362082982
     m_Hash: 2482726276
->>>>>>> UI
   m_LockFileStatus:
     m_FilePath: C:/Users/L1ght/overworked/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-<<<<<<< HEAD
-      ticks: 639014534300100229
-    m_Hash: 2258804241
-=======
-      ticks: 639024696861868519
+      ticks: 639024725362094578
     m_Hash: 548409933
->>>>>>> UI
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
