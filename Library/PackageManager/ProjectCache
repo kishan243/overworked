@@ -5,16 +5,26 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
+<<<<<<< HEAD
       ticks: 639014534300089783
     m_Hash: 2850356363
+=======
+      ticks: 639024696861855283
+    m_Hash: 2482726276
+>>>>>>> UI
   m_LockFileStatus:
     m_FilePath: C:/Users/L1ght/overworked/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
+<<<<<<< HEAD
       ticks: 639014534300100229
     m_Hash: 2258804241
+=======
+      ticks: 639024696861868519
+    m_Hash: 548409933
+>>>>>>> UI
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -666,6 +676,99 @@ m_ResolvedPackages:
     path: 
   unityLifecycle:
     version: 1.7.5
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+- packageId: com.unity.toolchain.linux-x86_64@2.0.11
+  testable: 0
+  isDirectDependency: 1
+  version: 2.0.11
+  source: 1
+  resolvedPath: C:\Users\L1ght\overworked\Library\PackageCache\com.unity.toolchain.linux-x86_64@2.0.11
+  assetPath: Packages/com.unity.toolchain.linux-x86_64
+  name: com.unity.toolchain.linux-x86_64
+  displayName: Toolchain Linux x64
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: 
+  description: Toolchain to build player target Linux x86_64 on host Linux x86_64
+  status: 0
+  errors: []
+  versions:
+    all:
+    - 0.1.5-preview
+    - 0.1.6-preview
+    - 0.1.7-preview
+    - 0.1.8-preview
+    - 0.1.9-preview
+    - 0.1.10-preview
+    - 0.1.11-preview
+    - 0.1.13-preview
+    - 0.1.14-preview
+    - 0.1.15-preview
+    - 0.1.16-preview
+    - 0.1.17-preview
+    - 0.1.18-preview
+    - 0.1.19-preview
+    - 1.0.0
+    - 2.0.0
+    - 2.0.1
+    - 2.0.2
+    - 2.0.3
+    - 2.0.4
+    - 2.0.5
+    - 2.0.6
+    - 2.0.9
+    - 2.0.10
+    - 2.0.11
+    compatible:
+    - 2.0.4
+    - 2.0.5
+    - 2.0.6
+    - 2.0.9
+    - 2.0.10
+    - 2.0.11
+    recommended: 2.0.11
+    deprecated: []
+  dependencies:
+  - name: com.unity.sysroot
+    version: 2.0.10
+  - name: com.unity.sysroot.linux-x86_64
+    version: 2.0.9
+  resolvedDependencies:
+  - name: com.unity.sysroot
+    version: 2.0.10
+  - name: com.unity.sysroot.linux-x86_64
+    version: 2.0.9
+  keywords:
+  - toolchain
+  - linux
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 638972053808020000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.toolchain.linux-x86_64@2.0/manual/index.html
+  hasRepository: 1
+  repository:
+    type: git
+    url: https://github.com/Unity-Technologies/com.unity.sysroot.git
+    revision: c5a32c15f32b7de0b0aa81c256ea52b322478b15
+    path: 
+  unityLifecycle:
+    version: 2.0.4
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
@@ -2753,6 +2856,173 @@ m_ResolvedPackages:
     path: 
   unityLifecycle:
     version: 
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+- packageId: com.unity.sysroot@2.0.10
+  testable: 0
+  isDirectDependency: 0
+  version: 2.0.10
+  source: 1
+  resolvedPath: C:\Users\L1ght\overworked\Library\PackageCache\com.unity.sysroot@2.0.10
+  assetPath: Packages/com.unity.sysroot
+  name: com.unity.sysroot
+  displayName: Sysroot Base
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: assets
+  description: This is the base sysroot package required by all sysroot and toolchain
+    packages
+  status: 0
+  errors: []
+  versions:
+    all:
+    - 0.1.7-preview
+    - 0.1.8-preview
+    - 0.1.9-preview
+    - 0.1.10-preview
+    - 0.1.11-preview
+    - 0.1.12-preview
+    - 0.1.14-preview
+    - 0.1.15-preview
+    - 0.1.16-preview
+    - 0.1.17-preview
+    - 0.1.18-preview
+    - 0.1.19-preview
+    - 1.0.0
+    - 2.0.0
+    - 2.0.2
+    - 2.0.3
+    - 2.0.4
+    - 2.0.5
+    - 2.0.6
+    - 2.0.7
+    - 2.0.10
+    - 2.0.11
+    compatible:
+    - 2.0.5
+    - 2.0.6
+    - 2.0.7
+    - 2.0.10
+    - 2.0.11
+    recommended: 2.0.11
+    deprecated: []
+  dependencies: []
+  resolvedDependencies: []
+  keywords:
+  - unity
+  - linux
+  - sysroot
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 638500638510000000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.sysroot@2.0/manual/index.html
+  hasRepository: 1
+  repository:
+    type: git
+    url: https://github.com/Unity-Technologies/com.unity.sysroot.git
+    revision: 48e503c8f30007e813fbcec90dc84795285406b4
+    path: 
+  unityLifecycle:
+    version: 2.0.5
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+- packageId: com.unity.sysroot.linux-x86_64@2.0.9
+  testable: 0
+  isDirectDependency: 0
+  version: 2.0.9
+  source: 1
+  resolvedPath: C:\Users\L1ght\overworked\Library\PackageCache\com.unity.sysroot.linux-x86_64@2.0.9
+  assetPath: Packages/com.unity.sysroot.linux-x86_64
+  name: com.unity.sysroot.linux-x86_64
+  displayName: Sysroot Linux x64
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: assets
+  description: Sysroot used to build unity player for linux x86_64
+  status: 0
+  errors: []
+  versions:
+    all:
+    - 0.1.6-preview
+    - 0.1.7-preview
+    - 0.1.8-preview
+    - 0.1.9-preview
+    - 0.1.10-preview
+    - 0.1.11-preview
+    - 0.1.12-preview
+    - 0.1.13-preview
+    - 0.1.14-preview
+    - 0.1.15-preview
+    - 1.0.0
+    - 2.0.0
+    - 2.0.1
+    - 2.0.2
+    - 2.0.3
+    - 2.0.4
+    - 2.0.5
+    - 2.0.6
+    - 2.0.9
+    - 2.0.10
+    compatible:
+    - 2.0.4
+    - 2.0.5
+    - 2.0.6
+    - 2.0.9
+    - 2.0.10
+    recommended: 2.0.10
+    deprecated: []
+  dependencies:
+  - name: com.unity.sysroot
+    version: 2.0.10
+  resolvedDependencies:
+  - name: com.unity.sysroot
+    version: 2.0.10
+  keywords:
+  - unity
+  - linux
+  - sysroot
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 638500638600000000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.sysroot.linux-x86_64@2.0/manual/index.html
+  hasRepository: 1
+  repository:
+    type: git
+    url: https://github.com/Unity-Technologies/com.unity.sysroot.git
+    revision: bf7a008256a1175e0f8a0d7d26d6826cbfbe1bb2
+    path: 
+  unityLifecycle:
+    version: 2.0.4
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0

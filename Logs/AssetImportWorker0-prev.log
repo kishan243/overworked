@@ -1,16 +1,36 @@
+Unity Editor version:    2022.3.10f1 (ff3792e53c62)
+Branch:                  2022.3/staging
+Build type:              Release
+Batch mode:              YES
+System name:             Linux
+Distro version:          #1 SMP PREEMPT_DYNAMIC Tue, 17 Jun 2025 22:22:48 +0000
+Kernel version:          6.11.11-valve19-1-neptune-611-g88b36d49a5e3
+Architecture:            x86_64
+Available memory:        14809 MB
 Using pre-set license
+<<<<<<< HEAD
 Built from '2022.3/staging' branch; Version is '2022.3.10f1 (ff3792e53c62) revision 16725906'; Using compiler version '192829333'; Build Type 'Release'
 OS: 'Windows 11  (10.0.26100) 64bit Professional' Language: 'en' Physical Memory: 65250 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+=======
+Pro License: YES
+
+(Unity:167030): Gtk-CRITICAL **: 11:59:31.854: gtk_window_set_default_icon: assertion 'GDK_IS_PIXBUF (icon)' failed
+
+(Unity:167030): GLib-GObject-CRITICAL **: 11:59:31.854: g_object_unref: assertion 'G_IS_OBJECT (object)' failed
+Desktop is 1920 x 1080 @ 60 Hz
+Initialize udev device monitor.
+>>>>>>> UI
 
 COMMAND LINE ARGUMENTS:
-C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Unity.exe
+Unity
 -adb2
 -batchMode
 -noUpm
 -name
 AssetImportWorker0
 -projectPath
+<<<<<<< HEAD
 C:/Users/patelk3/overworked
 -logFile
 Logs/AssetImportWorker0.log
@@ -18,6 +38,15 @@ Logs/AssetImportWorker0.log
 52810
 Successfully changed project path to: C:/Users/patelk3/overworked
 C:/Users/patelk3/overworked
+=======
+/home/deck/overworked
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+41463
+Successfully changed project path to: /home/deck/overworked
+/home/deck/overworked
+>>>>>>> UI
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-bucket-allocator-granularity=16"
     "memorysetup-bucket-allocator-bucket-count=8"
@@ -49,6 +78,7 @@ C:/Users/patelk3/overworked
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
+<<<<<<< HEAD
 Player connection [23432] Host "[IP] 100.114.129.86 [Port] 0 [Flags] 2 [Guid] 2064911871 [EditorId] 2064911871 [Version] 1048832 [Id] WindowsEditor(7,006-29) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
 Player connection [23432] Host "[IP] 100.114.129.86 [Port] 0 [Flags] 2 [Guid] 2064911871 [EditorId] 2064911871 [Version] 1048832 [Id] WindowsEditor(7,006-29) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
@@ -83,11 +113,56 @@ Mono: successfully reloaded assembly
 - Finished resetting the current domain, in  0.325 seconds
 Domain Reload Profiling: 752ms
 	BeginReloadAssembly (135ms)
+=======
+Player connection [139896505074496] Host "[IP] 192.168.1.160 [Port] 0 [Flags] 2 [Guid] 1127627293 [EditorId] 1127627293 [Version] 1048832 [Id] LinuxEditor(16,192.168.1.160) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [139896505074496] Host "[IP] 192.168.1.160 [Port] 0 [Flags] 2 [Guid] 1127627293 [EditorId] 1127627293 [Version] 1048832 [Id] LinuxEditor(16,192.168.1.160) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+[Physics::Module] Initialized MultithreadedJobDispatcher with 7 workers.
+Refreshing native plugins compatible for Editor in 3.36 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.10f1 (ff3792e53c62)
+[Subsystems] Discovering subsystems at path /home/deck/Unity/Hub/Editor/2022.3.10f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path /home/deck/overworked/Assets
+GLX Extensions: GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_create_context_robustness GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_buffer_age GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_no_config_context GLX_EXT_swap_control GLX_EXT_swap_control_tear GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_INTEL_swap_event GLX_MESA_copy_sub_buffer GLX_MESA_gl_interop GLX_MESA_query_renderer GLX_MESA_swap_control GLX_OML_sync_control GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read GLX_SGI_swap_control GLX_SGI_video_sync 
+Renderer: AMD Custom GPU 0405 (radeonsi, vangogh, LLVM 18.1.8, DRM 3.59, 6.11.11-valve19-1-neptune-611-g88b36d49a5e3)
+Vendor:   AMD
+Version:  4.6 (Core Profile) Mesa 24.3.4 (git-8d0948917e)
+GLES:     0
+ GL_AMD_conservative_depth GL_AMD_depth_clamp_separate GL_AMD_draw_buffers_blend GL_AMD_framebuffer_multisample_advanced GL_AMD_gpu_shader_int64 GL_AMD_multi_draw_indirect GL_AMD_performance_monitor GL_AMD_pinned_memory GL_AMD_query_buffer_object GL_AMD_seamless_cubemap_per_texture GL_AMD_shader_stencil_export GL_AMD_shader_trinary_minmax GL_AMD_texture_texture4 GL_AMD_vertex_shader_layer GL_AMD_vertex_shader_viewport_index GL_ANGLE_texture_compression_dxt3 GL_ANGLE_texture_compression_dxt5 GL_ARB_ES2_compatibility GL_ARB_ES3_1_compatibility GL_ARB_ES3_2_compatibility GL_ARB_ES3_compatibility GL_ARB_arrays_of_arrays GL_ARB_base_instance GL_ARB_bindless_texture GL_ARB_blend_func_extended GL_ARB_buffer_storage GL_ARB_clear_buffer_object GL_ARB_clear_texture GL_ARB_clip_control GL_ARB_color_buffer_float GL_ARB_compressed_texture_pixel_storage GL_ARB_compute_shader GL_ARB_compute_variable_group_size GL_ARB_conditional_render_inverted GL_ARB_conservative_depth GL_ARB_copy_buffer GL_ARB_copy_image GL_ARB_cull_dist
+ance GL_ARB_debug_output GL_ARB_depth_buffer_float GL_ARB_depth_clamp GL_ARB_derivative_control GL_ARB_direct_state_access GL_ARB_draw_buffers GL_ARB_draw_buffers_blend GL_ARB_draw_elements_base_vertex GL_ARB_draw_indirect GL_ARB_draw_instanced GL_ARB_enhanced_layouts GL_ARB_explicit_attrib_location GL_ARB_explicit_uniform_location GL_ARB_fragment_coord_conventions GL_ARB_fragment_layer_viewport GL_ARB_fragment_shader GL_ARB_framebuffer_no_attachments GL_ARB_framebuffer_object GL_ARB_framebuffer_sRGB GL_ARB_get_program_binary GL_ARB_get_texture_sub_image GL_ARB_gl_spirv GL_ARB_gpu_shader5 GL_ARB_gpu_shader_fp64 GL_ARB_gpu_shader_int64 GL_ARB_half_float_pixel GL_ARB_half_float_vertex GL_ARB_indirect_parameters GL_ARB_instanced_arrays GL_ARB_internalformat_query GL_ARB_internalformat_query2 GL_ARB_invalidate_subdata GL_ARB_map_buffer_alignment GL_ARB_map_buffer_range GL_ARB_multi_bind GL_ARB_multi_draw_indirect GL_ARB_occlusion_query2 GL_ARB_parallel_shader_compile GL_ARB_pipeline_statistics_query GL_ARB_pixel
+_buffer_object GL_ARB_point_sprite GL_ARB_polygon_offset_clamp GL_ARB_post_depth_coverage GL_ARB_program_interface_query GL_ARB_provoking_vertex GL_ARB_query_buffer_object GL_ARB_robust_buffer_access_behavior GL_ARB_robustness GL_ARB_sample_shading GL_ARB_sampler_objects GL_ARB_seamless_cube_map GL_ARB_seamless_cubemap_per_texture GL_ARB_separate_shader_objects GL_ARB_shader_atomic_counter_ops GL_ARB_shader_atomic_counters GL_ARB_shader_ballot GL_ARB_shader_bit_encoding GL_ARB_shader_clock GL_ARB_shader_draw_parameters GL_ARB_shader_group_vote GL_ARB_shader_image_load_store GL_ARB_shader_image_size GL_ARB_shader_objects GL_ARB_shader_precision GL_ARB_shader_stencil_export GL_ARB_shader_storage_buffer_object GL_ARB_shader_subroutine GL_ARB_shader_texture_image_samples GL_ARB_shader_texture_lod GL_ARB_shader_viewport_layer_array GL_ARB_shading_language_420pack GL_ARB_shading_language_include GL_ARB_shading_language_packing GL_ARB_sparse_buffer GL_ARB_sparse_texture GL_ARB_sparse_texture2 GL_ARB_sparse_texture_
+clamp GL_ARB_spirv_extensions GL_ARB_stencil_texturing GL_ARB_sync GL_ARB_tessellation_shader GL_ARB_texture_barrier GL_ARB_texture_border_clamp GL_ARB_texture_buffer_object GL_ARB_texture_buffer_object_rgb32 GL_ARB_texture_buffer_range GL_ARB_texture_compression_bptc GL_ARB_texture_compression_rgtc GL_ARB_texture_cube_map_array GL_ARB_texture_filter_anisotropic GL_ARB_texture_filter_minmax GL_ARB_texture_float GL_ARB_texture_gather GL_ARB_texture_mirror_clamp_to_edge GL_ARB_texture_multisample GL_ARB_texture_non_power_of_two GL_ARB_texture_query_levels GL_ARB_texture_query_lod GL_ARB_texture_rectangle GL_ARB_texture_rg GL_ARB_texture_rgb10_a2ui GL_ARB_texture_stencil8 GL_ARB_texture_storage GL_ARB_texture_storage_multisample GL_ARB_texture_swizzle GL_ARB_texture_view GL_ARB_timer_query GL_ARB_transform_feedback2 GL_ARB_transform_feedback3 GL_ARB_transform_feedback_instanced GL_ARB_transform_feedback_overflow_query GL_ARB_uniform_buffer_object GL_ARB_vertex_array_bgra GL_ARB_vertex_array_object GL_ARB_vertex
+_attrib_64bit GL_ARB_vertex_attrib_binding GL_ARB_vertex_buffer_object GL_ARB_vertex_shader GL_ARB_vertex_type_10f_11f_11f_rev GL_ARB_vertex_type_2_10_10_10_rev GL_ARB_viewport_array GL_ATI_blend_equation_separate GL_ATI_meminfo GL_ATI_texture_float GL_ATI_texture_mirror_once GL_EXT_EGL_image_storage GL_EXT_EGL_image_storage_compression GL_EXT_EGL_sync GL_EXT_abgr GL_EXT_blend_equation_separate GL_EXT_debug_label GL_EXT_demote_to_helper_invocation GL_EXT_depth_bounds_test GL_EXT_draw_buffers2 GL_EXT_draw_instanced GL_EXT_framebuffer_blit GL_EXT_framebuffer_multisample GL_EXT_framebuffer_multisample_blit_scaled GL_EXT_framebuffer_object GL_EXT_framebuffer_sRGB GL_EXT_memory_object GL_EXT_memory_object_fd GL_EXT_packed_depth_stencil GL_EXT_packed_float GL_EXT_pixel_buffer_object GL_EXT_polygon_offset_clamp GL_EXT_provoking_vertex GL_EXT_semaphore GL_EXT_semaphore_fd GL_EXT_shader_image_load_formatted GL_EXT_shader_image_load_store GL_EXT_shader_integer_mix GL_EXT_shader_samples_identical GL_EXT_texture_array G
+L_EXT_texture_compression_dxt1 GL_EXT_texture_compression_rgtc GL_EXT_texture_compression_s3tc GL_EXT_texture_filter_anisotropic GL_EXT_texture_filter_minmax GL_EXT_texture_integer GL_EXT_texture_mirror_clamp GL_EXT_texture_sRGB GL_EXT_texture_sRGB_R8 GL_EXT_texture_sRGB_RG8 GL_EXT_texture_sRGB_decode GL_EXT_texture_shadow_lod GL_EXT_texture_shared_exponent GL_EXT_texture_snorm GL_EXT_texture_storage GL_EXT_texture_swizzle GL_EXT_timer_query GL_EXT_transform_feedback GL_EXT_vertex_array_bgra GL_EXT_vertex_attrib_64bit GL_EXT_window_rectangles GL_IBM_multimode_draw_arrays GL_INTEL_blackhole_render GL_KHR_blend_equation_advanced GL_KHR_context_flush_control GL_KHR_debug GL_KHR_no_error GL_KHR_parallel_shader_compile GL_KHR_robust_buffer_access_behavior GL_KHR_robustness GL_KHR_shader_subgroup GL_KHR_texture_compression_astc_ldr GL_KHR_texture_compression_astc_sliced_3d GL_MESA_framebuffer_flip_y GL_MESA_pack_invert GL_MESA_shader_integer_functions GL_MESA_texture_const_bandwidth GL_MESA_texture_signed_rgba GL_
+NVX_gpu_memory_info GL_NV_alpha_to_coverage_dither_control GL_NV_compute_shader_derivatives GL_NV_conditional_render GL_NV_copy_image GL_NV_depth_clamp GL_NV_packed_depth_stencil GL_NV_shader_atomic_int64 GL_NV_texture_barrier GL_NV_vdpau_interop GL_OES_EGL_image GL_S3_s3tc
+OPENGL LOG: Creating OpenGL 4.6 graphics device ; Context level  <OpenGL 4.5> ; Context handle 1817658112
+Initialize mono
+Mono path[0] = '/home/deck/Unity/Hub/Editor/2022.3.10f1/Editor/Data/Managed'
+Mono path[1] = '/home/deck/Unity/Hub/Editor/2022.3.10f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-linux'
+Mono config path = '/home/deck/Unity/Hub/Editor/2022.3.10f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56030
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: /home/deck/Unity/Hub/Editor/2022.3.10f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: /home/deck/Unity/Hub/Editor/2022.3.10f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Register platform support module: /home/deck/Unity/Hub/Editor/2022.3.10f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
+Registered in 0.013899 seconds.
+- Loaded All Assemblies, in  0.462 seconds
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.462 seconds
+Domain Reload Profiling: 924ms
+	BeginReloadAssembly (96ms)
+>>>>>>> UI
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
+<<<<<<< HEAD
 	RebuildCommonClasses (42ms)
 	RebuildNativeTypeToScriptingClass (13ms)
 	initialDomainReloadingComplete (70ms)
@@ -110,6 +185,30 @@ Domain Reload Profiling: 752ms
 			BeforeProcessingInitializeOnLoad (3ms)
 			ProcessInitializeOnLoadAttributes (163ms)
 			ProcessInitializeOnLoadMethodAttributes (62ms)
+=======
+	RebuildCommonClasses (53ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (89ms)
+	LoadAllAssembliesAndSetupDomain (214ms)
+		LoadAssemblies (95ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (212ms)
+			TypeCache.Refresh (210ms)
+				TypeCache.ScanAssembly (193ms)
+			ScanForSourceGeneratedMonoScriptInfo (1ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (462ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (360ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (47ms)
+			SetLoadedEditorAssemblies (8ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (3ms)
+			ProcessInitializeOnLoadAttributes (224ms)
+			ProcessInitializeOnLoadMethodAttributes (78ms)
+>>>>>>> UI
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -117,8 +216,14 @@ Domain Reload Profiling: 752ms
 ========================================================================
 Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
+<<<<<<< HEAD
 - Loaded All Assemblies, in  0.776 seconds
 Refreshing native plugins compatible for Editor in 2.84 ms, found 3 plugins.
+=======
+- Loaded All Assemblies, in  0.701 seconds
+Refreshing native plugins compatible for Editor in 1.75 ms, found 0 plugins.
+Native extension for LinuxStandalone target not found
+>>>>>>> UI
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
 Package Manager log level set to [2]
@@ -126,13 +231,168 @@ Package Manager log level set to [2]
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
+<<<<<<< HEAD
 - Finished resetting the current domain, in  0.686 seconds
 Domain Reload Profiling: 1460ms
 	BeginReloadAssembly (206ms)
+=======
+- Finished resetting the current domain, in  0.694 seconds
+Domain Reload Profiling: 1395ms
+	BeginReloadAssembly (162ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (7ms)
+		DisableScriptedObjects (9ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (34ms)
+	RebuildCommonClasses (42ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (49ms)
+	LoadAllAssembliesAndSetupDomain (437ms)
+		LoadAssemblies (299ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (209ms)
+			TypeCache.Refresh (184ms)
+				TypeCache.ScanAssembly (166ms)
+			ScanForSourceGeneratedMonoScriptInfo (19ms)
+			ResolveRequiredComponents (4ms)
+	FinalizeReload (695ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (485ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (42ms)
+			SetLoadedEditorAssemblies (5ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (82ms)
+			ProcessInitializeOnLoadAttributes (324ms)
+			ProcessInitializeOnLoadMethodAttributes (26ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Launched and connected shader compiler UnityShaderCompiler after 0.02 seconds
+Refreshing native plugins compatible for Editor in 1.76 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3096 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 31 unused Assets / (47.4 KB). Loaded Objects now: 3561.
+Memory consumption went from 114.4 MB to 114.3 MB.
+Total: 5.749174 ms (FindLiveObjects: 0.431740 ms CreateObjectMapping: 0.228170 ms MarkObjects: 4.769214 ms  DeleteObjects: 0.317830 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:CustomObjectIndexerAttribute: 306bfa6df2d96854e1ebb52f3ddacab7 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: 2f0ff77a95e0ac474e3e8eeba4e2f7cb -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 55113.612814 seconds.
+  path: Assets/Animations/Instructions/Instructions.controller
+  artifactKey: Guid(1444c0f80742e0b46bd52655b18a9257) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Instructions/Instructions.controller using Guid(1444c0f80742e0b46bd52655b18a9257) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bd0d5333dd92e91c97f267606d158979') in 0.029784 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 15
+========================================================================
+Received Import Request.
+  Time since last request: 72.750212 seconds.
+  path: Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset
+  artifactKey: Guid(2e498d1c8094910479dc3e1b768306a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset using Guid(2e498d1c8094910479dc3e1b768306a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5ba0327fe87c11ecc0fa41e15a200787') in 0.233665 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 6
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.513 seconds
+Refreshing native plugins compatible for Editor in 1.51 ms, found 0 plugins.
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.087 seconds
+Domain Reload Profiling: 1599ms
+	BeginReloadAssembly (160ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (5ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (53ms)
+	RebuildCommonClasses (49ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (36ms)
+	LoadAllAssembliesAndSetupDomain (256ms)
+		LoadAssemblies (308ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (14ms)
+			TypeCache.Refresh (7ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (4ms)
+	FinalizeReload (1088ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (458ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (49ms)
+			SetLoadedEditorAssemblies (8ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (78ms)
+			ProcessInitializeOnLoadAttributes (292ms)
+			ProcessInitializeOnLoadMethodAttributes (24ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Refreshing native plugins compatible for Editor in 1.73 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3075 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 22 unused Assets / (30.5 KB). Loaded Objects now: 3607.
+Memory consumption went from 112.5 MB to 112.5 MB.
+Total: 5.981004 ms (FindLiveObjects: 0.509410 ms CreateObjectMapping: 0.352010 ms MarkObjects: 4.967504 ms  DeleteObjects: 0.149920 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:CustomObjectIndexerAttribute: 306bfa6df2d96854e1ebb52f3ddacab7 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: 2f0ff77a95e0ac474e3e8eeba4e2f7cb -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.782 seconds
+Refreshing native plugins compatible for Editor in 1.60 ms, found 0 plugins.
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.384 seconds
+Domain Reload Profiling: 2166ms
+	BeginReloadAssembly (306ms)
+>>>>>>> UI
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (9ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+<<<<<<< HEAD
 		CreateAndSetChildDomain (23ms)
 	RebuildCommonClasses (40ms)
 	RebuildNativeTypeToScriptingClass (13ms)
@@ -230,22 +490,123 @@ Unloading 3068 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 22 unused Assets / (30.5 KB). Loaded Objects now: 3556.
 Memory consumption went from 115.7 MB to 115.7 MB.
 Total: 5.224400 ms (FindLiveObjects: 0.356800 ms CreateObjectMapping: 0.258800 ms MarkObjects: 4.541500 ms  DeleteObjects: 0.065800 ms)
+=======
+		CreateAndSetChildDomain (98ms)
+	RebuildCommonClasses (45ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (48ms)
+	LoadAllAssembliesAndSetupDomain (372ms)
+		LoadAssemblies (506ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (16ms)
+			TypeCache.Refresh (8ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (6ms)
+	FinalizeReload (1385ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (698ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (49ms)
+			SetLoadedEditorAssemblies (9ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (108ms)
+			ProcessInitializeOnLoadAttributes (484ms)
+			ProcessInitializeOnLoadMethodAttributes (38ms)
+			AfterProcessingInitializeOnLoad (9ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (10ms)
+Refreshing native plugins compatible for Editor in 1.75 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3076 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 22 unused Assets / (30.5 KB). Loaded Objects now: 3610.
+Memory consumption went from 112.7 MB to 112.7 MB.
+Total: 13.308429 ms (FindLiveObjects: 0.432460 ms CreateObjectMapping: 0.313031 ms MarkObjects: 12.390968 ms  DeleteObjects: 0.169190 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:CustomObjectIndexerAttribute: 306bfa6df2d96854e1ebb52f3ddacab7 -> 
   custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
   custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
-  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:AudioImporter_EditorPlatform: 2f0ff77a95e0ac474e3e8eeba4e2f7cb -> 
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.570 seconds
+Refreshing native plugins compatible for Editor in 1.83 ms, found 0 plugins.
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.887 seconds
+Domain Reload Profiling: 1457ms
+	BeginReloadAssembly (161ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (8ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (48ms)
+	RebuildCommonClasses (47ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (37ms)
+	LoadAllAssembliesAndSetupDomain (314ms)
+		LoadAssemblies (366ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (15ms)
+			TypeCache.Refresh (7ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (888ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (480ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (47ms)
+			SetLoadedEditorAssemblies (7ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (86ms)
+			ProcessInitializeOnLoadAttributes (305ms)
+			ProcessInitializeOnLoadMethodAttributes (28ms)
+			AfterProcessingInitializeOnLoad (8ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (7ms)
+Refreshing native plugins compatible for Editor in 1.84 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3076 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 22 unused Assets / (30.5 KB). Loaded Objects now: 3613.
+Memory consumption went from 112.7 MB to 112.7 MB.
+Total: 6.424364 ms (FindLiveObjects: 0.449850 ms CreateObjectMapping: 0.280750 ms MarkObjects: 5.585334 ms  DeleteObjects: 0.106150 ms)
+>>>>>>> UI
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:CustomObjectIndexerAttribute: 306bfa6df2d96854e1ebb52f3ddacab7 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: 2f0ff77a95e0ac474e3e8eeba4e2f7cb -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+<<<<<<< HEAD
 Received Import Request.
   Time since last request: 602682.742496 seconds.
   path: Assets/Gift_Christmas_Cube_A(Clone).prefab
@@ -258,30 +619,597 @@ Received Prepare
 Begin MonoManager ReloadAssembly
 - Loaded All Assemblies, in  0.488 seconds
 Refreshing native plugins compatible for Editor in 2.89 ms, found 3 plugins.
+=======
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.472 seconds
+Refreshing native plugins compatible for Editor in 1.85 ms, found 0 plugins.
+Native extension for LinuxStandalone target not found
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.010 seconds
-Domain Reload Profiling: 1495ms
-	BeginReloadAssembly (168ms)
+- Finished resetting the current domain, in  0.867 seconds
+Domain Reload Profiling: 1339ms
+	BeginReloadAssembly (145ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (6ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (41ms)
+	RebuildCommonClasses (45ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (36ms)
+	LoadAllAssembliesAndSetupDomain (234ms)
+		LoadAssemblies (282ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (15ms)
+			TypeCache.Refresh (8ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (868ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (472ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (43ms)
+			SetLoadedEditorAssemblies (7ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (80ms)
+			ProcessInitializeOnLoadAttributes (305ms)
+			ProcessInitializeOnLoadMethodAttributes (28ms)
+			AfterProcessingInitializeOnLoad (8ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (7ms)
+Refreshing native plugins compatible for Editor in 1.99 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3076 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 22 unused Assets / (30.5 KB). Loaded Objects now: 3616.
+Memory consumption went from 112.7 MB to 112.7 MB.
+Total: 4.798043 ms (FindLiveObjects: 0.383470 ms CreateObjectMapping: 0.187020 ms MarkObjects: 4.137053 ms  DeleteObjects: 0.088680 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:CustomObjectIndexerAttribute: 306bfa6df2d96854e1ebb52f3ddacab7 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: 2f0ff77a95e0ac474e3e8eeba4e2f7cb -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.556 seconds
+Refreshing native plugins compatible for Editor in 1.62 ms, found 0 plugins.
+Native extension for LinuxStandalone target not found
+>>>>>>> UI
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+<<<<<<< HEAD
+- Finished resetting the current domain, in  1.010 seconds
+Domain Reload Profiling: 1495ms
+	BeginReloadAssembly (168ms)
+=======
+- Finished resetting the current domain, in  0.958 seconds
+Domain Reload Profiling: 1513ms
+	BeginReloadAssembly (187ms)
+>>>>>>> UI
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (6ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+<<<<<<< HEAD
 		CreateAndSetChildDomain (34ms)
 	RebuildCommonClasses (38ms)
 	RebuildNativeTypeToScriptingClass (13ms)
 	initialDomainReloadingComplete (34ms)
 	LoadAllAssembliesAndSetupDomain (231ms)
 		LoadAssemblies (312ms)
+=======
+		CreateAndSetChildDomain (50ms)
+	RebuildCommonClasses (62ms)
+	RebuildNativeTypeToScriptingClass (14ms)
+	initialDomainReloadingComplete (49ms)
+	LoadAllAssembliesAndSetupDomain (244ms)
+		LoadAssemblies (324ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (14ms)
+			TypeCache.Refresh (7ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (958ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (484ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (43ms)
+			SetLoadedEditorAssemblies (8ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (75ms)
+			ProcessInitializeOnLoadAttributes (325ms)
+			ProcessInitializeOnLoadMethodAttributes (25ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (7ms)
+Refreshing native plugins compatible for Editor in 1.62 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3076 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 22 unused Assets / (30.5 KB). Loaded Objects now: 3619.
+Memory consumption went from 112.8 MB to 112.7 MB.
+Total: 5.760103 ms (FindLiveObjects: 0.418440 ms CreateObjectMapping: 0.135640 ms MarkObjects: 5.119303 ms  DeleteObjects: 0.084630 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:CustomObjectIndexerAttribute: 306bfa6df2d96854e1ebb52f3ddacab7 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: 2f0ff77a95e0ac474e3e8eeba4e2f7cb -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 1533.628230 seconds.
+  path: Assets/Animations/Manual
+  artifactKey: Guid(9e37f3c8746487244b0b3f70907b9ea6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Manual using Guid(9e37f3c8746487244b0b3f70907b9ea6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0747bafd65a881539f45f4eca8e66481') in 0.004501 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 6.165095 seconds.
+  path: Assets/Animations/Manual/Manual.controller
+  artifactKey: Guid(19da00e6cbb38f544a5b4b028c59b002) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Manual/Manual.controller using Guid(19da00e6cbb38f544a5b4b028c59b002) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '412fb2ea3c693c9627dc877676d5e1d8') in 0.024026 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 15
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.515 seconds
+Refreshing native plugins compatible for Editor in 1.64 ms, found 0 plugins.
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.044 seconds
+Domain Reload Profiling: 1558ms
+	BeginReloadAssembly (161ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (6ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (50ms)
+	RebuildCommonClasses (47ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (37ms)
+	LoadAllAssembliesAndSetupDomain (260ms)
+		LoadAssemblies (317ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (13ms)
+			TypeCache.Refresh (7ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (1044ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (510ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (55ms)
+			SetLoadedEditorAssemblies (7ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (82ms)
+			ProcessInitializeOnLoadAttributes (334ms)
+			ProcessInitializeOnLoadMethodAttributes (24ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Refreshing native plugins compatible for Editor in 1.61 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3075 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 22 unused Assets / (30.5 KB). Loaded Objects now: 3622.
+Memory consumption went from 112.5 MB to 112.5 MB.
+Total: 8.557436 ms (FindLiveObjects: 0.424600 ms CreateObjectMapping: 0.255450 ms MarkObjects: 7.793996 ms  DeleteObjects: 0.081220 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:CustomObjectIndexerAttribute: 306bfa6df2d96854e1ebb52f3ddacab7 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: 2f0ff77a95e0ac474e3e8eeba4e2f7cb -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.517 seconds
+Refreshing native plugins compatible for Editor in 1.60 ms, found 0 plugins.
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.861 seconds
+Domain Reload Profiling: 1378ms
+	BeginReloadAssembly (162ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (7ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (50ms)
+	RebuildCommonClasses (46ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (37ms)
+	LoadAllAssembliesAndSetupDomain (261ms)
+		LoadAssemblies (313ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (17ms)
+			TypeCache.Refresh (8ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (6ms)
+	FinalizeReload (862ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (472ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (46ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (77ms)
+			ProcessInitializeOnLoadAttributes (310ms)
+			ProcessInitializeOnLoadMethodAttributes (26ms)
+			AfterProcessingInitializeOnLoad (8ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Refreshing native plugins compatible for Editor in 1.60 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3076 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 22 unused Assets / (30.5 KB). Loaded Objects now: 3625.
+Memory consumption went from 112.8 MB to 112.7 MB.
+Total: 4.922273 ms (FindLiveObjects: 0.407990 ms CreateObjectMapping: 0.093430 ms MarkObjects: 4.337063 ms  DeleteObjects: 0.082090 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:CustomObjectIndexerAttribute: 306bfa6df2d96854e1ebb52f3ddacab7 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: 2f0ff77a95e0ac474e3e8eeba4e2f7cb -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.675 seconds
+Refreshing native plugins compatible for Editor in 1.56 ms, found 0 plugins.
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.157 seconds
+Domain Reload Profiling: 1831ms
+	BeginReloadAssembly (237ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (7ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (59ms)
+	RebuildCommonClasses (47ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (42ms)
+	LoadAllAssembliesAndSetupDomain (338ms)
+		LoadAssemblies (459ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (14ms)
+			TypeCache.Refresh (7ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (1157ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (481ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (51ms)
+			SetLoadedEditorAssemblies (8ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (80ms)
+			ProcessInitializeOnLoadAttributes (305ms)
+			ProcessInitializeOnLoadMethodAttributes (28ms)
+			AfterProcessingInitializeOnLoad (8ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Refreshing native plugins compatible for Editor in 1.66 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3076 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 22 unused Assets / (30.5 KB). Loaded Objects now: 3628.
+Memory consumption went from 112.8 MB to 112.7 MB.
+Total: 6.690164 ms (FindLiveObjects: 0.398490 ms CreateObjectMapping: 0.222760 ms MarkObjects: 5.963184 ms  DeleteObjects: 0.097620 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:CustomObjectIndexerAttribute: 306bfa6df2d96854e1ebb52f3ddacab7 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: 2f0ff77a95e0ac474e3e8eeba4e2f7cb -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.602 seconds
+Refreshing native plugins compatible for Editor in 1.73 ms, found 0 plugins.
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.214 seconds
+Domain Reload Profiling: 1816ms
+	BeginReloadAssembly (180ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (7ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (50ms)
+	RebuildCommonClasses (61ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (37ms)
+	LoadAllAssembliesAndSetupDomain (312ms)
+		LoadAssemblies (384ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (14ms)
+			TypeCache.Refresh (7ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (1215ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (505ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (53ms)
+			SetLoadedEditorAssemblies (7ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (79ms)
+			ProcessInitializeOnLoadAttributes (328ms)
+			ProcessInitializeOnLoadMethodAttributes (29ms)
+			AfterProcessingInitializeOnLoad (8ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (9ms)
+Refreshing native plugins compatible for Editor in 2.28 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3076 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 22 unused Assets / (30.5 KB). Loaded Objects now: 3631.
+Memory consumption went from 112.8 MB to 112.7 MB.
+Total: 5.852415 ms (FindLiveObjects: 0.540021 ms CreateObjectMapping: 0.386850 ms MarkObjects: 4.843673 ms  DeleteObjects: 0.080241 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:CustomObjectIndexerAttribute: 306bfa6df2d96854e1ebb52f3ddacab7 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: 2f0ff77a95e0ac474e3e8eeba4e2f7cb -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.510 seconds
+Refreshing native plugins compatible for Editor in 1.64 ms, found 0 plugins.
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.875 seconds
+Domain Reload Profiling: 1384ms
+	BeginReloadAssembly (170ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (9ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (55ms)
+	RebuildCommonClasses (46ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (37ms)
+	LoadAllAssembliesAndSetupDomain (246ms)
+		LoadAssemblies (300ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (14ms)
+			TypeCache.Refresh (7ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (875ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (478ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (60ms)
+			SetLoadedEditorAssemblies (7ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (81ms)
+			ProcessInitializeOnLoadAttributes (299ms)
+			ProcessInitializeOnLoadMethodAttributes (24ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Refreshing native plugins compatible for Editor in 2.21 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3076 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 22 unused Assets / (30.6 KB). Loaded Objects now: 3634.
+Memory consumption went from 112.8 MB to 112.7 MB.
+Total: 5.018313 ms (FindLiveObjects: 0.339060 ms CreateObjectMapping: 0.191110 ms MarkObjects: 4.387193 ms  DeleteObjects: 0.098820 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:CustomObjectIndexerAttribute: 306bfa6df2d96854e1ebb52f3ddacab7 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: 2f0ff77a95e0ac474e3e8eeba4e2f7cb -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.516 seconds
+Refreshing native plugins compatible for Editor in 1.70 ms, found 0 plugins.
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.880 seconds
+Domain Reload Profiling: 1396ms
+	BeginReloadAssembly (170ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (9ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (51ms)
+	RebuildCommonClasses (46ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (36ms)
+	LoadAllAssembliesAndSetupDomain (252ms)
+		LoadAssemblies (305ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
 		AnalyzeDomain (15ms)
 			TypeCache.Refresh (7ms)
 				TypeCache.ScanAssembly (0ms)
 			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (881ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (462ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (49ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (80ms)
+			ProcessInitializeOnLoadAttributes (296ms)
+			ProcessInitializeOnLoadMethodAttributes (24ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Refreshing native plugins compatible for Editor in 1.98 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3076 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 22 unused Assets / (30.5 KB). Loaded Objects now: 3637.
+Memory consumption went from 112.8 MB to 112.7 MB.
+Total: 4.952424 ms (FindLiveObjects: 0.322061 ms CreateObjectMapping: 0.088310 ms MarkObjects: 4.453883 ms  DeleteObjects: 0.086100 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:CustomObjectIndexerAttribute: 306bfa6df2d96854e1ebb52f3ddacab7 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: 2f0ff77a95e0ac474e3e8eeba4e2f7cb -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.549 seconds
+Refreshing native plugins compatible for Editor in 1.95 ms, found 0 plugins.
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.899 seconds
+Domain Reload Profiling: 1447ms
+	BeginReloadAssembly (201ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (9ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (63ms)
+	RebuildCommonClasses (48ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (38ms)
+	LoadAllAssembliesAndSetupDomain (250ms)
+		LoadAssemblies (321ms)
+>>>>>>> UI
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (15ms)
+			TypeCache.Refresh (7ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+<<<<<<< HEAD
 			ResolveRequiredComponents (5ms)
 	FinalizeReload (1010ms)
 		ReleaseScriptCaches (0ms)
@@ -304,39 +1232,157 @@ Unloading 3067 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 22 unused Assets / (30.5 KB). Loaded Objects now: 3567.
 Memory consumption went from 120.0 MB to 120.0 MB.
 Total: 5.092800 ms (FindLiveObjects: 0.257700 ms CreateObjectMapping: 0.157700 ms MarkObjects: 4.611600 ms  DeleteObjects: 0.064400 ms)
+=======
+			ResolveRequiredComponents (6ms)
+	FinalizeReload (899ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (477ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (48ms)
+			SetLoadedEditorAssemblies (7ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (80ms)
+			ProcessInitializeOnLoadAttributes (309ms)
+			ProcessInitializeOnLoadMethodAttributes (25ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Refreshing native plugins compatible for Editor in 1.85 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3076 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 22 unused Assets / (30.5 KB). Loaded Objects now: 3640.
+Memory consumption went from 112.8 MB to 112.7 MB.
+Total: 4.772743 ms (FindLiveObjects: 0.302160 ms CreateObjectMapping: 0.084590 ms MarkObjects: 4.294693 ms  DeleteObjects: 0.089780 ms)
+>>>>>>> UI
 
 Prepare: number of updated asset objects reloaded= 0
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:CustomObjectIndexerAttribute: 306bfa6df2d96854e1ebb52f3ddacab7 -> 
   custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
   custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
-  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:AudioImporter_EditorPlatform: 2f0ff77a95e0ac474e3e8eeba4e2f7cb -> 
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
+Received Import Request.
+  Time since last request: 4968.817644 seconds.
+  path: Assets/Animations/Play/Play.controller
+  artifactKey: Guid(c5f7234b9a586da4f83e30e2c5c98faf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Play/Play.controller using Guid(c5f7234b9a586da4f83e30e2c5c98faf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b1571bbf86d7d1fea3300da96ade81c7') in 0.556644 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 15
+========================================================================
+Received Import Request.
+  Time since last request: 0.367123 seconds.
+  path: Assets/Animations/Play/Play.controller
+  artifactKey: Guid(c5f7234b9a586da4f83e30e2c5c98faf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Play/Play.controller using Guid(c5f7234b9a586da4f83e30e2c5c98faf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b1571bbf86d7d1fea3300da96ade81c7') in 0.005383 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 15
+========================================================================
 Received Prepare
 Begin MonoManager ReloadAssembly
+<<<<<<< HEAD
 - Loaded All Assemblies, in  0.529 seconds
 Refreshing native plugins compatible for Editor in 2.70 ms, found 3 plugins.
+=======
+- Loaded All Assemblies, in  1.872 seconds
+Refreshing native plugins compatible for Editor in 2.24 ms, found 0 plugins.
+Native extension for LinuxStandalone target not found
+>>>>>>> UI
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
+<<<<<<< HEAD
 - Finished resetting the current domain, in  1.123 seconds
 Domain Reload Profiling: 1651ms
 	BeginReloadAssembly (179ms)
+=======
+- Finished resetting the current domain, in  1.590 seconds
+Domain Reload Profiling: 3465ms
+	BeginReloadAssembly (1100ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (24ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (487ms)
+	RebuildCommonClasses (54ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (74ms)
+	LoadAllAssembliesAndSetupDomain (636ms)
+		LoadAssemblies (1100ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (30ms)
+			TypeCache.Refresh (15ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (13ms)
+	FinalizeReload (1591ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (634ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (71ms)
+			SetLoadedEditorAssemblies (9ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (93ms)
+			ProcessInitializeOnLoadAttributes (423ms)
+			ProcessInitializeOnLoadMethodAttributes (32ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (8ms)
+Refreshing native plugins compatible for Editor in 1.73 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3075 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 22 unused Assets / (30.5 KB). Loaded Objects now: 3643.
+Memory consumption went from 112.5 MB to 112.5 MB.
+Total: 8.323776 ms (FindLiveObjects: 0.522620 ms CreateObjectMapping: 0.254381 ms MarkObjects: 7.369405 ms  DeleteObjects: 0.174100 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:CustomObjectIndexerAttribute: 306bfa6df2d96854e1ebb52f3ddacab7 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: 2f0ff77a95e0ac474e3e8eeba4e2f7cb -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.517 seconds
+Refreshing native plugins compatible for Editor in 1.66 ms, found 0 plugins.
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.941 seconds
+Domain Reload Profiling: 1456ms
+	BeginReloadAssembly (169ms)
+>>>>>>> UI
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (7ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
+<<<<<<< HEAD
 		CreateAndSetChildDomain (35ms)
 	RebuildCommonClasses (40ms)
 	RebuildNativeTypeToScriptingClass (13ms)
@@ -370,39 +1416,86 @@ Unloading 3068 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 22 unused Assets / (30.4 KB). Loaded Objects now: 3570.
 Memory consumption went from 120.3 MB to 120.3 MB.
 Total: 5.558300 ms (FindLiveObjects: 0.342400 ms CreateObjectMapping: 0.292700 ms MarkObjects: 4.865800 ms  DeleteObjects: 0.055800 ms)
+=======
+		CreateAndSetChildDomain (50ms)
+	RebuildCommonClasses (47ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (37ms)
+	LoadAllAssembliesAndSetupDomain (253ms)
+		LoadAssemblies (313ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (14ms)
+			TypeCache.Refresh (7ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (941ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (532ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (49ms)
+			SetLoadedEditorAssemblies (7ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (85ms)
+			ProcessInitializeOnLoadAttributes (353ms)
+			ProcessInitializeOnLoadMethodAttributes (30ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Refreshing native plugins compatible for Editor in 1.72 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3076 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 22 unused Assets / (30.5 KB). Loaded Objects now: 3646.
+Memory consumption went from 112.8 MB to 112.7 MB.
+Total: 5.986644 ms (FindLiveObjects: 0.386200 ms CreateObjectMapping: 0.097780 ms MarkObjects: 5.394174 ms  DeleteObjects: 0.106840 ms)
+>>>>>>> UI
 
 Prepare: number of updated asset objects reloaded= 0
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:CustomObjectIndexerAttribute: 306bfa6df2d96854e1ebb52f3ddacab7 -> 
   custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
   custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
-  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:AudioImporter_EditorPlatform: 2f0ff77a95e0ac474e3e8eeba4e2f7cb -> 
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Prepare
 Begin MonoManager ReloadAssembly
+<<<<<<< HEAD
 - Loaded All Assemblies, in  0.547 seconds
 Refreshing native plugins compatible for Editor in 2.91 ms, found 3 plugins.
+=======
+- Loaded All Assemblies, in  0.540 seconds
+Refreshing native plugins compatible for Editor in 2.32 ms, found 0 plugins.
+Native extension for LinuxStandalone target not found
+>>>>>>> UI
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
+<<<<<<< HEAD
 - Finished resetting the current domain, in  1.117 seconds
 Domain Reload Profiling: 1663ms
 	BeginReloadAssembly (185ms)
+=======
+- Finished resetting the current domain, in  0.921 seconds
+Domain Reload Profiling: 1461ms
+	BeginReloadAssembly (170ms)
+>>>>>>> UI
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (7ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
+<<<<<<< HEAD
 		CreateAndSetChildDomain (36ms)
 	RebuildCommonClasses (40ms)
 	RebuildNativeTypeToScriptingClass (15ms)
@@ -436,32 +1529,73 @@ Unloading 3068 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 22 unused Assets / (30.5 KB). Loaded Objects now: 3573.
 Memory consumption went from 120.3 MB to 120.3 MB.
 Total: 5.174700 ms (FindLiveObjects: 0.407900 ms CreateObjectMapping: 0.195300 ms MarkObjects: 4.478000 ms  DeleteObjects: 0.091800 ms)
+=======
+		CreateAndSetChildDomain (51ms)
+	RebuildCommonClasses (47ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (37ms)
+	LoadAllAssembliesAndSetupDomain (275ms)
+		LoadAssemblies (321ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (23ms)
+			TypeCache.Refresh (9ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (9ms)
+	FinalizeReload (921ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (505ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (50ms)
+			SetLoadedEditorAssemblies (7ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (80ms)
+			ProcessInitializeOnLoadAttributes (336ms)
+			ProcessInitializeOnLoadMethodAttributes (24ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Refreshing native plugins compatible for Editor in 2.12 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3076 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 22 unused Assets / (30.5 KB). Loaded Objects now: 3649.
+Memory consumption went from 112.8 MB to 112.7 MB.
+Total: 6.909065 ms (FindLiveObjects: 0.839821 ms CreateObjectMapping: 0.355480 ms MarkObjects: 5.618974 ms  DeleteObjects: 0.093090 ms)
+>>>>>>> UI
 
 Prepare: number of updated asset objects reloaded= 0
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:CustomObjectIndexerAttribute: 306bfa6df2d96854e1ebb52f3ddacab7 -> 
   custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
   custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
-  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:AudioImporter_EditorPlatform: 2f0ff77a95e0ac474e3e8eeba4e2f7cb -> 
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Prepare
 Begin MonoManager ReloadAssembly
+<<<<<<< HEAD
 - Loaded All Assemblies, in  0.500 seconds
 Refreshing native plugins compatible for Editor in 2.84 ms, found 3 plugins.
+=======
+- Loaded All Assemblies, in  0.514 seconds
+Refreshing native plugins compatible for Editor in 1.62 ms, found 0 plugins.
+Native extension for LinuxStandalone target not found
+>>>>>>> UI
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
+<<<<<<< HEAD
 - Finished resetting the current domain, in  1.007 seconds
 Domain Reload Profiling: 1505ms
 	BeginReloadAssembly (178ms)
@@ -502,18 +1636,1406 @@ Unloading 3068 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 22 unused Assets / (30.4 KB). Loaded Objects now: 3576.
 Memory consumption went from 120.3 MB to 120.3 MB.
 Total: 4.896600 ms (FindLiveObjects: 0.281500 ms CreateObjectMapping: 0.190500 ms MarkObjects: 4.313800 ms  DeleteObjects: 0.109300 ms)
+=======
+- Finished resetting the current domain, in  0.956 seconds
+Domain Reload Profiling: 1469ms
+	BeginReloadAssembly (163ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (7ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (50ms)
+	RebuildCommonClasses (49ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (38ms)
+	LoadAllAssembliesAndSetupDomain (253ms)
+		LoadAssemblies (308ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (14ms)
+			TypeCache.Refresh (7ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (957ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (495ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (50ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (76ms)
+			ProcessInitializeOnLoadAttributes (327ms)
+			ProcessInitializeOnLoadMethodAttributes (28ms)
+			AfterProcessingInitializeOnLoad (8ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (9ms)
+Refreshing native plugins compatible for Editor in 1.61 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3076 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 22 unused Assets / (30.5 KB). Loaded Objects now: 3652.
+Memory consumption went from 112.8 MB to 112.7 MB.
+Total: 4.502133 ms (FindLiveObjects: 0.378420 ms CreateObjectMapping: 0.098310 ms MarkObjects: 3.945573 ms  DeleteObjects: 0.078300 ms)
+>>>>>>> UI
 
 Prepare: number of updated asset objects reloaded= 0
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+<<<<<<< HEAD
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
   custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+=======
+  custom:CustomObjectIndexerAttribute: 306bfa6df2d96854e1ebb52f3ddacab7 -> 
+>>>>>>> UI
   custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
   custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+<<<<<<< HEAD
   custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+=======
+  custom:AudioImporter_EditorPlatform: 2f0ff77a95e0ac474e3e8eeba4e2f7cb -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.512 seconds
+Refreshing native plugins compatible for Editor in 2.28 ms, found 0 plugins.
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.030 seconds
+Domain Reload Profiling: 1542ms
+	BeginReloadAssembly (165ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (8ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (51ms)
+	RebuildCommonClasses (46ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (37ms)
+	LoadAllAssembliesAndSetupDomain (253ms)
+		LoadAssemblies (303ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (19ms)
+			TypeCache.Refresh (9ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (7ms)
+	FinalizeReload (1031ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (528ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (53ms)
+			SetLoadedEditorAssemblies (9ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (92ms)
+			ProcessInitializeOnLoadAttributes (341ms)
+			ProcessInitializeOnLoadMethodAttributes (26ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Refreshing native plugins compatible for Editor in 1.75 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3076 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 22 unused Assets / (30.6 KB). Loaded Objects now: 3655.
+Memory consumption went from 112.8 MB to 112.7 MB.
+Total: 5.036594 ms (FindLiveObjects: 0.475171 ms CreateObjectMapping: 0.176260 ms MarkObjects: 4.295743 ms  DeleteObjects: 0.087780 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:CustomObjectIndexerAttribute: 306bfa6df2d96854e1ebb52f3ddacab7 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: 2f0ff77a95e0ac474e3e8eeba4e2f7cb -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 6182.178944 seconds.
+  path: Assets/Animations/Manual/Manual.controller
+  artifactKey: Guid(19da00e6cbb38f544a5b4b028c59b002) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Manual/Manual.controller using Guid(19da00e6cbb38f544a5b4b028c59b002) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '96e2d2a26cc86e4106cac05ebf39b78e') in 0.035841 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 15
+========================================================================
+Received Import Request.
+  Time since last request: 148.038482 seconds.
+  path: Assets/Animations
+  artifactKey: Guid(3084bbae9d0c74d46b87be09c87128af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations using Guid(3084bbae9d0c74d46b87be09c87128af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7b2ddf871e2d009ee30d0f02b8b896aa') in 0.000684 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 10.705334 seconds.
+  path: Assets/Animations/Right Menu
+  artifactKey: Guid(c3325859058979f5e8e64fbf020e28fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Right Menu using Guid(c3325859058979f5e8e64fbf020e28fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8d1bb2db4c0111385c062130b7478f01') in 0.001346 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 2.574020 seconds.
+  path: Assets/Animations/Play
+  artifactKey: Guid(2143ef63ceedd1a4fbf29e265dfba873) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Play using Guid(2143ef63ceedd1a4fbf29e265dfba873) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3882ad671fcce3779dbab6d2cfbff5b') in 0.000627 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 11.437346 seconds.
+  path: Assets/Animations/Right Menu/Right Menu.controller
+  artifactKey: Guid(4e028c5603995e8f8b6d1e5e21c4d414) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Right Menu/Right Menu.controller using Guid(4e028c5603995e8f8b6d1e5e21c4d414) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '788ade642f6adbe81aa0b5b29e698919') in 0.002269 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 145.989431 seconds.
+  path: Assets/Animations/Right Menu/Normal.anim
+  artifactKey: Guid(084e8669d9379c0859b4fb4459fed83a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Right Menu/Normal.anim using Guid(084e8669d9379c0859b4fb4459fed83a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e6c541918c794057950f52df96d66a50') in 0.002244 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 405.496817 seconds.
+  path: Assets/Animations/Right Menu/Fade In.anim
+  artifactKey: Guid(bbca88e635f1c631aac5253108a30d09) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Right Menu/Fade In.anim using Guid(bbca88e635f1c631aac5253108a30d09) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bba1a9bc5ac9034dd8b1f841d35dc7a1') in 0.001281 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 252.382800 seconds.
+  path: Assets/Animations/Right Menu/Right Menu Drop Shadow.controller
+  artifactKey: Guid(cdae135e096936db2bbec9472591b3f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Right Menu/Right Menu Drop Shadow.controller using Guid(cdae135e096936db2bbec9472591b3f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '020a2dbe23670fbcd31127406a50410a') in 0.002254 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 361.225159 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Bag_Gift_Christmas_A.fbx
+  artifactKey: Guid(31ec610016f1cff4e9777b15116308c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Bag_Gift_Christmas_A.fbx using Guid(31ec610016f1cff4e9777b15116308c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '176a9adf5a289a3bde5ee3a11470c1e4') in 0.865172 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Candle_Holder_Tall_C_Unlit_Christmas.fbx
+  artifactKey: Guid(f522d1e147cd5e34eac7c751238a4809) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Candle_Holder_Tall_C_Unlit_Christmas.fbx using Guid(f522d1e147cd5e34eac7c751238a4809) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7633e1c3a0f6ebd6aa87f340de3901ad') in 0.023116 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000058 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Cube_B.prefab
+  artifactKey: Guid(0ad3fbe4d0fe2f04d8abc3c7e4be3960) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Cube_B.prefab using Guid(0ad3fbe4d0fe2f04d8abc3c7e4be3960) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '08caa35aabd07b7c5b7e920ef2baa4f2') in 0.043207 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000947 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Cracker_B_Christmas.prefab
+  artifactKey: Guid(04539e1e3fd821b4eaeadead05d65f0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Cracker_B_Christmas.prefab using Guid(04539e1e3fd821b4eaeadead05d65f0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '78b60101c68eab7311b7688bed037ddd') in 0.027205 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Etagere_Christmas_Full.fbx
+  artifactKey: Guid(1c739193f4a946d419c3fcceedd3b248) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Etagere_Christmas_Full.fbx using Guid(1c739193f4a946d419c3fcceedd3b248) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b9a99d2579da6ff7ec2e6fcb7d88f89') in 0.020190 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Cracker_Box_Christmas.fbx
+  artifactKey: Guid(3d653e264c116444eab361fc0b7d9244) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Cracker_Box_Christmas.fbx using Guid(3d653e264c116444eab361fc0b7d9244) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b6c14a88a658d0544d308d5122168422') in 0.021093 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000611 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Ginger_House.prefab
+  artifactKey: Guid(7317979e7e6948045b7182822ec3b5f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Ginger_House.prefab using Guid(7317979e7e6948045b7182822ec3b5f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '08df580ff846fe9380756361df2b9866') in 0.025553 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000646 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Bowl_Soup_Christmas.prefab
+  artifactKey: Guid(f0cc743abdc96a64bbf17e55265cb060) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Bowl_Soup_Christmas.prefab using Guid(f0cc743abdc96a64bbf17e55265cb060) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'da27a9f420ff098fd25011bf9697fa61') in 0.025273 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000646 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Candle_Holder_Short_A_Unlit_Christmas.prefab
+  artifactKey: Guid(9678aca628b1ac3479d518b61ac9f14a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Candle_Holder_Short_A_Unlit_Christmas.prefab using Guid(9678aca628b1ac3479d518b61ac9f14a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '32e1013dc74e68515c5d9f61a2100229') in 0.021415 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000461 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Candle_Holder_Tall_C_Lit_Christmas.prefab
+  artifactKey: Guid(7822cbfcb2e01f74cbf7e3201edec767) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Candle_Holder_Tall_C_Lit_Christmas.prefab using Guid(7822cbfcb2e01f74cbf7e3201edec767) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '614b99002c7722fb12080567274e3c22') in 0.029788 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 13
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gingerbread_Star_B.prefab
+  artifactKey: Guid(c4d96fe03b4f3434693d009cbd8388c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gingerbread_Star_B.prefab using Guid(c4d96fe03b4f3434693d009cbd8388c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8fd7ad12d79e22d3df60044b887541c4') in 0.027879 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Cylinder_A.prefab
+  artifactKey: Guid(8e8fa5c712d02d141b9e1930fb1ab999) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Cylinder_A.prefab using Guid(8e8fa5c712d02d141b9e1930fb1ab999) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '76ba5b1a9976315244e210c2582f1c6d') in 0.016260 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/polyperfect/Poly Christmas/Textures/Nature/Ice_Snowy_Spec.tga
+  artifactKey: Guid(364b0d5b82260eb45901683c36c0b1fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Textures/Nature/Ice_Snowy_Spec.tga using Guid(364b0d5b82260eb45901683c36c0b1fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '682ab1139aec2a55df43f577195e8061') in 0.049364 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000074 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Christmas_Stockings.prefab
+  artifactKey: Guid(e61c9848e5f6c4144a3b0d6a431d9420) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Christmas_Stockings.prefab using Guid(e61c9848e5f6c4144a3b0d6a431d9420) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '51a985a829ff44199b702fa12dcf8be4') in 0.019720 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/polyperfect/Poly Christmas/Textures/Nature/Ice_Snowy_AO.png
+  artifactKey: Guid(99b35cac76624e441a0756c1464ba593) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Textures/Nature/Ice_Snowy_AO.png using Guid(99b35cac76624e441a0756c1464ba593) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '664cbe9f6e1d47bbe4e2ba276fb5e907') in 0.029372 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Hat_Santa.prefab
+  artifactKey: Guid(d0e881a3109fdcf4a850143faf698d76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Hat_Santa.prefab using Guid(d0e881a3109fdcf4a850143faf698d76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bac70eea8397e75c84e515e6051116d2') in 0.019644 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Ginger_House.fbx
+  artifactKey: Guid(e2f151e856e38594b8be766cc3ebcf42) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Ginger_House.fbx using Guid(e2f151e856e38594b8be766cc3ebcf42) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '38a191a5d5b2f24db81d41dcec3847e3') in 0.015656 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gift_Christmas_Cube_D.fbx
+  artifactKey: Guid(568f1aa3dafdf0d4288aa3102a3db739) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gift_Christmas_Cube_D.fbx using Guid(568f1aa3dafdf0d4288aa3102a3db739) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0c8566a9a272efc61918a39ad340bf5a') in 0.017039 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gingerbread_Man.fbx
+  artifactKey: Guid(8da57ffd7cd541f4889b67362e9b2c52) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gingerbread_Man.fbx using Guid(8da57ffd7cd541f4889b67362e9b2c52) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd1ad53274230b00b0d776684b42d1a42') in 0.021514 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/polyperfect/Poly Christmas/Textures/Nature/Ice_Nrm.png
+  artifactKey: Guid(202889db1b2b5d2429e4a9664370f258) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Textures/Nature/Ice_Nrm.png using Guid(202889db1b2b5d2429e4a9664370f258) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6c8c42c6428ea954757a336b9684bbd1') in 0.061024 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000175 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gingerbread_Star_B.fbx
+  artifactKey: Guid(c8851b40216a91c40bd197b6164ceba3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gingerbread_Star_B.fbx using Guid(c8851b40216a91c40bd197b6164ceba3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '09bb4643480ca435f1432ec248db70a2') in 0.018588 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Light_String_White_Small_3m_Christmas.fbx
+  artifactKey: Guid(5b50e810109d5f948bec0a8c26aa1211) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Light_String_White_Small_3m_Christmas.fbx using Guid(5b50e810109d5f948bec0a8c26aa1211) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'edce7dcdb7251d5d274787304849db10') in 0.021081 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Etagere_Christmas.fbx
+  artifactKey: Guid(f8dce1a5e27aac2498f9a48d1cfa1d09) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Etagere_Christmas.fbx using Guid(f8dce1a5e27aac2498f9a48d1cfa1d09) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '49fceb441e590f2f41cd93cff276a012') in 0.016833 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/polyperfect/Poly Christmas/Textures/Nature/Ice_Snowy_Alb.png
+  artifactKey: Guid(675f3ea42af402b4a8799b64b857d4ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Textures/Nature/Ice_Snowy_Alb.png using Guid(675f3ea42af402b4a8799b64b857d4ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3f939f6a45a68b488366da940af3ae88') in 0.026530 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000210 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Light_String_White_Small_2m_Christmas.prefab
+  artifactKey: Guid(2bb6beef5ca3c004db6cd01a8b2edbd4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Light_String_White_Small_2m_Christmas.prefab using Guid(2bb6beef5ca3c004db6cd01a8b2edbd4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '16d042b544cb5823e9d63bbff5af5415') in 0.021593 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000141 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gingerbread_Tree_B.prefab
+  artifactKey: Guid(4dce7315d2de9c64b8c8a63e92908610) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gingerbread_Tree_B.prefab using Guid(4dce7315d2de9c64b8c8a63e92908610) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ea2d77f35dd45000fe14d5f10c44a34e') in 0.018375 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Light_String_White_Small_5m_Christmas.prefab
+  artifactKey: Guid(9126c464565727448b1aaf3d668a9503) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Light_String_White_Small_5m_Christmas.prefab using Guid(9126c464565727448b1aaf3d668a9503) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '59d63ed804112622318446eb2716e89c') in 0.029152 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gift_Christmas_Cylinder_B.fbx
+  artifactKey: Guid(623749415298ac44fa8af50c6be22257) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gift_Christmas_Cylinder_B.fbx using Guid(623749415298ac44fa8af50c6be22257) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e7fcb45b2db3fb2a016b608b9bf6a0dc') in 0.012692 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000208 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gift_Christmas_Long_A.fbx
+  artifactKey: Guid(249b4c0c9f5d8564fab2ab9555f4b758) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gift_Christmas_Long_A.fbx using Guid(249b4c0c9f5d8564fab2ab9555f4b758) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4239c28e9a032e517ecd6b991b4d3b35') in 0.015585 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/polyperfect/Poly Christmas/Textures/Nature/Ice_Rough.png
+  artifactKey: Guid(6e3c2dfc90ac06149882079091439fe0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Textures/Nature/Ice_Rough.png using Guid(6e3c2dfc90ac06149882079091439fe0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f548aa1e9f679acff57bada48a0b0dce') in 0.027390 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gift_Christmas_Cube_Open_Lid.fbx
+  artifactKey: Guid(87024de4d7afa7b48904de849541a5d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gift_Christmas_Cube_Open_Lid.fbx using Guid(87024de4d7afa7b48904de849541a5d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0af0d9387fcb4464b9966f5eeded2ff8') in 0.019356 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gravy_Boat_Christmas_Full.fbx
+  artifactKey: Guid(18fe01c5eff48024a8b7aa0a1bc9f6d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gravy_Boat_Christmas_Full.fbx using Guid(18fe01c5eff48024a8b7aa0a1bc9f6d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3535b3ec9f746c9958c4f9de1ec779d2') in 0.013494 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Long_Open.prefab
+  artifactKey: Guid(104a3741cf0ee61499996f4193cf554b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Long_Open.prefab using Guid(104a3741cf0ee61499996f4193cf554b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6532e0f860986d1a9aa1fdb1beebcb5b') in 0.015601 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Cookie_Jam_Circle.fbx
+  artifactKey: Guid(51ce570e7566c984ebc1eff97d8c0bbe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Cookie_Jam_Circle.fbx using Guid(51ce570e7566c984ebc1eff97d8c0bbe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '24fc5b65ea33fd1c895f50a218842bd5') in 0.017819 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Candle_Holder_Arch.fbx
+  artifactKey: Guid(df2f9732ee550a94f9eaab11f6eefd1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Candle_Holder_Arch.fbx using Guid(df2f9732ee550a94f9eaab11f6eefd1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '75360b91447a8e5aa9c30ca744cf0327') in 0.019017 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000088 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gingerbread_Man.prefab
+  artifactKey: Guid(9248fca4fba178f4da68681920808f50) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gingerbread_Man.prefab using Guid(9248fca4fba178f4da68681920808f50) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '28f6cd7972cadcf381d695ca25f622fd') in 0.017497 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Light_String_Color_Big_5m_Christmas.fbx
+  artifactKey: Guid(8f067c301fa34334abf7d5ce0417b8a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Light_String_Color_Big_5m_Christmas.fbx using Guid(8f067c301fa34334abf7d5ce0417b8a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e5088d4bfaa3ddd68f2e4fe0079a920f') in 0.021677 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gift_Christmas_Long_B.fbx
+  artifactKey: Guid(c23a088289439a4499e1815d36d9d182) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gift_Christmas_Long_B.fbx using Guid(c23a088289439a4499e1815d36d9d182) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '834f0eb20c3ae022a686dd541432b87a') in 0.016237 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gift_Christmas_Long_Open.fbx
+  artifactKey: Guid(e7add9fed9a881943b3199d16024fb72) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gift_Christmas_Long_Open.fbx using Guid(e7add9fed9a881943b3199d16024fb72) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4a12436c10749e25ae16bfc2f906376f') in 0.015860 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Cookie_Jam_Heart.prefab
+  artifactKey: Guid(4050e3ad3c6d44a4289459904206965b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Cookie_Jam_Heart.prefab using Guid(4050e3ad3c6d44a4289459904206965b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5d20835452350922903fefb172da3ec6') in 0.021235 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000577 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Candy_Cane.fbx
+  artifactKey: Guid(5d1d952274394f24ab7d166ee54c7d3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Candy_Cane.fbx using Guid(5d1d952274394f24ab7d166ee54c7d3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '07a7fb8764156a8a388b5d02550c76aa') in 0.021195 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.001117 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Bell_A_Christmas.fbx
+  artifactKey: Guid(5882d2d371ac41d48ab7f6b90483ba1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Bell_A_Christmas.fbx using Guid(5882d2d371ac41d48ab7f6b90483ba1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '679093564a0846a42624ffbe09e9a832') in 0.020171 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/FBXImporter-static.preset
+  artifactKey: Guid(7852157204fd8ae409d3957c1953789b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/FBXImporter-static.preset using Guid(7852157204fd8ae409d3957c1953789b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b68d000e4240cee6deb2deb86d0d2d75') in 0.003076 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Fireplace_Brick.fbx
+  artifactKey: Guid(a1e283c371e021540b933cd13017fc44) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Fireplace_Brick.fbx using Guid(a1e283c371e021540b933cd13017fc44) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '45c49cda34c5141be6980f95f22506d0') in 0.015151 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Christmas_Pudding.prefab
+  artifactKey: Guid(a72aaf57bc9228949ad87082772d1922) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Christmas_Pudding.prefab using Guid(a72aaf57bc9228949ad87082772d1922) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5e5d59fbd03ccb43ae026f1e02884a71') in 0.024630 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.001099 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Candle_Decorated_Unlit_Christmas.prefab
+  artifactKey: Guid(638926b0816c71949899e0744fdf437e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Candle_Decorated_Unlit_Christmas.prefab using Guid(638926b0816c71949899e0744fdf437e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '486cc436b53dfd993d4bf6f0cf04594d') in 0.020133 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000611 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gingerbread_Star_A.fbx
+  artifactKey: Guid(e44e5f267fd15c0499a739d211909ab6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gingerbread_Star_A.fbx using Guid(e44e5f267fd15c0499a739d211909ab6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '211643d24755c33aa0e56fef6793d20b') in 0.019144 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.001110 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gift_Christmas_Long_Open_Lid.fbx
+  artifactKey: Guid(a1ff88784c6c0c345889a1836099299a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gift_Christmas_Long_Open_Lid.fbx using Guid(a1ff88784c6c0c345889a1836099299a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '88697b4101f71dcaba376f946cacbf05') in 0.019221 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000499 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Cookie_Jam_Circle.prefab
+  artifactKey: Guid(37604b821891aed418254c455dda0e37) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Cookie_Jam_Circle.prefab using Guid(37604b821891aed418254c455dda0e37) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f08f1c3cfe71b1d1f46fd02d76dea630') in 0.021107 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gravy_Boat_Christmas_Full.prefab
+  artifactKey: Guid(9231c258bd431e3489fb93aabf705e36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gravy_Boat_Christmas_Full.prefab using Guid(9231c258bd431e3489fb93aabf705e36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a4f0d6e478922cbe30e86d0448c645c8') in 0.018312 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Cracker_Box_Christmas.prefab
+  artifactKey: Guid(2c5865b77234166419886bf941cb324b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Cracker_Box_Christmas.prefab using Guid(2c5865b77234166419886bf941cb324b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4c9999e552636703181ed8c672773b60') in 0.020720 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Light_String_Color_Big_Vertical_2m_Christmas.fbx
+  artifactKey: Guid(cfb1bbe1d29e0cc4bb150d019e945d4b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Light_String_Color_Big_Vertical_2m_Christmas.fbx using Guid(cfb1bbe1d29e0cc4bb150d019e945d4b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6b9cf2002c17bb31b2168f6d6c68d0be') in 0.015278 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000257 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gift_Christmas_Cylinde_D.fbx
+  artifactKey: Guid(4f36e55e43bf09740875357979e1fcf3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gift_Christmas_Cylinde_D.fbx using Guid(4f36e55e43bf09740875357979e1fcf3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '99ec401c1b1d68fdf9b5ae6c0c984986') in 0.027656 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000382 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Cookie_Jam_Heart.fbx
+  artifactKey: Guid(36256b5f39f57f44ea27014d238bc35b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Cookie_Jam_Heart.fbx using Guid(36256b5f39f57f44ea27014d238bc35b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4cee2516bd9a1a04a6bb925e1601f6ad') in 0.022092 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000435 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Candle_Holder_Arch.prefab
+  artifactKey: Guid(7a3c4e719a0a8f44d9ea64492e926fc4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Candle_Holder_Arch.prefab using Guid(7a3c4e719a0a8f44d9ea64492e926fc4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '38e6674536f7a7e38112c148c923cfd4') in 0.029679 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 13
+========================================================================
+Received Import Request.
+  Time since last request: 0.002205 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Bag_Gift_Christmas_C.prefab
+  artifactKey: Guid(a310f2abf494537438b4fff3819ad521) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Bag_Gift_Christmas_C.prefab using Guid(a310f2abf494537438b4fff3819ad521) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '464a4cb86b03e981e5a51f9d4aca0a68') in 0.028442 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.005556 seconds.
+  path: Assets/polyperfect/Poly Christmas/Textures/Nature/Ice_Spec.tga
+  artifactKey: Guid(0aa9af7d7e6f18148bad16ed011c18be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Textures/Nature/Ice_Spec.tga using Guid(0aa9af7d7e6f18148bad16ed011c18be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '39036e41c989207d294a660ac929a5c8') in 0.058398 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000830 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gingerbread_Tree.prefab
+  artifactKey: Guid(1ff0b8ac0c592754b92634db0ecf7407) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gingerbread_Tree.prefab using Guid(1ff0b8ac0c592754b92634db0ecf7407) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e3a36f0b2058e3dd6449ed726ab4327f') in 0.022297 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.002563 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Candle_Holder_Short_A_Lit_Christmas.fbx
+  artifactKey: Guid(fa6eabaacc20903429e6b42e01f3e0c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Candle_Holder_Short_A_Lit_Christmas.fbx using Guid(fa6eabaacc20903429e6b42e01f3e0c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '91a527711781c107593bb6aad59debd5') in 0.023794 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.006130 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Cube_Open_Lid.prefab
+  artifactKey: Guid(5131c3b3132b02243bcd85c9af31c1aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Cube_Open_Lid.prefab using Guid(5131c3b3132b02243bcd85c9af31c1aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cd8b664e80e993efad74d6fc28461530') in 0.022179 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.003201 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Bell_D_Christmas.prefab
+  artifactKey: Guid(fbb34b5496ce8e94f85f03dde3cfaf3f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Bell_D_Christmas.prefab using Guid(fbb34b5496ce8e94f85f03dde3cfaf3f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e154f865ee966802d57112f6ca3fb75a') in 0.028336 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.001254 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gingerbread_Tree_A.prefab
+  artifactKey: Guid(409ae2c07e2ae7f47b09620e410637dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gingerbread_Tree_A.prefab using Guid(409ae2c07e2ae7f47b09620e410637dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '492ab991f7e8db5bba5aed4ebcbecf57') in 0.026838 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Light_String_White_2m_Christmas.fbx
+  artifactKey: Guid(f342cf8a642dac14ca3b25ed8a2a3e86) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Light_String_White_2m_Christmas.fbx using Guid(f342cf8a642dac14ca3b25ed8a2a3e86) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '64b6b61d86cbbf1515f03eb8f14ce486') in 0.033428 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/People/Seasons People/Boy_Large_Christmas.prefab
+  artifactKey: Guid(178a91d74e58ff54fad2f616c1d945b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/People/Seasons People/Boy_Large_Christmas.prefab using Guid(178a91d74e58ff54fad2f616c1d945b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73e552a87e9ca72da3ec0f12674c3e0b') in 0.053055 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 147
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Light_String_Color_Big_Vertical_2m_Christmas.prefab
+  artifactKey: Guid(30a172a09acf09c4d8c914130842c730) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Light_String_Color_Big_Vertical_2m_Christmas.prefab using Guid(30a172a09acf09c4d8c914130842c730) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fb16f26f86c658b69f12a3e68c7eab15') in 0.025603 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Holly_Plant.prefab
+  artifactKey: Guid(36ae1f716957059429fb562176a5fae6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Holly_Plant.prefab using Guid(36ae1f716957059429fb562176a5fae6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '222d187fddf5acea58853171bb0f5b28') in 0.032941 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000571 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Candle_Holder_Short_A_Unlit_Christmas.fbx
+  artifactKey: Guid(da507045e4ad41e4a9244fb51bc970d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Candle_Holder_Short_A_Unlit_Christmas.fbx using Guid(da507045e4ad41e4a9244fb51bc970d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bcac0fbfb6c59a39c340041e473438fd') in 0.028923 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.004211 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Fireplace_Brick_Large.fbx
+  artifactKey: Guid(c3c354ca4d06c2f469c3b2cf36ee28b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Fireplace_Brick_Large.fbx using Guid(c3c354ca4d06c2f469c3b2cf36ee28b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '127f977e6b639bebbde30325ad8a2f0a') in 0.025983 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.001900 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Candle_Holder_Tall_A_Unlit_Christmas.fbx
+  artifactKey: Guid(1cdce9230141c314aaff241573d4b5b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Candle_Holder_Tall_A_Unlit_Christmas.fbx using Guid(1cdce9230141c314aaff241573d4b5b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4709a9406b07c2762e9528ff4dce4d09') in 0.021066 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Cranberry_Sauce.prefab
+  artifactKey: Guid(823d4f8551d766b449a9c98dc20acd11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Cranberry_Sauce.prefab using Guid(823d4f8551d766b449a9c98dc20acd11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '273c1221adf2b9e8adddca8a984a105e') in 0.025958 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Bell_D_Christmas.fbx
+  artifactKey: Guid(4398440450c038949839155efb54dcbe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Bell_D_Christmas.fbx using Guid(4398440450c038949839155efb54dcbe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a21089fec147c28077eaf5efe6bb9c1') in 0.029995 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Bell_A_Christmas.prefab
+  artifactKey: Guid(bbd720a4a3b378b44a45d901c79582c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Bell_A_Christmas.prefab using Guid(bbd720a4a3b378b44a45d901c79582c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6e50dea5577e849325aa7a28c4348e2f') in 0.033637 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000788 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gift_Christmas_Cylinder_Open_Base.fbx
+  artifactKey: Guid(939b218a088a35e428a96233fcbe618d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gift_Christmas_Cylinder_Open_Base.fbx using Guid(939b218a088a35e428a96233fcbe618d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '76a726c4ecb6be79101d81011125bd23') in 0.021853 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000087 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gravy_Boat_Christmas.fbx
+  artifactKey: Guid(18044aa62ba3bd646a672959f779932d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gravy_Boat_Christmas.fbx using Guid(18044aa62ba3bd646a672959f779932d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4fcec93258867d7baee0201f85f86299') in 0.026866 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000143 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Holly_Plant.fbx
+  artifactKey: Guid(5831b6894c6d6644383735e682f5bfbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Holly_Plant.fbx using Guid(5831b6894c6d6644383735e682f5bfbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0b8fdddf5700861403839afd0c9c614d') in 0.025140 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000387 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Bowl_Soup_Christmas.fbx
+  artifactKey: Guid(816a617e09fa8cc40955a6cc59001cee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Bowl_Soup_Christmas.fbx using Guid(816a617e09fa8cc40955a6cc59001cee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b1dd2155ebcce452337d9c8b9e46529c') in 0.064085 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.012849 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Cranberry_Sauce.fbx
+  artifactKey: Guid(bab7aed019ae1c54bb3ff268e20feb03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Cranberry_Sauce.fbx using Guid(bab7aed019ae1c54bb3ff268e20feb03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c9b7ad193323307f478a98dd528c76c6') in 0.024764 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.004414 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gingerbread_Heart_A.prefab
+  artifactKey: Guid(ee124429ba354984887a870b7b6c49c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gingerbread_Heart_A.prefab using Guid(ee124429ba354984887a870b7b6c49c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'be1d6efb8bd1bcadc636ac7f36e74a61') in 0.036600 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.001223 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Cutlery_Spoon_Christmas.fbx
+  artifactKey: Guid(ae94a7fce0808e447a0ada1b2d2792ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Cutlery_Spoon_Christmas.fbx using Guid(ae94a7fce0808e447a0ada1b2d2792ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b35d16cb3c45f8c060255c25432e3198') in 0.041612 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.001591 seconds.
+  path: Assets/polyperfect/Poly Christmas/Textures/Nature/Ice_Snowy_Mask.tga
+  artifactKey: Guid(422062dc586af754c90b91340584965b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Textures/Nature/Ice_Snowy_Mask.tga using Guid(422062dc586af754c90b91340584965b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b465592371a74f7a38ba9e29a5fcad3b') in 0.064047 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000882 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Light_String_Color_Big_2m_Christmas.fbx
+  artifactKey: Guid(9b0d283c1f21a3c45a1081b0064af93f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Light_String_Color_Big_2m_Christmas.fbx using Guid(9b0d283c1f21a3c45a1081b0064af93f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '25a4ed56639c85e18289c9d1b6e2d54e') in 0.037575 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000544 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Long_A.prefab
+  artifactKey: Guid(ef01a6667944c434bbe2fd2001855cfa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Long_A.prefab using Guid(ef01a6667944c434bbe2fd2001855cfa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ffd170cc0271628d76809d6ebeaa261') in 0.032075 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.004120 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Light_String_Color_Big_3m_Christmas.prefab
+  artifactKey: Guid(ab3691c921032cb4cba90f80cf907775) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Light_String_Color_Big_3m_Christmas.prefab using Guid(ab3691c921032cb4cba90f80cf907775) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fc488dc4890f52394abbc71a417075ac') in 0.036810 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Hot_Chocolate.prefab
+  artifactKey: Guid(cbc0ffa54985f974588a114efa04de01) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Hot_Chocolate.prefab using Guid(cbc0ffa54985f974588a114efa04de01) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7358d2ccf03f1539a442bd418dd6fa1c') in 0.023605 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000341 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Bag_Gift_Christmas_A.prefab
+  artifactKey: Guid(7838625e058d23544bfff225d425dbf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Bag_Gift_Christmas_A.prefab using Guid(7838625e058d23544bfff225d425dbf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '23bfbbf40236d49cf6713b8a097c0ea8') in 0.026116 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000639 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Candle_Holder_Tall_A_Lit_Christmas.prefab
+  artifactKey: Guid(17312e04fa98e0743bfb1716f2bf054e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Candle_Holder_Tall_A_Lit_Christmas.prefab using Guid(17312e04fa98e0743bfb1716f2bf054e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fb2181c71e4e6026a19e9dd4d622f424') in 0.034449 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 13
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Candle_Holder_Tall_B_Unlit_Christmas.fbx
+  artifactKey: Guid(8fe856520da176942ba04d34c1399081) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Candle_Holder_Tall_B_Unlit_Christmas.fbx using Guid(8fe856520da176942ba04d34c1399081) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fc3ae7fe4369c43b021fd621726dd024') in 0.021007 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000224 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gravy_Boat_Christmas.prefab
+  artifactKey: Guid(2cd3a92b45007dc44aa52e29299034d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gravy_Boat_Christmas.prefab using Guid(2cd3a92b45007dc44aa52e29299034d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f1558f5cfaab0c6c0e40bfa35508bd52') in 0.027678 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Cookie_Chocolate_Chip.prefab
+  artifactKey: Guid(47e3e2e086acb4f409ec8cc77edca960) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Cookie_Chocolate_Chip.prefab using Guid(47e3e2e086acb4f409ec8cc77edca960) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '30fce7612053c3be6e6ea572338f63a8') in 0.028534 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.003806 seconds.
+  path: Assets/polyperfect/Poly Christmas/Textures/Nature/Ice_Disp.png
+  artifactKey: Guid(d0d43cc75ed66194784edfdd68b6afb0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Textures/Nature/Ice_Disp.png using Guid(d0d43cc75ed66194784edfdd68b6afb0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3124d8eff9363f2017180cdea848af96') in 0.044575 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000104 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Cracker_A_Christmas.fbx
+  artifactKey: Guid(60e9630b12241eb408b1f96592ea6f29) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Cracker_A_Christmas.fbx using Guid(60e9630b12241eb408b1f96592ea6f29) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bd0fa3024424d6386125eb8e590b4451') in 0.044157 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.001380 seconds.
+  path: Assets/polyperfect/Poly Christmas/Textures/Nature/Ice_Snowy_Rough.png
+  artifactKey: Guid(350cdf4ea7cee32408bde6116b3c73ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Textures/Nature/Ice_Snowy_Rough.png using Guid(350cdf4ea7cee32408bde6116b3c73ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '98f8b913b164f56e0482fcc3cbff02b4') in 0.050871 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.005482 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Long_C.prefab
+  artifactKey: Guid(9e785b17cfba9c84b854d4a92781e1e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Long_C.prefab using Guid(9e785b17cfba9c84b854d4a92781e1e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e5a343686adb2d9c52202e5ed0f46e21') in 0.023071 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.006152 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Bag_Gift_Christmas_B.prefab
+  artifactKey: Guid(d57212e3f523e134b88c84664362ce02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Bag_Gift_Christmas_B.prefab using Guid(d57212e3f523e134b88c84664362ce02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'be8374c5037385276fb73890a3a1fb10') in 0.027782 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.001652 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Candle_Holder_Short_B_Lit_Christmas.prefab
+  artifactKey: Guid(f3e3e6a4810588f4595c83096708c41c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Candle_Holder_Short_B_Lit_Christmas.prefab using Guid(f3e3e6a4810588f4595c83096708c41c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '759d80f0c1be708ffd48918c39f68a25') in 0.026585 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.004041 seconds.
+  path: Assets/polyperfect/Poly Christmas/Textures/Nature/Ice_Snowy_Spec.png
+  artifactKey: Guid(cd2ed2ef2aacc534b9c5b3287b950304) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Textures/Nature/Ice_Snowy_Spec.png using Guid(cd2ed2ef2aacc534b9c5b3287b950304) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5a4d6ddbc894c64c525b3c675b0888fe') in 0.046712 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000783 seconds.
+  path: Assets/TextMesh Pro/Sprites/EmojiOne.png
+  artifactKey: Guid(dffef66376be4fa480fb02b19edbe903) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TextMesh Pro/Sprites/EmojiOne.png using Guid(dffef66376be4fa480fb02b19edbe903) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fa7e0cd1dc16a6cd2553ac5ee208cb79') in 0.031631 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.001236 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Cutlery_Knife_Christmas.prefab
+  artifactKey: Guid(f3e9fb15bcde1ff40af145af8feddb44) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Cutlery_Knife_Christmas.prefab using Guid(f3e9fb15bcde1ff40af145af8feddb44) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c62163530377f9dcda57b000c1246420') in 0.025429 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000180 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Cylinder_Open_Base.prefab
+  artifactKey: Guid(d7b16977a93790d439630add5f3fb771) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Gift_Christmas_Cylinder_Open_Base.prefab using Guid(d7b16977a93790d439630add5f3fb771) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f85a1cd7402a1f5863b61f67aca55688') in 0.029658 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/polyperfect/Poly Christmas/Textures/Nature/Ice_Snowy_Nrm.png
+  artifactKey: Guid(86aea67553e34144ebabac264d5fdc14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Textures/Nature/Ice_Snowy_Nrm.png using Guid(86aea67553e34144ebabac264d5fdc14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0a52132be98615568a215b636132aa54') in 0.054776 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000134 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gift_Christmas_Long_D.fbx
+  artifactKey: Guid(e3b07e027453de44a951a5c4efd5d678) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gift_Christmas_Long_D.fbx using Guid(e3b07e027453de44a951a5c4efd5d678) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2011b662d012f83efb40e7a6a91f8924') in 0.026829 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000613 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gift_Christmas_Cube_B.fbx
+  artifactKey: Guid(9896fb9a877e3564481b0b4871ca9995) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Gift_Christmas_Cube_B.fbx using Guid(9896fb9a877e3564481b0b4871ca9995) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dd1747a09f570a881cbaf4def67e935e') in 0.033568 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Candle_Holder_Tall_A_Lit_Christmas.fbx
+  artifactKey: Guid(1756c3e2a38b89c4a95132ba6d8f1d43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Meshes/Christmas/SM_Candle_Holder_Tall_A_Lit_Christmas.fbx using Guid(1756c3e2a38b89c4a95132ba6d8f1d43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '64b5c6a5472fc30b5b2e8077f585095a') in 0.022850 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Candle_Holder_Tall_C_Unlit_Christmas.prefab
+  artifactKey: Guid(a46824b80592bea47af36fc855a82c2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/polyperfect/Poly Christmas/Prefabs/Christmas/Candle_Holder_Tall_C_Unlit_Christmas.prefab using Guid(a46824b80592bea47af36fc855a82c2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dab226f75fa82fe989d5474dcbc7bcf1') in 0.024294 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+TcpMessagingSession - receive error: operation aborted. errorcode: 125, details: Operation aborted.
+AssetImportWorker is now disconnected from the server
+Process exiting
+Assertion failed on expression: 'm_PodArrays.empty()'
+Checking for leaked weakptr:
+  Found no leaked weakptrs.
+All object instances wasn't destroyed before shutting down
+Assertion failed on expression: 'm_MemoryFSRefCount == 0'
+Memory Statistics:
+[ALLOC_TEMP_TLS] TLS Allocator
+  StackAllocators : 
+    [ALLOC_TEMP_Loading.PreloadManager]
+      Peak usage frame count: [0-1.0 KB]: 1 frames
+      Initial Block Size 32.0 MB
+      Current Block Size 32.0 MB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_BakingJobs.worker 7]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_BakingJobs.worker 6]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_BakingJobs.worker 5]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_BakingJobs.worker 4]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_BakingJobs.worker 3]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_BakingJobs.worker 2]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_BakingJobs.worker 1]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_BakingJobs.worker 0]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_AssetDatabase.FileHasherHasher]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 31 B
+      Overflow Count 0
+    [ALLOC_TEMP_AssetDatabase.FileHasherReader]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 31 B
+      Overflow Count 0
+    [ALLOC_TEMP_AssetDatabase.FileHasherHasher]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 31 B
+      Overflow Count 0
+    [ALLOC_TEMP_AssetDatabase.FileHasherReader]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 31 B
+      Overflow Count 0
+    [ALLOC_TEMP_AssetDatabase.FileHasherHasher]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 31 B
+      Overflow Count 0
+    [ALLOC_TEMP_AssetDatabase.FileHasherReader]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 31 B
+      Overflow Count 0
+    [ALLOC_TEMP_AssetDatabase.FileHasherHasher]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 31 B
+      Overflow Count 0
+    [ALLOC_TEMP_AssetDatabase.FileHasherReader]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 31 B
+      Overflow Count 0
+    [ALLOC_TEMP_Loading.AsyncRead]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_BatchDeleteObjects]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.worker 15]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.worker 14]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.worker 13]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.worker 12]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.worker 11]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.worker 10]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.worker 9]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.worker 8]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.worker 7]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.worker 6]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.worker 5]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.worker 4]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.worker 3]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.worker 2]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.worker 1]
+      Initial Block Size 32.0 KB
+      Current Block Size 72.0 KB
+      Peak Allocated Bytes 49.7 KB
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.worker 0]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.worker 6]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.worker 5]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.worker 4]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.worker 3]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.worker 2]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.worker 1]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0.6 KB
+      Overflow Count 0
+    [ALLOC_TEMP_Job.worker 0]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_MAIN]
+      Peak usage frame count: [32.0 KB-64.0 KB]: 2 frames, [64.0 KB-128.0 KB]: 4 frames, [1.0 MB-2.0 MB]: 108 frames, [8.0 MB-16.0 MB]: 4 frames
+      Initial Block Size 16.0 MB
+      Current Block Size 16.0 MB
+      Peak Allocated Bytes 9.3 MB
+      Overflow Count 0
+    [ALLOC_TEMP_CoreBusinessMetricsCache]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_AssetDatabase.IOService]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 32.6 KB
+      Overflow Count 0
+    [ALLOC_TEMP_Loading.PreloadManager] x 17
+      Initial Block Size 32.0 MB
+      Current Block Size 32.0 MB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Profiler.Dispatcher]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_AssetGarbageCollectorHelper] x 7
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+[ALLOC_MEMORYPROFILER]
+  Peak usage frame count: [256.0 KB-0.5 MB]: 114 frames, [0.5 MB-1.0 MB]: 4 frames
+  Requested Block Size 1.0 MB
+  Peak Block count 1
+  Peak Allocated memory 0.5 MB
+  Peak Large allocation bytes 0 B
+[ALLOC_DEFAULT] Dual Thread Allocator
+  Peak main deferred allocation count 257
+    [ALLOC_BUCKET]
+      Large Block size 32.0 MB
+      Used Block count 1
+      Peak Allocated bytes 7.4 MB
+    [ALLOC_DEFAULT_MAIN]
+      Peak usage frame count: [32.0 MB-64.0 MB]: 118 frames
+      Requested Block Size 16.0 MB
+      Peak Block count 4
+      Peak Allocated memory 46.8 MB
+      Peak Large allocation bytes 0 B
+    [ALLOC_DEFAULT_THREAD]
+      Peak usage frame count: [1.0 MB-2.0 MB]: 114 frames, [2.0 MB-4.0 MB]: 4 frames
+      Requested Block Size 16.0 MB
+      Peak Block count 1
+      Peak Allocated memory 3.3 MB
+      Peak Large allocation bytes 0 B
+[ALLOC_TEMP_JOB_1_FRAME]
+  Initial Block Size 2.0 MB
+  Used Block Count 0
+  Overflow Count (too large) 0
+  Overflow Count (full) 0
+[ALLOC_TEMP_JOB_2_FRAMES]
+  Initial Block Size 2.0 MB
+  Used Block Count 0
+  Overflow Count (too large) 0
+  Overflow Count (full) 0
+[ALLOC_TEMP_JOB_4_FRAMES (JobTemp)]
+  Initial Block Size 2.0 MB
+  Used Block Count 1
+  Overflow Count (too large) 0
+  Overflow Count (full) 0
+[ALLOC_TEMP_JOB_ASYNC (Background)]
+  Initial Block Size 1.0 MB
+  Used Block Count 1
+  Overflow Count (too large) 0
+  Overflow Count (full) 0
+[ALLOC_GFX] Dual Thread Allocator
+  Peak main deferred allocation count 0
+    [ALLOC_BUCKET]
+      Large Block size 32.0 MB
+      Used Block count 1
+      Peak Allocated bytes 7.4 MB
+    [ALLOC_GFX_MAIN]
+      Peak usage frame count: [64.0 KB-128.0 KB]: 1 frames, [128.0 KB-256.0 KB]: 13 frames, [256.0 KB-0.5 MB]: 45 frames, [0.5 MB-1.0 MB]: 2 frames, [2.0 MB-4.0 MB]: 7 frames, [4.0 MB-8.0 MB]: 4 frames, [8.0 MB-16.0 MB]: 46 frames
+      Requested Block Size 16.0 MB
+      Peak Block count 1
+      Peak Allocated memory 13.9 MB
+      Peak Large allocation bytes 0 B
+    [ALLOC_GFX_THREAD]
+      Peak usage frame count: [0-1.0 KB]: 118 frames
+      Requested Block Size 16.0 MB
+      Peak Block count 0
+      Peak Allocated memory 0 B
+      Peak Large allocation bytes 0 B
+[ALLOC_CACHEOBJECTS] Dual Thread Allocator
+  Peak main deferred allocation count 15579
+    [ALLOC_BUCKET]
+      Large Block size 32.0 MB
+      Used Block count 1
+      Peak Allocated bytes 7.4 MB
+    [ALLOC_CACHEOBJECTS_MAIN]
+      Peak usage frame count: [4.0 MB-8.0 MB]: 114 frames, [32.0 MB-64.0 MB]: 3 frames, [64.0 MB-128.0 MB]: 1 frames
+      Requested Block Size 4.0 MB
+      Peak Block count 15
+      Peak Allocated memory 78.5 MB
+      Peak Large allocation bytes 21.9 MB
+    [ALLOC_CACHEOBJECTS_THREAD]
+      Peak usage frame count: [0-1.0 KB]: 118 frames
+      Requested Block Size 4.0 MB
+      Peak Block count 0
+      Peak Allocated memory 0 B
+      Peak Large allocation bytes 0 B
+[ALLOC_TYPETREE] Dual Thread Allocator
+  Peak main deferred allocation count 24766
+    [ALLOC_BUCKET]
+      Large Block size 32.0 MB
+      Used Block count 1
+      Peak Allocated bytes 7.4 MB
+    [ALLOC_TYPETREE_MAIN]
+      Peak usage frame count: [64.0 KB-128.0 KB]: 6 frames, [128.0 KB-256.0 KB]: 3 frames, [256.0 KB-0.5 MB]: 57 frames, [0.5 MB-1.0 MB]: 45 frames, [1.0 MB-2.0 MB]: 3 frames, [8.0 MB-16.0 MB]: 3 frames, [16.0 MB-32.0 MB]: 1 frames
+      Requested Block Size 2.0 MB
+      Peak Block count 9
+      Peak Allocated memory 16.5 MB
+      Peak Large allocation bytes 0 B
+    [ALLOC_TYPETREE_THREAD]
+      Peak usage frame count: [0-1.0 KB]: 118 frames
+      Requested Block Size 2.0 MB
+      Peak Block count 0
+      Peak Allocated memory 0 B
+      Peak Large allocation bytes 0 B
+[ALLOC_PROFILER]
+  Peak usage frame count: [64.0 KB-128.0 KB]: 118 frames
+  Requested Block Size 16.0 MB
+  Peak Block count 1
+  Peak Allocated memory 97.8 KB
+  Peak Large allocation bytes 0 B
+    [ALLOC_PROFILER_BUCKET]
+      Large Block size 32.0 MB
+      Used Block count 1
+      Peak Allocated bytes 2.9 KB
+[ALLOC_PROFILER_EDITOR]
+  Peak usage frame count: [0-1.0 KB]: 118 frames
+  Requested Block Size 1.0 MB
+  Peak Block count 0
+  Peak Allocated memory 0 B
+  Peak Large allocation bytes 0 B
+    [ALLOC_PROFILER_BUCKET]
+      Large Block size 32.0 MB
+      Used Block count 1
+      Peak Allocated bytes 2.9 KB
+##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1766868948043,"processId":167030,"allocatedMemory":44542781,"memoryLabels":[{"Default":192833},{"Permanent":18109},{"Thread":1086288},{"Manager":3205481},{"VertexData":91292},{"Geometry":408},{"Particles":17856},{"VFX":44},{"Texture":130473},{"Shader":249052},{"Material":12348},{"GfxDevice":241448},{"Animation":15046},{"Audio":4932},{"Font":1792},{"FontEngine":4432},{"Physics":278261},{"Physics2D":153264},{"Serialization":5343210},{"Input":59520},{"JobScheduler":12550264},{"GarbageCollector":1049152},{"Mono":92},{"ScriptingNativeRuntime":167128},{"BaseObject":1851408},{"Resource":1260},{"Renderer":9360},{"Transform":48},{"File":11755},{"Network":3356},{"WebCam":40},{"Culling":48},{"Terrain":1073},{"TerrainPhysics":8},{"Wind":24},{"STL":214272},{"String":951369},{"DynamicArray":1199561},{"HashMap":1297610},{"Utility":4107758},{"PoolAlloc":1488},{"AI":59656},{"TypeTree":4533},{"ScriptManager":1482994},{"MonoScriptCache":519376},{"RuntimeInitializeOnLoadManager":72},{"AncestorCache":32},{"SpriteAtlas":112},{"GI":16312},{"Director":7928},{"WebRequest":720},{"VR":45961},{"SceneManager":600},{"Video":256},{"LazyScriptCache":32},{"ManagedAttributeManager":1},{"TextureStreaming":1416},{"NativeArray":839},{"ScreenCapture":8},{"Camera":25},{"Secure":1},{"CrashReporter":1040},{"SerializationCache":1576},{"APIUpdating":11856},{"Subsystems":384},{"VirtualTexturing":59488},{"StaticSafetyDebugInfo":327680},{"EditorGui":4728292},{"EditorUtility":79276},{"VersionControl":4},{"Undo":736},{"AssetDatabase":2302652},{"AssetImporter":283243},{"RestService":2880},{"EditorGi":24528},{"ProgressiveLightmapper":11144},{"License":3144},{"UnityConnect":25432},{"Collab":25},{"Upm":1232},{"DrivenProperties":80},{"LocalIPC":121},{"ProfilerEditor":10991},{"CoreBusinessMetrics":2876},{"AssetReference":32},{"IPCStream":32}]}
+>>>>>>> UI
