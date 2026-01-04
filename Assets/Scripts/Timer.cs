@@ -4,7 +4,10 @@ using System.Collections.Generic;
 
 public class Timer : MonoBehaviour
 {
+    [Header("UI Reference")]
     public TextMeshProUGUI timerText;
+
+    [Header("Settings")]
     public float timeRemaining = 60f;
     public float lowTimeThreshold = 30f;
 

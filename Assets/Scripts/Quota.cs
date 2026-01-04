@@ -15,7 +15,7 @@ public class Quota : MonoBehaviour
         UpdateDisplay();
     }
 
-    public void quotaProgressOne(int amount = 1)
+    public void QuotaProgressOne(int amount = 1)
     {
         quotaFulfilled += amount;
         if (quotaFulfilled > quotaGoal) quotaFulfilled = quotaGoal;
