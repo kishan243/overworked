@@ -118,6 +118,7 @@
 -define:ENABLE_TIMELINE
 -define:ENABLE_LEGACY_INPUT_MANAGER
 -define:TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
+-define:UNITY_POST_PROCESSING_STACK_V2
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
 -r:"/home/deck/Unity/Hub/Editor/2022.3.10f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
@@ -336,7 +337,15 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Formats.Alembic.Runtime.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Performance.Profile-Analyzer.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.PlasticSCM.Editor.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Postprocessing.Editor.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Postprocessing.Runtime.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Unity.RenderPipelines.Core.Editor.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Unity.RenderPipelines.Core.Runtime.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Unity.RenderPipelines.Core.ShaderLibrary.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Rider.Editor.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Searcher.Editor.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Unity.ShaderGraph.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Sysroot.Linux_x86_64.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.SysrootPackage.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.ref.dll"
@@ -363,6 +372,7 @@
 -analyzer:"/home/deck/Unity/Hub/Editor/2022.3.10f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Free 2D Cartoon Parallax Background/Demo/Script/BackgroundControl_0.cs"
 "Assets/Free 2D Cartoon Parallax Background/Demo/Script/ParallaxBackground_0.cs"
+"Assets/Scripts/LevelGenerator.cs"
 "Assets/Scripts/Movement.cs"
 "Assets/Scripts/Quota.cs"
 "Assets/Scripts/RecipeManager.cs"
