@@ -332,6 +332,8 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/Siccity.GLTFUtility.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Siccity.GLTFUtility.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.EditorCoroutines.Editor.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Formats.Alembic.Editor.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Formats.Alembic.Runtime.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Performance.Profile-Analyzer.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.PlasticSCM.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Rider.Editor.ref.dll"
@@ -363,7 +365,10 @@
 "Assets/Free 2D Cartoon Parallax Background/Demo/Script/ParallaxBackground_0.cs"
 "Assets/Scripts/MainMenuManager.cs"
 "Assets/Scripts/Movement.cs"
+"Assets/Scripts/Quota.cs"
+"Assets/Scripts/RecipeManager.cs"
 "Assets/Scripts/SimpleSnow.cs"
+"Assets/Scripts/Timer.cs"
 -langversion:9.0
 
 /deterministic
