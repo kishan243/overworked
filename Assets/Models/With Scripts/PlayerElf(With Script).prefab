@@ -112,19 +112,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  dashSpeed: 15
+  dashSpeed: 25
   dashDuration: 0.3
   leftHand: {fileID: 8799297238233635349}
   interactRange: 3
-  redPLAOnTablePrefab: {fileID: 0}
-  bluePLAOnTablePrefab: {fileID: 8800499850062819759, guid: 504263905d98b5d40a5d03d6ca63af48, type: 3}
-  greenPLAOnTablePrefab: {fileID: 5316955575214800735, guid: 0b871a15b324de744aa4390ec2ff6eb2, type: 3}
-  yellowPLAOnTablePrefab: {fileID: 8355368843004130297, guid: 0302ef74f62ff0e4a93abb54ac823a31, type: 3}
-  blackPLAOnTablePrefab: {fileID: 0}
-  whitePLAOnTablePrefab: {fileID: 0}
-  blueToyOnTablePrefab: {fileID: 7383871157103396130, guid: 6d97b2acfa8c5c04b8d462d9a55aef42, type: 3}
-  yellowToyOnTablePrefab: {fileID: 2454266434972904530, guid: 79fa60ff7e253aa4bb1fb0a24c384b70, type: 3}
-  greenToyOnTablePrefab: {fileID: 2820370995189592469, guid: c5c641d306ddfa54c83990323dacba2d, type: 3}
 --- !u!54 &-2353853313115630761
 Rigidbody:
   m_ObjectHideFlags: 0

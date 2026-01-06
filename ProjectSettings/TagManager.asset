@@ -8,6 +8,8 @@ TagManager:
   - Printer
   - FinishedPrinter
   - Toy
+  - Table
+  - Green
   layers:
   - Default
   - TransparentFX

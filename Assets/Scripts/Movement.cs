@@ -131,10 +131,22 @@ public class Movement : MonoBehaviour
         if (toyPrefab == null) return;
 
         heldItem = Instantiate(toyPrefab, leftHand.position, leftHand.rotation, leftHand);
-        heldItem.transform.localScale = Vector3.one;
+
+        // --- SCALING FIX ---
+        // Instead of Vector3.one, we set specific scales based on the item
+        // You can adjust these numbers until they look perfect
+        if (toyPrefab.name.Contains("Green"))
+        {
+            heldItem.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f); // Make green smaller
+        }
+        else
+        {
+            heldItem.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f); // Make others larger
+        }
+
         heldItem.tag = "Untagged";
 
-        // FIX FOR TOY SPINNING:
+        // ... (rest of your existing logic for Colliders/Rigidbodies)
         Collider col = heldItem.GetComponent<Collider>();
         if (col != null) col.enabled = false;
 

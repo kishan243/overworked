@@ -35,13 +35,21 @@ public class PrinterLogic : MonoBehaviour
         }
     }
 
-    // Pass data from old printer to new printer
+    // Update this method in PrinterLogic.cs
     public void InitializeFromPrevious(PrinterLogic oldLogic, bool bakingState)
     {
-        this.loadedPLAType = oldLogic.loadedPLAType;
+        // Ensure the base reference is carried over to the new instance
         this.basePrinterPrefab = oldLogic.basePrinterPrefab;
+
+        this.loadedPLAType = oldLogic.loadedPLAType;
         this.toyPrefab = oldLogic.toyPrefab;
         this.isBaking = bakingState;
+
+        // If it was already baking, we need to resume the timer
+        if (this.isBaking)
+        {
+            StartCoroutine(FinishBaking());
+        }
     }
 
     void Update()

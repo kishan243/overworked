@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6010634035360709600, guid: eca07bc03c1bcdbe4ab3cc008b957ba8, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Green
       objectReference: {fileID: 0}
     - target: {fileID: 3717431517512936597, guid: eca07bc03c1bcdbe4ab3cc008b957ba8, type: 3}
       propertyPath: m_LocalPosition.x
