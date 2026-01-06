@@ -1,0 +1,146 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2703096181136217946
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -7949136978043226412, guid: e950a609c00ddbdc080ee16bfa7a6f51, type: 3}
+      propertyPath: m_Name
+      value: PrinterGreenPLA
+      objectReference: {fileID: 0}
+    - target: {fileID: -3124914424127336872, guid: e950a609c00ddbdc080ee16bfa7a6f51, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3124914424127336872, guid: e950a609c00ddbdc080ee16bfa7a6f51, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3124914424127336872, guid: e950a609c00ddbdc080ee16bfa7a6f51, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3124914424127336872, guid: e950a609c00ddbdc080ee16bfa7a6f51, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3124914424127336872, guid: e950a609c00ddbdc080ee16bfa7a6f51, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3124914424127336872, guid: e950a609c00ddbdc080ee16bfa7a6f51, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3124914424127336872, guid: e950a609c00ddbdc080ee16bfa7a6f51, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3124914424127336872, guid: e950a609c00ddbdc080ee16bfa7a6f51, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3124914424127336872, guid: e950a609c00ddbdc080ee16bfa7a6f51, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3124914424127336872, guid: e950a609c00ddbdc080ee16bfa7a6f51, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -7949136978043226412, guid: e950a609c00ddbdc080ee16bfa7a6f51, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5833069536724158844}
+    - targetCorrespondingSourceObject: {fileID: -7949136978043226412, guid: e950a609c00ddbdc080ee16bfa7a6f51, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8831065704442309731}
+    - targetCorrespondingSourceObject: {fileID: 4479447428429927926, guid: e950a609c00ddbdc080ee16bfa7a6f51, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3862415952393704873}
+  m_SourcePrefab: {fileID: 9199261849990390558, guid: e950a609c00ddbdc080ee16bfa7a6f51, type: 3}
+--- !u!1 &1993232149465825964 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4479447428429927926, guid: e950a609c00ddbdc080ee16bfa7a6f51, type: 3}
+  m_PrefabInstance: {fileID: 2703096181136217946}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &3862415952393704873
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993232149465825964}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 2.0000002, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &3759852232642224526 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7949136978043226412, guid: e950a609c00ddbdc080ee16bfa7a6f51, type: 3}
+  m_PrefabInstance: {fileID: 2703096181136217946}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5833069536724158844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3759852232642224526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71f7a57537e4634aaab176947ba6d45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bluePrinterPrefab: {fileID: 3971487483890743082, guid: 99368bbeccd250e43ba0cfd2dd31daac, type: 3}
+  blueBakedPrefab: {fileID: 8418755112447828238, guid: f0fc57b1965a6954d8997aa28a14a057, type: 3}
+  blueFinishedItemPrefab: {fileID: 3968484915797795279, guid: 562d347c84657e146a69a81c33542f6b, type: 3}
+  yellowPrinterPrefab: {fileID: 8089006963299617745, guid: 798d586a6967e7a4cbf70c3984155cbd, type: 3}
+  yellowBakedPrefab: {fileID: 3970530181748017708, guid: f02374a31dfee204e9a03625780fa8ec, type: 3}
+  yellowFinishedItemPrefab: {fileID: 3700438541166138497, guid: 00c5b616723717144822fdb68fd06b4c, type: 3}
+  greenPrinterPrefab: {fileID: 3759852232642224526}
+  greenBakedPrefab: {fileID: 6507319584180015651, guid: e2fe7118094c9534ea750332371d8bc3, type: 3}
+  greenFinishedItemPrefab: {fileID: 6183690590702222940, guid: d130af84b5929ff47b82f19133bf7fa2, type: 3}
+  minBakeTime: 12
+  maxBakeTime: 18
+  transformDelay: 0.5
+  flashColor: {r: 0, g: 1, b: 1, a: 1}
+  basePrinterPrefab: {fileID: 2308610648379806443, guid: 9908405fe30a5aa4d9ef8e1146f07fdf, type: 3}
+--- !u!65 &-8831065704442309731
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3759852232642224526}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
