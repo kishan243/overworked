@@ -20,7 +20,7 @@ public class PrinterLogic : MonoBehaviour
 
     [Header("Settings")]
     public float bakeTime = 14f;
-    public GameObject basePrinterPrefab; // Drag "Empty Printer" prefab here!
+    public GameObject basePrinterPrefab;
 
     private bool isBaking = false;
     private bool isFinished = false;
@@ -35,17 +35,14 @@ public class PrinterLogic : MonoBehaviour
         }
     }
 
-    // Update this method in PrinterLogic.cs
     public void InitializeFromPrevious(PrinterLogic oldLogic, bool bakingState)
     {
-        // Ensure the base reference is carried over to the new instance
         this.basePrinterPrefab = oldLogic.basePrinterPrefab;
 
         this.loadedPLAType = oldLogic.loadedPLAType;
         this.toyPrefab = oldLogic.toyPrefab;
         this.isBaking = bakingState;
 
-        // If it was already baking, we need to resume the timer
         if (this.isBaking)
         {
             StartCoroutine(FinishBaking());
@@ -120,7 +117,6 @@ public class PrinterLogic : MonoBehaviour
             SwapPrefab(bakedPrefab, true);
         }
 
-        // --- THE FIX: This line was missing, causing error CS0161 ---
         yield return null;
     }
 

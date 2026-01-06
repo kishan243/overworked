@@ -115,7 +115,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6010634035360709600, guid: eca07bc03c1bcdbe4ab3cc008b957ba8, type: 3}
       propertyPath: m_Name
-      value: ToyBricks 1
+      value: brickOnTable
       objectReference: {fileID: 0}
     - target: {fileID: -6010634035360709600, guid: eca07bc03c1bcdbe4ab3cc008b957ba8, type: 3}
       propertyPath: m_TagString

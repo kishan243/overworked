@@ -14,8 +14,10 @@ public class LevelGenerator : MonoBehaviour
         [HideInInspector] public int currentSpawned = 0;
     }
 
-    [Header("Player Settings")]
+    [Header("Player & Special Prefabs")]
     public GameObject playerPrefab;
+    public GameObject giftBoxPrefab;
+    public int giftBoxCount = 3;
 
     [Header("Prefabs")]
     public GameObject floorPrefab;
@@ -37,10 +39,61 @@ public class LevelGenerator : MonoBehaviour
     public float wallHeightOffset = 0.5f;
     public Vector3 wallRotationOffset = new Vector3(0, 90, 0);
 
+    private List<Vector2Int> giftBoxLocations = new List<Vector2Int>();
+    private List<Vector2Int> reservedTiles = new List<Vector2Int>();
+
     void Start()
     {
         GenerateStreet();
+        PrecalculateLevelLayout();
         StartCoroutine(GenerateGrid());
+    }
+
+    void PrecalculateLevelLayout()
+    {
+        reservedTiles.Clear();
+        giftBoxLocations.Clear();
+
+        for (int x = 0; x <= 1; x++)
+        {
+            for (int z = 0; z <= 1; z++)
+            {
+                reservedTiles.Add(new Vector2Int(x, z));
+            }
+        }
+
+        int placed = 0;
+        int attempts = 0;
+        while (placed < giftBoxCount && attempts < 100)
+        {
+            attempts++;
+            int rx = Random.Range(2, length - 1);
+            int rz = Random.Range(2, width - 1);
+            Vector2Int pos = new Vector2Int(rx, rz);
+
+            if (!IsAreaReserved(rx, rz))
+            {
+                giftBoxLocations.Add(pos);
+                for (int x = -1; x <= 1; x++)
+                {
+                    for (int z = -1; z <= 1; z++)
+                    {
+                        reservedTiles.Add(new Vector2Int(rx + x, rz + z));
+                    }
+                }
+                placed++;
+            }
+        }
+    }
+
+    bool IsAreaReserved(int x, int z)
+    {
+        Vector2Int current = new Vector2Int(x, z);
+        foreach (var tile in reservedTiles)
+        {
+            if (tile == current) return true;
+        }
+        return false;
     }
 
     void GenerateStreet()
@@ -68,16 +121,17 @@ public class LevelGenerator : MonoBehaviour
                 Vector3 floorPos = new Vector3(x * tileSize, 0, z * tileSize);
                 SpawnWithScale(floorPrefab, floorPos, Quaternion.identity, layerIndex);
 
-                // Wall Spawning Logic
                 if (z == 0) SpawnWithScale(wallPrefab, floorPos + new Vector3(0, wallHeightOffset, -wallOffset), Quaternion.Euler(0, 0, 0) * rotationOffset, layerIndex);
                 if (z == width - 1) SpawnWithScale(wallPrefab, floorPos + new Vector3(0, wallHeightOffset, wallOffset), Quaternion.Euler(0, 180, 0) * rotationOffset, layerIndex);
                 if (x == 0) SpawnWithScale(wallPrefab, floorPos + new Vector3(-wallOffset, wallHeightOffset, 0), Quaternion.Euler(0, 90, 0) * rotationOffset, layerIndex);
                 if (x == length - 1) SpawnWithScale(wallPrefab, floorPos + new Vector3(wallOffset, wallHeightOffset, 0), Quaternion.Euler(0, 270, 0) * rotationOffset, layerIndex);
 
-                // Check if this is a spawn area tile (player spawns at 0,0 so clear 0,0 and adjacent tiles)
-                bool isSpawnArea = (x == 0 && z == 0) || (x == 1 && z == 0) || (x == 0 && z == 1) || (x == 1 && z == 1);
-
-                if (!isSpawnArea && propPool != null && propPool.Count > 0)
+                Vector2Int currentCoord = new Vector2Int(x, z);
+                if (giftBoxLocations.Contains(currentCoord))
+                {
+                    SpawnWithScale(giftBoxPrefab, floorPos, Quaternion.identity, layerIndex);
+                }
+                else if (!IsAreaReserved(x, z))
                 {
                     TrySpawnRandomProp(floorPos, layerIndex);
                 }
