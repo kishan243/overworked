@@ -316,7 +316,17 @@ MonoBehaviour:
   - prefab: {fileID: 7031251295378829050, guid: 931ee1b06073ddb1c8a43c66d517893a, type: 3}
     maxAmount: 2
     heightOffset: 1.1
-    spawnChance: 5
+    spawnChance: 10
+    currentSpawned: 0
+  - prefab: {fileID: 4933288153308951416, guid: f495977a21b9c458c8150767ce5277c1, type: 3}
+    maxAmount: 2
+    heightOffset: 1.1
+    spawnChance: 10
+    currentSpawned: 0
+  - prefab: {fileID: 2298433832058996221, guid: f4f466b9dc819a8a9b98739db4c3406d, type: 3}
+    maxAmount: 2
+    heightOffset: 1.1
+    spawnChance: 10
     currentSpawned: 0
   streetMaterial: {fileID: 2100000, guid: 0498be3eeeedacf24be5eaa34b58b222, type: 2}
   spawnDelay: 0.025
