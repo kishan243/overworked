@@ -14,6 +14,7 @@ Material:
   m_ValidKeywords:
   - _ALPHATEST_ON
   - _EMISSION
+  - _METALLICGLOSSMAP
   m_InvalidKeywords:
   - _BLENDMODE_ALPHA
   - _BLENDMODE_PRESERVE_SPECULAR_LIGHTING
