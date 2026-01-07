@@ -82,7 +82,7 @@ public class PrinterLogic : MonoBehaviour
         if (warningCube != null)
         {
             float bobAmount = Mathf.Sin(Time.time * 3f) * 0.15f;
-            warningCube.transform.localPosition = new Vector3(0, 2f + bobAmount, 0);
+            warningCube.transform.localPosition = new Vector3(0, 5f + bobAmount, 0);
         }
     }
 
@@ -164,7 +164,6 @@ public class PrinterLogic : MonoBehaviour
         {
             warningCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
             warningCube.transform.SetParent(transform);
-            warningCube.transform.localPosition = new Vector3(0, 5f, 0);
             warningCube.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             Destroy(warningCube.GetComponent<Collider>());
 
@@ -239,7 +238,7 @@ public class PrinterLogic : MonoBehaviour
         friedToyPrefab = null;
         gameObject.tag = "Printer";
 
-        // Remove the warning cube
+        // Remove the warning cube immediately
         if (warningCube != null)
         {
             Destroy(warningCube);
