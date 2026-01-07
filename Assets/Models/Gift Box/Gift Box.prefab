@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gift Box
       objectReference: {fileID: 0}
+    - target: {fileID: -7949136978043226412, guid: b2b99fa08339766fbbcccfdb873fd317, type: 3}
+      propertyPath: m_TagString
+      value: Giftbox
+      objectReference: {fileID: 0}
     - target: {fileID: -3124914424127336872, guid: b2b99fa08339766fbbcccfdb873fd317, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

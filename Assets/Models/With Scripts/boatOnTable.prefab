@@ -131,7 +131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7949136978043226412, guid: ff25a6b5cec2f30c5b5bc80d8ab5c550, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: 'ItemTable '
       objectReference: {fileID: 0}
     - target: {fileID: -3124914424127336872, guid: ff25a6b5cec2f30c5b5bc80d8ab5c550, type: 3}
       propertyPath: m_LocalPosition.x

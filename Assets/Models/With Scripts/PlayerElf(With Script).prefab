@@ -111,9 +111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83ad21ac5ca8c0c4fb850f281fd613c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  dashSpeed: 25
-  dashDuration: 0.3
+  moveSpeed: 13
+  dashSpeed: 0
+  dashDuration: 0
   leftHand: {fileID: 8799297238233635349}
   interactRange: 3
 --- !u!54 &-2353853313115630761

@@ -18,6 +18,8 @@ public class LevelGenerator : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject giftBoxPrefab;
     public int giftBoxCount = 3;
+    public GameObject trashcanPrefab;
+    public int trashcanCount = 2;
 
     [Header("Prefabs")]
     public GameObject floorPrefab;
@@ -40,6 +42,7 @@ public class LevelGenerator : MonoBehaviour
     public Vector3 wallRotationOffset = new Vector3(0, 90, 0);
 
     private List<Vector2Int> giftBoxLocations = new List<Vector2Int>();
+    private List<Vector2Int> trashcanLocations = new List<Vector2Int>();
     private List<Vector2Int> reservedTiles = new List<Vector2Int>();
 
     void Start()
@@ -53,7 +56,9 @@ public class LevelGenerator : MonoBehaviour
     {
         reservedTiles.Clear();
         giftBoxLocations.Clear();
+        trashcanLocations.Clear();
 
+        // Reserve player spawn area
         for (int x = 0; x <= 1; x++)
         {
             for (int z = 0; z <= 1; z++)
@@ -62,6 +67,7 @@ public class LevelGenerator : MonoBehaviour
             }
         }
 
+        // Place giftboxes
         int placed = 0;
         int attempts = 0;
         while (placed < giftBoxCount && attempts < 100)
@@ -74,6 +80,30 @@ public class LevelGenerator : MonoBehaviour
             if (!IsAreaReserved(rx, rz))
             {
                 giftBoxLocations.Add(pos);
+                for (int x = -1; x <= 1; x++)
+                {
+                    for (int z = -1; z <= 1; z++)
+                    {
+                        reservedTiles.Add(new Vector2Int(rx + x, rz + z));
+                    }
+                }
+                placed++;
+            }
+        }
+
+        // Place trashcans
+        placed = 0;
+        attempts = 0;
+        while (placed < trashcanCount && attempts < 100)
+        {
+            attempts++;
+            int rx = Random.Range(2, length - 1);
+            int rz = Random.Range(2, width - 1);
+            Vector2Int pos = new Vector2Int(rx, rz);
+
+            if (!IsAreaReserved(rx, rz))
+            {
+                trashcanLocations.Add(pos);
                 for (int x = -1; x <= 1; x++)
                 {
                     for (int z = -1; z <= 1; z++)
@@ -127,10 +157,18 @@ public class LevelGenerator : MonoBehaviour
                 if (x == length - 1) SpawnWithScale(wallPrefab, floorPos + new Vector3(wallOffset, wallHeightOffset, 0), Quaternion.Euler(0, 270, 0) * rotationOffset, layerIndex);
 
                 Vector2Int currentCoord = new Vector2Int(x, z);
+
+                // Spawn giftbox
                 if (giftBoxLocations.Contains(currentCoord))
                 {
                     SpawnWithScale(giftBoxPrefab, floorPos, Quaternion.identity, layerIndex);
                 }
+                // Spawn trashcan
+                else if (trashcanLocations.Contains(currentCoord))
+                {
+                    SpawnWithScale(trashcanPrefab, floorPos, Quaternion.identity, layerIndex);
+                }
+                // Spawn random props
                 else if (!IsAreaReserved(x, z))
                 {
                     TrySpawnRandomProp(floorPos, layerIndex);

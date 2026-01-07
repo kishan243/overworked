@@ -117,6 +117,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Yellow PLA Source
       objectReference: {fileID: 0}
+    - target: {fileID: 5350686870322845647, guid: 0e17ee741910a8a4c849476954324225, type: 3}
+      propertyPath: m_TagString
+      value: PLA
+      objectReference: {fileID: 0}
     - target: {fileID: 6514790042910613282, guid: 0e17ee741910a8a4c849476954324225, type: 3}
       propertyPath: m_Enabled
       value: 1

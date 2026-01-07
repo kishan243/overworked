@@ -1,32 +1,25 @@
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 public class Movement : MonoBehaviour
 {
     public float moveSpeed = 10f;
-    public float dashSpeed = 25f;
-    public float dashDuration = 0.2f;
 
     [Header("Interactions")]
     public Transform leftHand;
     public float interactRange = 3.5f;
     private GameObject heldItem;
     private ItemData.ItemType heldItemType;
+    private bool heldItemIsToy = false;
 
     private Rigidbody rb;
     private Vector3 moveDir;
-    private bool isDashing = false;
-    private float dashTimer = 0f;
-    private Vector3 dashDir;
     private TextMeshProUGUI interactionText;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-
-        // FIX FOR RANDOM SPINNING: Freeze all physics rotation.
         rb.constraints = RigidbodyConstraints.FreezeRotation;
-
         rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
         rb.interpolation = RigidbodyInterpolation.Interpolate;
 
@@ -42,13 +35,6 @@ public class Movement : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
         moveDir = new Vector3(x, 0, z).normalized;
-
-        if (Input.GetKeyDown(KeyCode.L) && !isDashing && moveDir.magnitude > 0)
-        {
-            isDashing = true;
-            dashTimer = dashDuration;
-            dashDir = moveDir;
-        }
 
         UpdateInteractionUI();
 
@@ -80,28 +66,62 @@ public class Movement : MonoBehaviour
         }
         else
         {
+            // If holding PLA, can load printer
             GameObject closestPrinter = FindClosestByTag("Printer");
-            if (closestPrinter != null) { interactionText.text = "Press SPACE to load printer"; }
-            else { interactionText.text = "Press SPACE to drop item"; }
+            if (closestPrinter != null && !heldItemIsToy)
+            {
+                interactionText.text = "Press SPACE to load printer";
+                return;
+            }
+
+            // If holding toy, can submit to giftbox (only if NOT fried)
+            GameObject closestGiftbox = FindClosestByTag("Giftbox");
+            if (closestGiftbox != null && heldItemIsToy)
+            {
+                // Check if the toy is fried
+                FriedToyMarker friedMarker = heldItem.GetComponent<FriedToyMarker>();
+                if (friedMarker == null || !friedMarker.isFried)
+                {
+                    interactionText.text = "Press SPACE to submit toy";
+                    return;
+                }
+            }
+
+            // Can always trash
+            GameObject closestTrashcan = FindClosestByTag("Trashcan");
+            if (closestTrashcan != null)
+            {
+                interactionText.text = "Press SPACE to trash item";
+                return;
+            }
+
+            interactionText.text = "";
         }
     }
 
     GameObject FindClosestByTag(string tag)
     {
-        GameObject[] objects = GameObject.FindGameObjectsWithTag(tag);
-        GameObject closest = null;
-        float closestDist = interactRange;
-
-        foreach (GameObject obj in objects)
+        try
         {
-            float dist = Vector3.Distance(transform.position, obj.transform.position);
-            if (dist < closestDist)
+            GameObject[] objects = GameObject.FindGameObjectsWithTag(tag);
+            GameObject closest = null;
+            float closestDist = interactRange;
+
+            foreach (GameObject obj in objects)
             {
-                closestDist = dist;
-                closest = obj;
+                float dist = Vector3.Distance(transform.position, obj.transform.position);
+                if (dist < closestDist)
+                {
+                    closestDist = dist;
+                    closest = obj;
+                }
             }
+            return closest;
         }
-        return closest;
+        catch (UnityException)
+        {
+            return null;
+        }
     }
 
     void Interact()
@@ -116,9 +136,33 @@ public class Movement : MonoBehaviour
         }
         else
         {
+            // If holding PLA, try to load printer
             GameObject closestPrinter = FindClosestByTag("Printer");
-            if (closestPrinter != null) { LoadPrinter(closestPrinter); }
-            else { DropItem(); }
+            if (closestPrinter != null && !heldItemIsToy)
+            {
+                LoadPrinter(closestPrinter);
+                return;
+            }
+
+            // If holding toy, try to submit to giftbox (only if NOT fried)
+            GameObject closestGiftbox = FindClosestByTag("Giftbox");
+            if (closestGiftbox != null && heldItemIsToy)
+            {
+                FriedToyMarker friedMarker = heldItem.GetComponent<FriedToyMarker>();
+                if (friedMarker == null || !friedMarker.isFried)
+                {
+                    SubmitToyToGiftbox();
+                    return;
+                }
+            }
+
+            // Try to trash item
+            GameObject closestTrashcan = FindClosestByTag("Trashcan");
+            if (closestTrashcan != null)
+            {
+                TrashItem();
+                return;
+            }
         }
     }
 
@@ -131,22 +175,36 @@ public class Movement : MonoBehaviour
         if (toyPrefab == null) return;
 
         heldItem = Instantiate(toyPrefab, leftHand.position, leftHand.rotation, leftHand);
+        heldItem.tag = "Untagged";
+        heldItemIsToy = true;
 
-        // --- SCALING FIX ---
-        // Instead of Vector3.one, we set specific scales based on the item
-        // You can adjust these numbers until they look perfect
-        if (toyPrefab.name.Contains("Green"))
+        // Check if fried
+        if (logic.IsFried())
         {
-            heldItem.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f); // Make green smaller
+            FriedToyMarker marker = heldItem.GetComponent<FriedToyMarker>();
+            if (marker == null)
+            {
+                marker = heldItem.AddComponent<FriedToyMarker>();
+            }
+            marker.isFried = true;
+        }
+
+        // Get the color from the printer's loaded type and set scale
+        if (logic.GetLoadedPLAType().HasValue)
+        {
+            heldItemType = logic.GetLoadedPLAType().Value;
+        }
+
+        // THE FIX: Scale based on color - works for BOTH normal AND fried toys
+        if (heldItemType == ItemData.ItemType.GreenPLA)
+        {
+            heldItem.transform.localScale = Vector3.one * 0.4f;  // Green is smaller
         }
         else
         {
-            heldItem.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f); // Make others larger
+            heldItem.transform.localScale = Vector3.one * 2.0f;  // Blue/Yellow are bigger
         }
 
-        heldItem.tag = "Untagged";
-
-        // ... (rest of your existing logic for Colliders/Rigidbodies)
         Collider col = heldItem.GetComponent<Collider>();
         if (col != null) col.enabled = false;
 
@@ -158,7 +216,7 @@ public class Movement : MonoBehaviour
         }
 
         heldItem.transform.localRotation = Quaternion.identity;
-        logic.ResetToEmpty();
+        logic.ClearAfterPickup();
     }
 
     void PickUpPLA(GameObject plaObject)
@@ -166,13 +224,18 @@ public class Movement : MonoBehaviour
         ItemData data = plaObject.GetComponent<ItemData>();
         if (data == null) return;
         heldItemType = data.itemType;
+        heldItemIsToy = false;
 
         heldItem = Instantiate(data.itemPrefab != null ? data.itemPrefab : plaObject, leftHand.position, leftHand.rotation, leftHand);
         heldItem.transform.localScale = Vector3.one * 0.4f;
         heldItem.tag = "Untagged";
 
         if (heldItem.TryGetComponent<Collider>(out Collider c)) c.enabled = false;
-        if (heldItem.TryGetComponent<Rigidbody>(out Rigidbody r)) { r.isKinematic = true; r.detectCollisions = false; }
+        if (heldItem.TryGetComponent<Rigidbody>(out Rigidbody r))
+        {
+            r.isKinematic = true;
+            r.detectCollisions = false;
+        }
 
         heldItem.transform.localRotation = Quaternion.identity;
     }
@@ -185,47 +248,36 @@ public class Movement : MonoBehaviour
             printer.ProcessItem(heldItemType);
             Destroy(heldItem);
             heldItem = null;
+            heldItemIsToy = false;
         }
     }
 
-    void DropItem()
+    void SubmitToyToGiftbox()
     {
-        if (heldItem == null) return;
-
-        heldItem.transform.parent = null;
-        heldItem.transform.position = transform.position + transform.forward * 1.5f;
-        heldItem.transform.localScale = Vector3.one * 0.3f;
-        heldItem.tag = "PLA";
-
-        if (heldItem.TryGetComponent<Collider>(out Collider c)) c.enabled = true;
-        if (heldItem.TryGetComponent<Rigidbody>(out Rigidbody r))
+        // Find Quota script and update it
+        Quota quota = FindObjectOfType<Quota>();
+        if (quota != null)
         {
-            r.isKinematic = false;
-            r.detectCollisions = true;
-            r.useGravity = true;
-            r.velocity = Vector3.zero;
+            quota.QuotaProgressOne(1);
         }
 
-        // Re-enable item data
-        ItemData heldData = heldItem.GetComponent<ItemData>();
-        if (heldData == null) heldData = heldItem.AddComponent<ItemData>();
-        heldData.itemType = heldItemType;
-
+        // Destroy the toy
+        Destroy(heldItem);
         heldItem = null;
+        heldItemIsToy = false;
+    }
+
+    void TrashItem()
+    {
+        // Simply destroy whatever is being held
+        Destroy(heldItem);
+        heldItem = null;
+        heldItemIsToy = false;
     }
 
     void FixedUpdate()
     {
-        if (isDashing)
-        {
-            rb.velocity = new Vector3(dashDir.x * dashSpeed, 0, dashDir.z * dashSpeed);
-            dashTimer -= Time.fixedDeltaTime;
-            if (dashTimer <= 0) isDashing = false;
-        }
-        else
-        {
-            rb.velocity = new Vector3(moveDir.x * moveSpeed, rb.velocity.y, moveDir.z * moveSpeed);
-        }
+        rb.velocity = new Vector3(moveDir.x * moveSpeed, rb.velocity.y, moveDir.z * moveSpeed);
 
         if (moveDir != Vector3.zero) transform.forward = moveDir;
     }

@@ -10,6 +10,8 @@ TagManager:
   - Toy
   - Table
   - Green
+  - Giftbox
+  - Trashcan
   layers:
   - Default
   - TransparentFX
