@@ -26,6 +26,13 @@ public class RecipeManager : MonoBehaviour
         int randomIndex = Random.Range(0, recipePrefabs.Count);
         GameObject newTicket = Instantiate(recipePrefabs[randomIndex], ticketTray);
         newTicket.transform.localScale = Vector3.one;
+
+        // Initialize spawn time
+        Recipe recipe = newTicket.GetComponent<Recipe>();
+        if (recipe != null)
+        {
+            recipe.spawnTime = Time.time;
+        }
     }
 
     // Check if ANY active recipe matches this toy name
@@ -42,18 +49,20 @@ public class RecipeManager : MonoBehaviour
         return false;
     }
 
-    // Complete a recipe (remove it and spawn a new one)
-    public void CompleteRecipe(string toyName)
+    // Complete a recipe and return the points earned
+    public int CompleteRecipe(string toyName)
     {
         foreach (Transform child in ticketTray)
         {
             Recipe recipe = child.GetComponent<Recipe>();
             if (recipe != null && recipe.toyName.Equals(toyName, System.StringComparison.OrdinalIgnoreCase))
             {
+                int points = recipe.GetPointsForCompletion();
                 Destroy(child.gameObject);
                 SpawnRandomRecipe();
-                return; // Only remove ONE recipe
+                return points; // Return points for this recipe
             }
         }
+        return 0; // No matching recipe found
     }
 }

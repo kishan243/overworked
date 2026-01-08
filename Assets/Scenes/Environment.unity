@@ -234,9 +234,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 810767742}
-  - component: {fileID: 810767741}
   - component: {fileID: 810767740}
   - component: {fileID: 810767739}
+  - component: {fileID: 810767743}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -280,20 +280,6 @@ MonoBehaviour:
   timerText: {fileID: 1443005468}
   timeRemaining: 300
   lowTimeThreshold: 30
---- !u!114 &810767741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 810767738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aa11fc4c54171d519ef68e4def9c921, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  quotaText: {fileID: 1122745348}
-  quotaGoal: 10
 --- !u!4 &810767742
 Transform:
   m_ObjectHideFlags: 0
@@ -309,6 +295,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &810767743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810767738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 315d92572ead4b549af3ec9828498238, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointsText: {fileID: 1122745348}
+  totalPoints: 0
 --- !u!1 &1098327468
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,7 +474,7 @@ GameObject:
   - component: {fileID: 1122745349}
   - component: {fileID: 1122745348}
   m_Layer: 5
-  m_Name: Quota Text
+  m_Name: Points Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -519,7 +519,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quota
+  m_text: Points
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b54cde50f12e5f3a0ae8f2fe7a815e7e, type: 2}
   m_sharedMaterial: {fileID: -4293748655693287829, guid: b54cde50f12e5f3a0ae8f2fe7a815e7e, type: 2}
@@ -608,7 +608,7 @@ GameObject:
   - component: {fileID: 1192154636}
   - component: {fileID: 1192154635}
   m_Layer: 5
-  m_Name: Quota Background
+  m_Name: Points Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

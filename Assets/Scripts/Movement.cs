@@ -426,14 +426,16 @@ public class Movement : MonoBehaviour
 
         if (recipeManager != null)
         {
-            recipeManager.CompleteRecipe(toyName);
-        }
+            // Complete recipe and get points earned
+            int pointsEarned = recipeManager.CompleteRecipe(toyName);
 
-        // Update quota
-        Quota quota = FindObjectOfType<Quota>();
-        if (quota != null)
-        {
-            quota.QuotaProgressOne(1);
+            // Award points
+            Points pointsSystem = FindObjectOfType<Points>();
+            if (pointsSystem != null)
+            {
+                pointsSystem.AddPoints(pointsEarned);
+                Debug.Log($"Earned {pointsEarned} points!");
+            }
         }
 
         // Destroy the toy/item
