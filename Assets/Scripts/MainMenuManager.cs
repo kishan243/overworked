@@ -9,7 +9,7 @@ public class bruh : MonoBehaviour
     // These methods will be linked to your UI Buttons
     public void ClickPlay()
     {
-        StartCoroutine(LoadSceneAfterDelay("Play"));
+        StartCoroutine(LoadSceneAfterDelay("Environment"));
     }
 
     public void ClickInstructions()

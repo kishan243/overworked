@@ -3,25 +3,32 @@ using TMPro;
 
 public class Movement : MonoBehaviour
 {
-    public float moveSpeed = 10f;
+    [Header("Movement")]
+    public float moveSpeed = 8f;
+    public float rotationSpeed = 10f;
 
     [Header("Interactions")]
     public Transform leftHand;
     public float interactRange = 3.5f;
+
+    private CharacterController controller;
     private GameObject heldItem;
     private ItemData.ItemType heldItemType;
+    private LeatherData.LeatherType heldLeatherType;
     private bool heldItemIsToy = false;
-
-    private Rigidbody rb;
-    private Vector3 moveDir;
+    private bool heldItemIsLeather = false;
     private TextMeshProUGUI interactionText;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.FreezeRotation;
-        rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
-        rb.interpolation = RigidbodyInterpolation.Interpolate;
+        controller = GetComponent<CharacterController>();
+        if (controller == null)
+        {
+            controller = gameObject.AddComponent<CharacterController>();
+            controller.radius = 0.5f;
+            controller.height = 2f;
+            controller.center = new Vector3(0, 1f, 0);
+        }
 
         GameObject textObj = GameObject.Find("InteractionText");
         if (textObj != null)
@@ -32,9 +39,18 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        float x = Input.GetAxisRaw("Horizontal");
-        float z = Input.GetAxisRaw("Vertical");
-        moveDir = new Vector3(x, 0, z).normalized;
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
+        Vector3 moveDir = new Vector3(h, 0, v).normalized;
+
+        if (moveDir != Vector3.zero)
+        {
+            controller.Move(moveDir * moveSpeed * Time.deltaTime);
+            Quaternion targetRotation = Quaternion.LookRotation(moveDir);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
+
+        controller.Move(Vector3.down * 9.81f * Time.deltaTime);
 
         UpdateInteractionUI();
 
@@ -56,38 +72,92 @@ public class Movement : MonoBehaviour
             GameObject closestPLA = FindClosestByTag("PLA");
             if (closestPLA != null) { interactionText.text = "Press SPACE to pick up PLA"; return; }
 
+            GameObject closestLeather = FindClosestByTag("Leather");
+            if (closestLeather != null) { interactionText.text = "Press SPACE to pick up leather"; return; }
+
             GameObject closestPrinter = FindClosestByTag("Printer");
             if (closestPrinter != null)
             {
                 PrinterLogic logic = closestPrinter.GetComponent<PrinterLogic>();
                 if (logic != null && logic.CanBake()) { interactionText.text = "Press J to bake"; return; }
             }
+
+            GameObject closestCutter = FindClosestByTag("LaserCutter");
+            if (closestCutter != null)
+            {
+                LaserCutterLogic logic = closestCutter.GetComponent<LaserCutterLogic>();
+                if (logic != null)
+                {
+                    if (logic.IsCutting())
+                    {
+                        interactionText.text = "Cutting...";
+                        return;
+                    }
+                    else if (logic.IsFinished())
+                    {
+                        interactionText.text = "Press SPACE to pick up item";
+                        return;
+                    }
+                    else if (logic.CanStartCutting())
+                    {
+                        interactionText.text = "Press J to cut";
+                        return;
+                    }
+                    else if (logic.CanLoadLeather())
+                    {
+                        interactionText.text = "Add leather to slots";
+                        return;
+                    }
+                }
+            }
+
             interactionText.text = "";
         }
         else
         {
-            // If holding PLA, can load printer
             GameObject closestPrinter = FindClosestByTag("Printer");
-            if (closestPrinter != null && !heldItemIsToy)
+            if (closestPrinter != null && !heldItemIsToy && !heldItemIsLeather)
             {
                 interactionText.text = "Press SPACE to load printer";
                 return;
             }
 
-            // If holding toy, can submit to giftbox (only if NOT fried)
-            GameObject closestGiftbox = FindClosestByTag("Giftbox");
-            if (closestGiftbox != null && heldItemIsToy)
+            GameObject closestCutter = FindClosestByTag("LaserCutter");
+            if (closestCutter != null && heldItemIsLeather)
             {
-                // Check if the toy is fried
-                FriedToyMarker friedMarker = heldItem.GetComponent<FriedToyMarker>();
-                if (friedMarker == null || !friedMarker.isFried)
+                LaserCutterLogic logic = closestCutter.GetComponent<LaserCutterLogic>();
+                if (logic != null && logic.CanLoadLeather())
                 {
-                    interactionText.text = "Press SPACE to submit toy";
+                    interactionText.text = "Press SPACE to load leather";
                     return;
                 }
             }
 
-            // Can always trash
+            GameObject closestGiftbox = FindClosestByTag("Giftbox");
+            if (closestGiftbox != null && heldItemIsToy)
+            {
+                FriedToyMarker friedMarker = heldItem.GetComponent<FriedToyMarker>();
+                if (friedMarker != null && friedMarker.isFried)
+                {
+                    interactionText.text = "This toy is FRIED! Trash it";
+                    return;
+                }
+
+                RecipeManager recipeManager = FindObjectOfType<RecipeManager>();
+                string toyName = GetToyName();
+
+                if (recipeManager != null && recipeManager.HasMatchingRecipe(toyName))
+                {
+                    interactionText.text = "Press SPACE to submit toy";
+                    return;
+                }
+                else
+                {
+                    interactionText.text = "Wrong toy! Check recipes";
+                    return;
+                }
+            }
+
             GameObject closestTrashcan = FindClosestByTag("Trashcan");
             if (closestTrashcan != null)
             {
@@ -133,30 +203,54 @@ public class Movement : MonoBehaviour
 
             GameObject closestPLA = FindClosestByTag("PLA");
             if (closestPLA != null) { PickUpPLA(closestPLA); return; }
+
+            GameObject closestLeather = FindClosestByTag("Leather");
+            if (closestLeather != null) { PickUpLeather(closestLeather); return; }
+
+            GameObject closestCutter = FindClosestByTag("LaserCutter");
+            if (closestCutter != null)
+            {
+                LaserCutterLogic logic = closestCutter.GetComponent<LaserCutterLogic>();
+                if (logic != null && logic.IsFinished())
+                {
+                    PickUpCutterItem(closestCutter);
+                    return;
+                }
+            }
         }
         else
         {
-            // If holding PLA, try to load printer
             GameObject closestPrinter = FindClosestByTag("Printer");
-            if (closestPrinter != null && !heldItemIsToy)
+            if (closestPrinter != null && !heldItemIsToy && !heldItemIsLeather)
             {
                 LoadPrinter(closestPrinter);
                 return;
             }
 
-            // If holding toy, try to submit to giftbox (only if NOT fried)
+            GameObject closestCutter = FindClosestByTag("LaserCutter");
+            if (closestCutter != null && heldItemIsLeather)
+            {
+                LoadLaserCutter(closestCutter);
+                return;
+            }
+
             GameObject closestGiftbox = FindClosestByTag("Giftbox");
             if (closestGiftbox != null && heldItemIsToy)
             {
                 FriedToyMarker friedMarker = heldItem.GetComponent<FriedToyMarker>();
                 if (friedMarker == null || !friedMarker.isFried)
                 {
-                    SubmitToyToGiftbox();
-                    return;
+                    RecipeManager recipeManager = FindObjectOfType<RecipeManager>();
+                    string toyName = GetToyName();
+
+                    if (recipeManager != null && recipeManager.HasMatchingRecipe(toyName))
+                    {
+                        SubmitToyToGiftbox();
+                        return;
+                    }
                 }
             }
 
-            // Try to trash item
             GameObject closestTrashcan = FindClosestByTag("Trashcan");
             if (closestTrashcan != null)
             {
@@ -177,8 +271,8 @@ public class Movement : MonoBehaviour
         heldItem = Instantiate(toyPrefab, leftHand.position, leftHand.rotation, leftHand);
         heldItem.tag = "Untagged";
         heldItemIsToy = true;
+        heldItemIsLeather = false;
 
-        // Check if fried
         if (logic.IsFried())
         {
             FriedToyMarker marker = heldItem.GetComponent<FriedToyMarker>();
@@ -189,20 +283,18 @@ public class Movement : MonoBehaviour
             marker.isFried = true;
         }
 
-        // Get the color from the printer's loaded type and set scale
         if (logic.GetLoadedPLAType().HasValue)
         {
             heldItemType = logic.GetLoadedPLAType().Value;
         }
 
-        // THE FIX: Scale based on color - works for BOTH normal AND fried toys
         if (heldItemType == ItemData.ItemType.GreenPLA)
         {
-            heldItem.transform.localScale = Vector3.one * 0.4f;  // Green is smaller
+            heldItem.transform.localScale = Vector3.one * 0.3f;
         }
         else
         {
-            heldItem.transform.localScale = Vector3.one * 2.0f;  // Blue/Yellow are bigger
+            heldItem.transform.localScale = Vector3.one * 2.5f;
         }
 
         Collider col = heldItem.GetComponent<Collider>();
@@ -223,8 +315,10 @@ public class Movement : MonoBehaviour
     {
         ItemData data = plaObject.GetComponent<ItemData>();
         if (data == null) return;
+
         heldItemType = data.itemType;
         heldItemIsToy = false;
+        heldItemIsLeather = false;
 
         heldItem = Instantiate(data.itemPrefab != null ? data.itemPrefab : plaObject, leftHand.position, leftHand.rotation, leftHand);
         heldItem.transform.localScale = Vector3.one * 0.4f;
@@ -240,6 +334,66 @@ public class Movement : MonoBehaviour
         heldItem.transform.localRotation = Quaternion.identity;
     }
 
+    void PickUpLeather(GameObject leatherObject)
+    {
+        LeatherData data = leatherObject.GetComponent<LeatherData>();
+        if (data == null) return;
+
+        heldLeatherType = data.leatherType;
+        heldItemIsToy = false;
+        heldItemIsLeather = true;
+
+        heldItem = Instantiate(data.leatherPrefab != null ? data.leatherPrefab : leatherObject, leftHand.position, leftHand.rotation, leftHand);
+        heldItem.transform.localScale = Vector3.one * 0.4f;
+        heldItem.tag = "Untagged";
+
+        if (heldItem.TryGetComponent<Collider>(out Collider c)) c.enabled = false;
+        if (heldItem.TryGetComponent<Rigidbody>(out Rigidbody r))
+        {
+            r.isKinematic = true;
+            r.detectCollisions = false;
+        }
+
+        heldItem.transform.localRotation = Quaternion.identity;
+    }
+
+    void PickUpCutterItem(GameObject cutterObject)
+    {
+        LaserCutterLogic logic = cutterObject.GetComponent<LaserCutterLogic>();
+        if (logic == null) return;
+
+        GameObject itemPrefab = logic.GetFinishedItem();
+        if (itemPrefab == null) return;
+
+        heldItem = Instantiate(itemPrefab, leftHand.position, leftHand.rotation, leftHand);
+        heldItem.tag = "Untagged";
+        heldItemIsToy = true;
+        heldItemIsLeather = false;
+
+        string itemName = itemPrefab.name.ToLower();
+        if (itemName.Contains("hat") || itemName.Contains("backpack"))
+        {
+            heldItem.transform.localScale = Vector3.one * 3.5f;
+        }
+        else
+        {
+            heldItem.transform.localScale = Vector3.one * 2.0f;
+        }
+
+        Collider col = heldItem.GetComponent<Collider>();
+        if (col != null) col.enabled = false;
+
+        Rigidbody heldRb = heldItem.GetComponent<Rigidbody>();
+        if (heldRb != null)
+        {
+            heldRb.isKinematic = true;
+            heldRb.detectCollisions = false;
+        }
+
+        heldItem.transform.localRotation = Quaternion.identity;
+        logic.ClearAfterPickup();
+    }
+
     void LoadPrinter(GameObject printerObj)
     {
         PrinterLogic printer = printerObj.GetComponent<PrinterLogic>();
@@ -249,36 +403,85 @@ public class Movement : MonoBehaviour
             Destroy(heldItem);
             heldItem = null;
             heldItemIsToy = false;
+            heldItemIsLeather = false;
+        }
+    }
+
+    void LoadLaserCutter(GameObject cutterObj)
+    {
+        LaserCutterLogic cutter = cutterObj.GetComponent<LaserCutterLogic>();
+        if (cutter != null && cutter.CanLoadLeather())
+        {
+            cutter.LoadLeather(heldLeatherType);
+            Destroy(heldItem);
+            heldItem = null;
+            heldItemIsLeather = false;
         }
     }
 
     void SubmitToyToGiftbox()
     {
-        // Find Quota script and update it
+        RecipeManager recipeManager = FindObjectOfType<RecipeManager>();
+        string toyName = GetToyName();
+
+        if (recipeManager != null)
+        {
+            recipeManager.CompleteRecipe(toyName);
+        }
+
+        // Update quota
         Quota quota = FindObjectOfType<Quota>();
         if (quota != null)
         {
             quota.QuotaProgressOne(1);
         }
 
-        // Destroy the toy
+        // Destroy the toy/item
         Destroy(heldItem);
         heldItem = null;
         heldItemIsToy = false;
+        heldItemIsLeather = false;
+    }
+
+    // Get the toy name for recipe matching
+    string GetToyName()
+    {
+        ItemData itemData = heldItem.GetComponent<ItemData>();
+
+        if (itemData != null)
+        {
+            // Printer toy - convert ItemType to toy name
+            switch (heldItemType)
+            {
+                case ItemData.ItemType.BluePLA: return "BlueToy";
+                case ItemData.ItemType.YellowPLA: return "YellowToy";
+                case ItemData.ItemType.GreenPLA: return "GreenToy";
+                default: return "Unknown";
+            }
+        }
+        else
+        {
+            // Laser cutter item - get name from prefab
+            return GetItemName(heldItem);
+        }
+    }
+
+    string GetItemName(GameObject item)
+    {
+        string name = item.name.Replace("(Clone)", "").Trim();
+
+        if (name.ToLower().Contains("football")) return "Football";
+        if (name.ToLower().Contains("backpack")) return "Backpack";
+        if (name.ToLower().Contains("hat")) return "Hat";
+
+        return name;
     }
 
     void TrashItem()
     {
-        // Simply destroy whatever is being held
         Destroy(heldItem);
         heldItem = null;
         heldItemIsToy = false;
-    }
-
-    void FixedUpdate()
-    {
-        rb.velocity = new Vector3(moveDir.x * moveSpeed, rb.velocity.y, moveDir.z * moveSpeed);
-
-        if (moveDir != Vector3.zero) transform.forward = moveDir;
+        heldItemIsLeather = false;
     }
 }

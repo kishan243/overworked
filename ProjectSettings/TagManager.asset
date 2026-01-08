@@ -12,6 +12,10 @@ TagManager:
   - Green
   - Giftbox
   - Trashcan
+  - 'EmptyTable '
+  - Leather
+  - LaserCutter
+  - 'ItemTable '
   layers:
   - Default
   - TransparentFX

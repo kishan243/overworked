@@ -8,48 +8,52 @@ public class RecipeManager : MonoBehaviour
     public List<GameObject> recipePrefabs;
 
     [Header("Settings")]
-    public int maxTickets = 5;
+    public int maxTickets = 3;
 
     void Start()
     {
+        // Spawn initial 3 recipes
         for (int i = 0; i < maxTickets; i++)
         {
             SpawnRandomRecipe();
         }
     }
 
-    public void SpawnRandomRecipe()
+    void SpawnRandomRecipe()
     {
-
         if (ticketTray.childCount >= maxTickets) return;
 
         int randomIndex = Random.Range(0, recipePrefabs.Count);
-        GameObject prefabToSpawn = recipePrefabs[randomIndex];
-
-        GameObject newTicket = Instantiate(prefabToSpawn, ticketTray);
-
+        GameObject newTicket = Instantiate(recipePrefabs[randomIndex], ticketTray);
         newTicket.transform.localScale = Vector3.one;
     }
 
-    public void RemoveTicket(int index)
+    // Check if ANY active recipe matches this toy name
+    public bool HasMatchingRecipe(string toyName)
     {
-        if (index >= 0 && index < ticketTray.childCount)
+        foreach (Transform child in ticketTray)
         {
-            GameObject ticket = ticketTray.GetChild(index).gameObject;
-
-            Destroy(ticket);
-
-            ticket.transform.SetParent(null);
-
-            SpawnRandomRecipe();
+            Recipe recipe = child.GetComponent<Recipe>();
+            if (recipe != null && recipe.toyName.Equals(toyName, System.StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
         }
+        return false;
     }
 
-    void Update()
+    // Complete a recipe (remove it and spawn a new one)
+    public void CompleteRecipe(string toyName)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        foreach (Transform child in ticketTray)
         {
-            RemoveTicket(0);
+            Recipe recipe = child.GetComponent<Recipe>();
+            if (recipe != null && recipe.toyName.Equals(toyName, System.StringComparison.OrdinalIgnoreCase))
+            {
+                Destroy(child.gameObject);
+                SpawnRandomRecipe();
+                return; // Only remove ONE recipe
+            }
         }
     }
 }

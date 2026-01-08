@@ -15,15 +15,15 @@ PrefabInstance:
     - target: {fileID: -7731121341793783326, guid: ff25a6b5cec2f30c5b5bc80d8ab5c550, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 007a3035eb9d9fc4c9a5222a2babee51, type: 2}
+      objectReference: {fileID: 2100000, guid: 71927995517e6384e87360d69d4ab938, type: 2}
     - target: {fileID: -5567817806752166354, guid: ff25a6b5cec2f30c5b5bc80d8ab5c550, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 007a3035eb9d9fc4c9a5222a2babee51, type: 2}
+      objectReference: {fileID: 2100000, guid: 71927995517e6384e87360d69d4ab938, type: 2}
     - target: {fileID: -4231358593559082939, guid: ff25a6b5cec2f30c5b5bc80d8ab5c550, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 007a3035eb9d9fc4c9a5222a2babee51, type: 2}
+      objectReference: {fileID: 2100000, guid: 71927995517e6384e87360d69d4ab938, type: 2}
     - target: {fileID: -3124914424127336872, guid: ff25a6b5cec2f30c5b5bc80d8ab5c550, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

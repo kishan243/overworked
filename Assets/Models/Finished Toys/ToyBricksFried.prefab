@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: -7925242628445633050, guid: eca07bc03c1bcdbe4ab3cc008b957ba8, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 007a3035eb9d9fc4c9a5222a2babee51, type: 2}
+      objectReference: {fileID: 2100000, guid: 71927995517e6384e87360d69d4ab938, type: 2}
     - target: {fileID: -6010634035360709600, guid: eca07bc03c1bcdbe4ab3cc008b957ba8, type: 3}
       propertyPath: m_Name
       value: ToyBricksFried

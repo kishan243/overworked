@@ -194,8 +194,19 @@ public class LevelGenerator : MonoBehaviour
             if (Random.Range(0f, 100f) < settings.spawnChance)
             {
                 Vector3 propPos = new Vector3(floorPos.x, settings.heightOffset, floorPos.z);
-                Quaternion randomRot = Quaternion.Euler(0, Random.Range(0, 4) * 90, 0);
-                SpawnWithScale(settings.prefab, propPos, randomRot, layerIndex);
+
+                // Check if this is a Printer or LaserCutter - give them fixed rotation facing forward (0 degrees)
+                Quaternion rotation;
+                if (settings.prefab.name.Contains("Printer") || settings.prefab.name.Contains("Laser") || settings.prefab.name.Contains("Cutter"))
+                {
+                    rotation = Quaternion.Euler(0, 180, 0); // Face forward/toward camera
+                }
+                else
+                {
+                    rotation = Quaternion.Euler(0, Random.Range(0, 4) * 90, 0); // Random rotation for other props
+                }
+
+                SpawnWithScale(settings.prefab, propPos, rotation, layerIndex);
                 settings.currentSpawned++;
             }
         }
