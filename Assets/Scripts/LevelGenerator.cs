@@ -38,6 +38,7 @@ public class LevelGenerator : MonoBehaviour
     public float spawnDelay = 0.02f;
     public float scaleSpeed = 5.0f;
     public float riseSpeed = 3.0f;
+    public float OOBRiseSpeed = 15.0f; // Faster rise speed for OOB props (snow effect)
 
     [Header("Floor Settings")]
     public int length = 13;
@@ -159,7 +160,7 @@ public class LevelGenerator : MonoBehaviour
 
                 GameObject obj = Instantiate(OOBPrefab, targetPos - Vector3.up * riseDistance, Quaternion.identity, transform);
                 obj.layer = layerIndex;
-                StartCoroutine(RiseUpLerp(obj, targetPos));
+                StartCoroutine(RiseUpLerp(obj, targetPos, OOBRiseSpeed)); // Use faster speed for OOB
                 yield return delay;
             }
         }
@@ -245,13 +246,13 @@ public class LevelGenerator : MonoBehaviour
         target.transform.localScale = targetScale;
     }
 
-    IEnumerator RiseUpLerp(GameObject target, Vector3 targetPos)
+    IEnumerator RiseUpLerp(GameObject target, Vector3 targetPos, float speed)
     {
         Vector3 startPos = target.transform.position;
         float t = 0;
         while (t < 1.0f)
         {
-            t += Time.deltaTime * riseSpeed;
+            t += Time.deltaTime * speed;
             target.transform.position = Vector3.Lerp(startPos, targetPos, t);
             yield return null;
         }

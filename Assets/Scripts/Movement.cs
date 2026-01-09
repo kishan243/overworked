@@ -17,6 +17,7 @@ public class Movement : MonoBehaviour
     private LeatherData.LeatherType heldLeatherType;
     private bool heldItemIsToy = false;
     private bool heldItemIsLeather = false;
+    private bool heldItemIsFromPrinter = false; // Track if toy is from printer vs laser cutter
     private TextMeshProUGUI interactionText;
 
     void Start()
@@ -268,10 +269,17 @@ public class Movement : MonoBehaviour
         GameObject toyPrefab = logic.GetToyPrefab();
         if (toyPrefab == null) return;
 
+        // IMPORTANT: Get the PLA type BEFORE clearing the printer
+        if (logic.GetLoadedPLAType().HasValue)
+        {
+            heldItemType = logic.GetLoadedPLAType().Value;
+        }
+
         heldItem = Instantiate(toyPrefab, leftHand.position, leftHand.rotation, leftHand);
         heldItem.tag = "Untagged";
         heldItemIsToy = true;
         heldItemIsLeather = false;
+        heldItemIsFromPrinter = true; // THIS IS A PRINTER TOY
 
         if (logic.IsFried())
         {
@@ -281,11 +289,6 @@ public class Movement : MonoBehaviour
                 marker = heldItem.AddComponent<FriedToyMarker>();
             }
             marker.isFried = true;
-        }
-
-        if (logic.GetLoadedPLAType().HasValue)
-        {
-            heldItemType = logic.GetLoadedPLAType().Value;
         }
 
         if (heldItemType == ItemData.ItemType.GreenPLA)
@@ -319,6 +322,7 @@ public class Movement : MonoBehaviour
         heldItemType = data.itemType;
         heldItemIsToy = false;
         heldItemIsLeather = false;
+        heldItemIsFromPrinter = false;
 
         heldItem = Instantiate(data.itemPrefab != null ? data.itemPrefab : plaObject, leftHand.position, leftHand.rotation, leftHand);
         heldItem.transform.localScale = Vector3.one * 0.4f;
@@ -342,6 +346,7 @@ public class Movement : MonoBehaviour
         heldLeatherType = data.leatherType;
         heldItemIsToy = false;
         heldItemIsLeather = true;
+        heldItemIsFromPrinter = false;
 
         heldItem = Instantiate(data.leatherPrefab != null ? data.leatherPrefab : leatherObject, leftHand.position, leftHand.rotation, leftHand);
         heldItem.transform.localScale = Vector3.one * 0.4f;
@@ -369,6 +374,7 @@ public class Movement : MonoBehaviour
         heldItem.tag = "Untagged";
         heldItemIsToy = true;
         heldItemIsLeather = false;
+        heldItemIsFromPrinter = false; // THIS IS A LASER CUTTER ITEM
 
         string itemName = itemPrefab.name.ToLower();
         if (itemName.Contains("hat") || itemName.Contains("backpack"))
@@ -404,6 +410,7 @@ public class Movement : MonoBehaviour
             heldItem = null;
             heldItemIsToy = false;
             heldItemIsLeather = false;
+            heldItemIsFromPrinter = false;
         }
     }
 
@@ -416,6 +423,7 @@ public class Movement : MonoBehaviour
             Destroy(heldItem);
             heldItem = null;
             heldItemIsLeather = false;
+            heldItemIsFromPrinter = false;
         }
     }
 
@@ -426,16 +434,14 @@ public class Movement : MonoBehaviour
 
         if (recipeManager != null)
         {
-            // Complete recipe and get points earned
-            int pointsEarned = recipeManager.CompleteRecipe(toyName);
+            recipeManager.CompleteRecipe(toyName);
+        }
 
-            // Award points
-            Points pointsSystem = FindObjectOfType<Points>();
-            if (pointsSystem != null)
-            {
-                pointsSystem.AddPoints(pointsEarned);
-                Debug.Log($"Earned {pointsEarned} points!");
-            }
+        // Update quota
+        Quota quota = FindObjectOfType<Quota>();
+        if (quota != null)
+        {
+            quota.QuotaProgressOne(1);
         }
 
         // Destroy the toy/item
@@ -485,5 +491,6 @@ public class Movement : MonoBehaviour
         heldItem = null;
         heldItemIsToy = false;
         heldItemIsLeather = false;
+        heldItemIsFromPrinter = false;
     }
 }

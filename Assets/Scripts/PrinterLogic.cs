@@ -24,6 +24,7 @@ public class PrinterLogic : MonoBehaviour
     [Header("Settings")]
     public float bakeTime = 8f;
     public float friedTime = 5f;
+    public float interactRange = 3.5f;
     public GameObject basePrinterPrefab;
 
     private bool isBaking = false;
@@ -59,6 +60,7 @@ public class PrinterLogic : MonoBehaviour
         this.greenFriedItemPrefab = oldLogic.greenFriedItemPrefab;
         this.bakeTime = oldLogic.bakeTime;
         this.friedTime = oldLogic.friedTime;
+        this.interactRange = oldLogic.interactRange;
 
         this.loadedPLAType = oldLogic.loadedPLAType;
         this.toyPrefab = oldLogic.toyPrefab;
@@ -73,9 +75,13 @@ public class PrinterLogic : MonoBehaviour
 
     void Update()
     {
+        // Only allow J key if player is nearby
         if (loadedPLAType != null && !isBaking && !isFinished && Input.GetKeyDown(KeyCode.J))
         {
-            StartCoroutine(BakeItem());
+            if (IsPlayerNearby())
+            {
+                StartCoroutine(BakeItem());
+            }
         }
 
         // Make the cube bob up and down if it exists
@@ -84,6 +90,18 @@ public class PrinterLogic : MonoBehaviour
             float bobAmount = Mathf.Sin(Time.time * 3f) * 0.15f;
             warningCube.transform.localPosition = new Vector3(0, 5f + bobAmount, 0);
         }
+    }
+
+    bool IsPlayerNearby()
+    {
+        // Find player using Movement component instead of tag
+        Movement player = FindObjectOfType<Movement>();
+        if (player != null)
+        {
+            float distance = Vector3.Distance(transform.position, player.transform.position);
+            return distance <= interactRange;
+        }
+        return false;
     }
 
     public void ProcessItem(ItemData.ItemType itemType)

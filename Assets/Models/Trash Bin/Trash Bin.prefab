@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trash Bin
       objectReference: {fileID: 0}
+    - target: {fileID: -4058266835556002466, guid: 295f34794e36f1819ba3c15a7b63bbdf, type: 3}
+      propertyPath: m_TagString
+      value: Trashcan
+      objectReference: {fileID: 0}
     - target: {fileID: -1156818496232109367, guid: 295f34794e36f1819ba3c15a7b63bbdf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

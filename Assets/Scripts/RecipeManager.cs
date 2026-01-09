@@ -12,6 +12,12 @@ public class RecipeManager : MonoBehaviour
 
     void Start()
     {
+        // Clear any existing tickets first
+        foreach (Transform child in ticketTray)
+        {
+            Destroy(child.gameObject);
+        }
+
         // Spawn initial 3 recipes
         for (int i = 0; i < maxTickets; i++)
         {
@@ -21,7 +27,12 @@ public class RecipeManager : MonoBehaviour
 
     void SpawnRandomRecipe()
     {
-        if (ticketTray.childCount >= maxTickets) return;
+        // Make sure we have recipe prefabs
+        if (recipePrefabs == null || recipePrefabs.Count == 0)
+        {
+            Debug.LogWarning("No recipe prefabs assigned to RecipeManager!");
+            return;
+        }
 
         int randomIndex = Random.Range(0, recipePrefabs.Count);
         GameObject newTicket = Instantiate(recipePrefabs[randomIndex], ticketTray);
@@ -58,11 +69,16 @@ public class RecipeManager : MonoBehaviour
             if (recipe != null && recipe.toyName.Equals(toyName, System.StringComparison.OrdinalIgnoreCase))
             {
                 int points = recipe.GetPointsForCompletion();
-                Destroy(child.gameObject);
+
+                // Destroy immediately, not at end of frame
+                DestroyImmediate(child.gameObject);
+
+                // Now spawn new recipe - count will be correct
                 SpawnRandomRecipe();
-                return points; // Return points for this recipe
+
+                return points;
             }
         }
-        return 0; // No matching recipe found
+        return 0;
     }
 }

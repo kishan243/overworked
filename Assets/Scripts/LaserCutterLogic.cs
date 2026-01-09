@@ -18,6 +18,7 @@ public class LaserCutterLogic : MonoBehaviour
     [Header("Settings")]
     public float cuttingTime = 10f;
     public float uiHeight = 4f;
+    public float interactRange = 3.5f;
 
     private LeatherData.LeatherType? slot1 = null;
     private LeatherData.LeatherType? slot2 = null;
@@ -56,16 +57,22 @@ public class LaserCutterLogic : MonoBehaviour
 
     void Update()
     {
-        // Handle K key to remove leather
+        // Handle K key to remove leather (only if player nearby)
         if (Input.GetKeyDown(KeyCode.K) && !isCutting && !isFinished)
         {
-            RemoveLastLeather();
+            if (IsPlayerNearby())
+            {
+                RemoveLastLeather();
+            }
         }
 
-        // Handle J key to start cutting
+        // Handle J key to start cutting (only if player nearby)
         if (Input.GetKeyDown(KeyCode.J) && CanStartCutting())
         {
-            StartCutting();
+            if (IsPlayerNearby())
+            {
+                StartCutting();
+            }
         }
 
         // Make progress cube bob
@@ -74,6 +81,18 @@ public class LaserCutterLogic : MonoBehaviour
             float bobAmount = Mathf.Sin(Time.time * 3f) * 0.15f;
             progressCube.transform.localPosition = new Vector3(0, uiHeight + 0.75f + bobAmount, 0);
         }
+    }
+
+    bool IsPlayerNearby()
+    {
+        // Find player using Movement component instead of tag
+        Movement player = FindObjectOfType<Movement>();
+        if (player != null)
+        {
+            float distance = Vector3.Distance(transform.position, player.transform.position);
+            return distance <= interactRange;
+        }
+        return false;
     }
 
     void UpdateUI()

@@ -471,7 +471,8 @@ MonoBehaviour:
   greenFinishedItemPrefab: {fileID: 6183690590702222940, guid: d130af84b5929ff47b82f19133bf7fa2, type: 3}
   greenFriedItemPrefab: {fileID: 2568942456423296689, guid: ede9f898081622a42a708237ccae3c76, type: 3}
   bakeTime: 8
-  friedTime: 5
+  friedTime: 8
+  interactRange: 4
   basePrinterPrefab: {fileID: 2308610648379806443, guid: 9908405fe30a5aa4d9ef8e1146f07fdf, type: 3}
 --- !u!65 &4500550135594942140
 BoxCollider:
