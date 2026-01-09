@@ -90,6 +90,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toyName: Football
+  maxPoints: 100
+  minPoints: 20
+  maxTime: 60
+  spawnTime: 0
 --- !u!1 &7698196715938153344
 GameObject:
   m_ObjectHideFlags: 0

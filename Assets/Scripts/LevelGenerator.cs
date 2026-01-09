@@ -14,6 +14,13 @@ public class LevelGenerator : MonoBehaviour
         [HideInInspector] public int currentSpawned = 0;
     }
 
+    [Header("Out of Bounds Prop Settings")]
+    public GameObject OOBPrefab;
+    public int OOBExtension = 10;
+    public float OOBHeightMin = -0.2f;
+    public float OOBHeightMax = 0.0f;
+    public float riseDistance = 5.0f;
+
     [Header("Player & Special Prefabs")]
     public GameObject playerPrefab;
     public GameObject giftBoxPrefab;
@@ -25,11 +32,12 @@ public class LevelGenerator : MonoBehaviour
     public GameObject floorPrefab;
     public GameObject wallPrefab;
     public List<PropSettings> propPool;
-    public Material streetMaterial;
+    public Material concreteMaterial;
 
     [Header("Animation Settings")]
-    public float spawnDelay = 0.05f;
+    public float spawnDelay = 0.02f;
     public float scaleSpeed = 5.0f;
+    public float riseSpeed = 3.0f;
 
     [Header("Floor Settings")]
     public int length = 13;
@@ -58,7 +66,6 @@ public class LevelGenerator : MonoBehaviour
         giftBoxLocations.Clear();
         trashcanLocations.Clear();
 
-        // Reserve player spawn area
         for (int x = 0; x <= 1; x++)
         {
             for (int z = 0; z <= 1; z++)
@@ -67,10 +74,15 @@ public class LevelGenerator : MonoBehaviour
             }
         }
 
-        // Place giftboxes
+        PlaceSpecialProps(giftBoxCount, giftBoxLocations);
+        PlaceSpecialProps(trashcanCount, trashcanLocations);
+    }
+
+    void PlaceSpecialProps(int count, List<Vector2Int> locationList)
+    {
         int placed = 0;
         int attempts = 0;
-        while (placed < giftBoxCount && attempts < 100)
+        while (placed < count && attempts < 100)
         {
             attempts++;
             int rx = Random.Range(2, length - 1);
@@ -79,31 +91,7 @@ public class LevelGenerator : MonoBehaviour
 
             if (!IsAreaReserved(rx, rz))
             {
-                giftBoxLocations.Add(pos);
-                for (int x = -1; x <= 1; x++)
-                {
-                    for (int z = -1; z <= 1; z++)
-                    {
-                        reservedTiles.Add(new Vector2Int(rx + x, rz + z));
-                    }
-                }
-                placed++;
-            }
-        }
-
-        // Place trashcans
-        placed = 0;
-        attempts = 0;
-        while (placed < trashcanCount && attempts < 100)
-        {
-            attempts++;
-            int rx = Random.Range(2, length - 1);
-            int rz = Random.Range(2, width - 1);
-            Vector2Int pos = new Vector2Int(rx, rz);
-
-            if (!IsAreaReserved(rx, rz))
-            {
-                trashcanLocations.Add(pos);
+                locationList.Add(pos);
                 for (int x = -1; x <= 1; x++)
                 {
                     for (int z = -1; z <= 1; z++)
@@ -128,14 +116,14 @@ public class LevelGenerator : MonoBehaviour
 
     void GenerateStreet()
     {
-        GameObject street = GameObject.CreatePrimitive(PrimitiveType.Plane);
-        street.name = "Concrete Street";
-        street.transform.parent = this.transform;
-        street.transform.localPosition = new Vector3(4.5f, -4.2f, 10);
-        street.transform.localScale = new Vector3(15, 1f, 15);
-        street.layer = LayerMask.NameToLayer("Assets");
+        GameObject concrete = GameObject.CreatePrimitive(PrimitiveType.Plane);
+        concrete.name = "Concrete Street";
+        concrete.transform.parent = this.transform;
+        concrete.transform.localPosition = new Vector3(4.5f, -4.2f, 10);
+        concrete.transform.localScale = new Vector3(15, 1f, 15);
+        concrete.layer = LayerMask.NameToLayer("Assets");
 
-        if (streetMaterial != null) street.GetComponent<Renderer>().material = streetMaterial;
+        if (concreteMaterial != null) concrete.GetComponent<Renderer>().material = concreteMaterial;
     }
 
     IEnumerator GenerateGrid()
@@ -144,35 +132,58 @@ public class LevelGenerator : MonoBehaviour
         int layerIndex = LayerMask.NameToLayer("Assets");
         WaitForSeconds delay = new WaitForSeconds(spawnDelay);
 
+        if (OOBPrefab != null)
+        {
+            List<Vector2Int> OOBCoords = new List<Vector2Int>();
+            for (int x = -OOBExtension; x < length + OOBExtension; x++)
+            {
+                for (int z = -OOBExtension; z < width + OOBExtension; z++)
+                {
+                    bool isPlayableArea = (x >= 0 && x < length && z >= 0 && z < width);
+                    if (!isPlayableArea)
+                    {
+                        OOBCoords.Add(new Vector2Int(x, z));
+                    }
+                }
+            }
+
+            Vector2 centerPoint = new Vector2((length - 1) / 2f, (width - 1) / 2f);
+            OOBCoords.Sort((a, b) =>
+                Vector2.Distance(new Vector2(a.x, a.y), centerPoint).CompareTo(
+                Vector2.Distance(new Vector2(b.x, b.y), centerPoint)));
+
+            foreach (var coord in OOBCoords)
+            {
+                float targetHeight = Random.Range(OOBHeightMin, OOBHeightMax);
+                Vector3 targetPos = new Vector3(coord.x * tileSize, targetHeight, coord.y * tileSize);
+
+                GameObject obj = Instantiate(OOBPrefab, targetPos - Vector3.up * riseDistance, Quaternion.identity, transform);
+                obj.layer = layerIndex;
+                StartCoroutine(RiseUpLerp(obj, targetPos));
+                yield return delay;
+            }
+        }
+
         for (int x = 0; x < length; x++)
         {
             for (int z = 0; z < width; z++)
             {
-                Vector3 floorPos = new Vector3(x * tileSize, 0, z * tileSize);
-                SpawnWithScale(floorPrefab, floorPos, Quaternion.identity, layerIndex);
+                Vector3 pos = new Vector3(x * tileSize, 0, z * tileSize);
+                SpawnWithScale(floorPrefab, pos, Quaternion.identity, layerIndex);
 
-                if (z == 0) SpawnWithScale(wallPrefab, floorPos + new Vector3(0, wallHeightOffset, -wallOffset), Quaternion.Euler(0, 0, 0) * rotationOffset, layerIndex);
-                if (z == width - 1) SpawnWithScale(wallPrefab, floorPos + new Vector3(0, wallHeightOffset, wallOffset), Quaternion.Euler(0, 180, 0) * rotationOffset, layerIndex);
-                if (x == 0) SpawnWithScale(wallPrefab, floorPos + new Vector3(-wallOffset, wallHeightOffset, 0), Quaternion.Euler(0, 90, 0) * rotationOffset, layerIndex);
-                if (x == length - 1) SpawnWithScale(wallPrefab, floorPos + new Vector3(wallOffset, wallHeightOffset, 0), Quaternion.Euler(0, 270, 0) * rotationOffset, layerIndex);
+                if (z == 0) SpawnWithScale(wallPrefab, pos + new Vector3(0, wallHeightOffset, -wallOffset), Quaternion.Euler(0, 0, 0) * rotationOffset, layerIndex);
+                if (z == width - 1) SpawnWithScale(wallPrefab, pos + new Vector3(0, wallHeightOffset, wallOffset), Quaternion.Euler(0, 180, 0) * rotationOffset, layerIndex);
+                if (x == 0) SpawnWithScale(wallPrefab, pos + new Vector3(-wallOffset, wallHeightOffset, 0), Quaternion.Euler(0, 90, 0) * rotationOffset, layerIndex);
+                if (x == length - 1) SpawnWithScale(wallPrefab, pos + new Vector3(wallOffset, wallHeightOffset, 0), Quaternion.Euler(0, 270, 0) * rotationOffset, layerIndex);
 
                 Vector2Int currentCoord = new Vector2Int(x, z);
 
-                // Spawn giftbox
                 if (giftBoxLocations.Contains(currentCoord))
-                {
-                    SpawnWithScale(giftBoxPrefab, floorPos, Quaternion.identity, layerIndex);
-                }
-                // Spawn trashcan
+                    SpawnWithScale(giftBoxPrefab, pos, Quaternion.identity, layerIndex);
                 else if (trashcanLocations.Contains(currentCoord))
-                {
-                    SpawnWithScale(trashcanPrefab, floorPos, Quaternion.identity, layerIndex);
-                }
-                // Spawn random props
+                    SpawnWithScale(trashcanPrefab, pos, Quaternion.identity, layerIndex);
                 else if (!IsAreaReserved(x, z))
-                {
-                    TrySpawnRandomProp(floorPos, layerIndex);
-                }
+                    TrySpawnRandomProp(pos, layerIndex);
 
                 yield return delay;
             }
@@ -186,6 +197,7 @@ public class LevelGenerator : MonoBehaviour
 
     void TrySpawnRandomProp(Vector3 floorPos, int layerIndex)
     {
+        if (propPool.Count == 0) return;
         int randomIndex = Random.Range(0, propPool.Count);
         PropSettings settings = propPool[randomIndex];
 
@@ -195,15 +207,14 @@ public class LevelGenerator : MonoBehaviour
             {
                 Vector3 propPos = new Vector3(floorPos.x, settings.heightOffset, floorPos.z);
 
-                // Check if this is a Printer or LaserCutter - give them fixed rotation facing forward (0 degrees)
                 Quaternion rotation;
                 if (settings.prefab.name.Contains("Printer") || settings.prefab.name.Contains("Laser") || settings.prefab.name.Contains("Cutter"))
                 {
-                    rotation = Quaternion.Euler(0, 180, 0); // Face forward/toward camera
+                    rotation = Quaternion.Euler(0, 180, 0);
                 }
                 else
                 {
-                    rotation = Quaternion.Euler(0, Random.Range(0, 4) * 90, 0); // Random rotation for other props
+                    rotation = Quaternion.Euler(0, Random.Range(0, 4) * 90, 0);
                 }
 
                 SpawnWithScale(settings.prefab, propPos, rotation, layerIndex);
@@ -214,6 +225,7 @@ public class LevelGenerator : MonoBehaviour
 
     void SpawnWithScale(GameObject prefab, Vector3 pos, Quaternion rot, int layer)
     {
+        if (prefab == null) return;
         GameObject obj = Instantiate(prefab, pos, rot, transform);
         obj.layer = layer;
         StartCoroutine(ScaleUpLerp(obj));
@@ -231,5 +243,18 @@ public class LevelGenerator : MonoBehaviour
             yield return null;
         }
         target.transform.localScale = targetScale;
+    }
+
+    IEnumerator RiseUpLerp(GameObject target, Vector3 targetPos)
+    {
+        Vector3 startPos = target.transform.position;
+        float t = 0;
+        while (t < 1.0f)
+        {
+            t += Time.deltaTime * riseSpeed;
+            target.transform.position = Vector3.Lerp(startPos, targetPos, t);
+            yield return null;
+        }
+        target.transform.position = targetPos;
     }
 }

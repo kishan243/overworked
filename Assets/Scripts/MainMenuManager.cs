@@ -1,33 +1,49 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using System.Collections;
 
-public class bruh : MonoBehaviour
+public class MainMenuManager : MonoBehaviour
 {
-    [SerializeField] private float delayTime = 2f;
+    [Header("UI References")]
+    [SerializeField] private CanvasGroup fadeCanvasGroup;
 
-    // These methods will be linked to your UI Buttons
-    public void ClickPlay()
+    [Header("Settings")]
+    [SerializeField] private float delayTime = 1f;
+
+    private void Start()
     {
-        StartCoroutine(LoadSceneAfterDelay("Environment"));
+        if (fadeCanvasGroup != null)
+        {
+            fadeCanvasGroup.alpha = 0;
+            fadeCanvasGroup.blocksRaycasts = false;
+        }
     }
 
-    public void ClickInstructions()
-    {
-        StartCoroutine(LoadSceneAfterDelay("Instructions"));
-    }
-
-    public void ClickManual()
-    {
-        StartCoroutine(LoadSceneAfterDelay("Manual"));
-    }
+    public void ClickPlay() => StartCoroutine(LoadSceneAfterDelay("Environment"));
+    public void ClickInstructions() => StartCoroutine(LoadSceneAfterDelay("Instructions"));
+    public void ClickManual() => StartCoroutine(LoadSceneAfterDelay("Manual"));
 
     private IEnumerator LoadSceneAfterDelay(string sceneName)
     {
-        // 1. Wait for the animation to play
-        yield return new WaitForSeconds(delayTime);
+        if (fadeCanvasGroup != null)
+        {
+            fadeCanvasGroup.blocksRaycasts = true;
 
-        // 2. Change the scene
+            float elapsed = 0;
+            while (elapsed < delayTime)
+            {
+                elapsed += Time.deltaTime;
+
+                fadeCanvasGroup.alpha = Mathf.Clamp01(elapsed / delayTime);
+                yield return null;
+            }
+        }
+        else
+        {
+            yield return new WaitForSeconds(delayTime);
+        }
+
         SceneManager.LoadScene(sceneName);
     }
 }
