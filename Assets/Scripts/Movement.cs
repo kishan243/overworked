@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using TMPro;
 
 public class Movement : MonoBehaviour
@@ -15,6 +16,12 @@ public class Movement : MonoBehaviour
     public Transform leftHand;
     public float interactRange = 3.5f;
 
+    [Header("Sound Effects")]
+    public List<AudioClip> footsteps;
+    public float footstepDelay = 0.5f;
+
+    private AudioSource audioSource;
+    private float footstepTimer;
     private CharacterController controller;
     private GameObject heldItem;
     private ItemData.ItemType heldItemType;
@@ -26,6 +33,8 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         controller = GetComponent<CharacterController>();
         if (controller == null)
         {
@@ -67,9 +76,18 @@ public class Movement : MonoBehaviour
             {
                 movementParticles.Play();
             }
+
+            footstepTimer -= Time.deltaTime;
+            if (footstepTimer <= 0f)
+            {
+                PlayRandomSound(footsteps);
+                footstepTimer = footstepDelay;
+            }
         }
         else
         {
+            footstepTimer = 0f;
+
             if (movementParticles != null && movementParticles.isEmitting)
             {
                 movementParticles.Stop();
@@ -517,5 +535,22 @@ public class Movement : MonoBehaviour
         heldItemIsToy = false;
         heldItemIsLeather = false;
         heldItemIsFromPrinter = false;
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        if (clip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
+    }
+
+    public void PlayRandomSound(List<AudioClip> soundEffectsList)
+    {
+        if (soundEffectsList.Count > 0)
+        {
+            int randomIndex = Random.Range(0, soundEffectsList.Count);
+            PlaySound(soundEffectsList[randomIndex]);
+        }
     }
 }

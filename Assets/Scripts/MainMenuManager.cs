@@ -5,14 +5,17 @@ using System.Collections;
 
 public class MainMenuManager : MonoBehaviour
 {
-    [Header("UI References")]
+    [Header("UI and Audio References")]
     [SerializeField] private CanvasGroup fadeCanvasGroup;
+    [SerializeField] private AudioSource audioSource;
 
     [Header("Settings")]
     [SerializeField] private float delayTime = 1f;
 
     private void Start()
     {
+        StartCoroutine(MusicFader.FadeIn(audioSource, 3f, 0.3f));
+
         if (fadeCanvasGroup != null)
         {
             fadeCanvasGroup.alpha = 0;
@@ -28,6 +31,8 @@ public class MainMenuManager : MonoBehaviour
     {
         if (fadeCanvasGroup != null)
         {
+            StartCoroutine(MusicFader.FadeOutAndStop(audioSource, 1f));
+
             fadeCanvasGroup.blocksRaycasts = true;
 
             float elapsed = 0;

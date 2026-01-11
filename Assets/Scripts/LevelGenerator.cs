@@ -50,15 +50,28 @@ public class LevelGenerator : MonoBehaviour
     public float wallHeightOffset = 0.5f;
     public Vector3 wallRotationOffset = new Vector3(0, 90, 0);
 
+    [Header("Audio Sources")]
+    [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioSource sfxSource;
+    public AudioClip tileSpawnClip;
+    [Range(0, 1)] public float sfxVolume = 0.5f;
+
     [Header("Generation Status")]
     public bool isDoneGenerating = false;
 
     private List<Vector2Int> giftBoxLocations = new List<Vector2Int>();
     private List<Vector2Int> trashcanLocations = new List<Vector2Int>();
     private List<Vector2Int> reservedTiles = new List<Vector2Int>();
+    private int tilesPlaced = 0;
 
     void Start()
     {
+        if (musicSource != null)
+        {
+            musicSource.Stop();
+            musicSource.volume = 0;
+        }
+
         GenerateStreet();
         PrecalculateLevelLayout();
         StartCoroutine(GenerateGrid());
@@ -165,7 +178,19 @@ public class LevelGenerator : MonoBehaviour
 
                 GameObject obj = Instantiate(OOBPrefab, targetPos - Vector3.up * riseDistance, Quaternion.identity, transform);
                 obj.layer = layerIndex;
-                StartCoroutine(RiseUpLerp(obj, targetPos, OOBRiseSpeed)); // Use faster speed for OOB
+
+                tilesPlaced++;
+
+                if (tilesPlaced % 5 == 0)
+                {
+                    if (sfxSource != null && tileSpawnClip != null)
+                    {
+                        sfxSource.pitch = Random.Range(0.9f, 1.1f);
+                        sfxSource.PlayOneShot(tileSpawnClip, sfxVolume * 0.5f);
+                    }
+                }
+
+                StartCoroutine(RiseUpLerp(obj, targetPos, OOBRiseSpeed));
                 yield return delay;
             }
         }
@@ -201,6 +226,13 @@ public class LevelGenerator : MonoBehaviour
         }
 
         isDoneGenerating = true;
+
+        if (musicSource != null)
+        {
+            musicSource.Play();
+            StartCoroutine(MusicFader.FadeIn(musicSource, 3f, 0.3f));
+        }
+
     }
 
     void TrySpawnRandomProp(Vector3 floorPos, int layerIndex)
@@ -236,6 +268,18 @@ public class LevelGenerator : MonoBehaviour
         if (prefab == null) return;
         GameObject obj = Instantiate(prefab, pos, rot, transform);
         obj.layer = layer;
+
+        tilesPlaced++;
+
+        if (tilesPlaced % 5 == 0)
+        {
+            if (sfxSource != null && tileSpawnClip != null)
+            {
+                sfxSource.pitch = Random.Range(0.9f, 1.1f);
+                sfxSource.PlayOneShot(tileSpawnClip, sfxVolume);
+            }
+        }
+
         StartCoroutine(ScaleUpLerp(obj));
     }
 
