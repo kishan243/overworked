@@ -7,6 +7,10 @@ public class Movement : MonoBehaviour
     public float moveSpeed = 8f;
     public float rotationSpeed = 10f;
 
+    [Header("Movement Effects")]
+    public GameObject particlePrefab;
+    private ParticleSystem movementParticles;
+
     [Header("Interactions")]
     public Transform leftHand;
     public float interactRange = 3.5f;
@@ -32,9 +36,18 @@ public class Movement : MonoBehaviour
         }
 
         GameObject textObj = GameObject.Find("InteractionText");
+
         if (textObj != null)
         {
             interactionText = textObj.GetComponent<TextMeshProUGUI>();
+        }
+
+        if (particlePrefab != null)
+        {
+            GameObject pObj = Instantiate(particlePrefab, transform.position, Quaternion.identity);
+            pObj.transform.SetParent(this.transform);
+            pObj.transform.localPosition = new Vector3(0, 0.2f, 0);
+            movementParticles = pObj.GetComponent<ParticleSystem>();
         }
     }
 
@@ -49,6 +62,18 @@ public class Movement : MonoBehaviour
             controller.Move(moveDir * moveSpeed * Time.deltaTime);
             Quaternion targetRotation = Quaternion.LookRotation(moveDir);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+            if (movementParticles != null && !movementParticles.isEmitting)
+            {
+                movementParticles.Play();
+            }
+        }
+        else
+        {
+            if (movementParticles != null && movementParticles.isEmitting)
+            {
+                movementParticles.Stop();
+            }
         }
 
         controller.Move(Vector3.down * 9.81f * Time.deltaTime);
@@ -80,7 +105,7 @@ public class Movement : MonoBehaviour
             if (closestPrinter != null)
             {
                 PrinterLogic logic = closestPrinter.GetComponent<PrinterLogic>();
-                if (logic != null && logic.CanBake()) { interactionText.text = "Press J to bake"; return; }
+                if (logic != null && logic.CanBake()) { interactionText.text = "Press J to print"; return; }
             }
 
             GameObject closestCutter = FindClosestByTag("LaserCutter");

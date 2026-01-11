@@ -110,6 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 13
   rotationSpeed: 10
+  particlePrefab: {fileID: 4319514161307698236, guid: a4ddb78ec418709b892fc922824f1999, type: 3}
   leftHand: {fileID: 8799297238233635349}
   interactRange: 3
 --- !u!65 &7324898782425917250

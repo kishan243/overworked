@@ -278,6 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 1443005468}
+  generator: {fileID: 1544927382}
   timeRemaining: 300
   lowTimeThreshold: 30
 --- !u!4 &810767742
@@ -970,7 +971,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Timer
+  m_text: 5:00
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b54cde50f12e5f3a0ae8f2fe7a815e7e, type: 2}
   m_sharedMaterial: {fileID: -4293748655693287829, guid: b54cde50f12e5f3a0ae8f2fe7a815e7e, type: 2}
@@ -1080,6 +1081,7 @@ MonoBehaviour:
   OOBExtension: 13
   OOBHeightMin: -0.5
   OOBHeightMax: 0
+  OOBRiseSpeed: 2
   riseDistance: 5
   playerPrefab: {fileID: 7841615143051812696, guid: e4d0c9f691aa4084ebc20e887b2dd88d, type: 3}
   giftBoxPrefab: {fileID: 7241335249847975273, guid: f0c4041e477741dbda69de41dfcad73c, type: 3}
@@ -1148,13 +1150,13 @@ MonoBehaviour:
   spawnDelay: 0.00025
   scaleSpeed: 6
   riseSpeed: 3
-  OOBRiseSpeed: 500
   length: 13
   width: 9
   tileSize: 2.5
   wallOffset: 1.6
   wallHeightOffset: 1
   wallRotationOffset: {x: 0, y: 90, z: 0}
+  isDoneGenerating: 0
 --- !u!4 &1544927383
 Transform:
   m_ObjectHideFlags: 0

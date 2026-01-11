@@ -19,6 +19,7 @@ public class LevelGenerator : MonoBehaviour
     public int OOBExtension = 10;
     public float OOBHeightMin = -0.2f;
     public float OOBHeightMax = 0.0f;
+    public float OOBRiseSpeed = 15.0f;
     public float riseDistance = 5.0f;
 
     [Header("Player & Special Prefabs")]
@@ -38,7 +39,6 @@ public class LevelGenerator : MonoBehaviour
     public float spawnDelay = 0.02f;
     public float scaleSpeed = 5.0f;
     public float riseSpeed = 3.0f;
-    public float OOBRiseSpeed = 15.0f; // Faster rise speed for OOB props (snow effect)
 
     [Header("Floor Settings")]
     public int length = 13;
@@ -49,6 +49,9 @@ public class LevelGenerator : MonoBehaviour
     public float wallOffset = 0.5f;
     public float wallHeightOffset = 0.5f;
     public Vector3 wallRotationOffset = new Vector3(0, 90, 0);
+
+    [Header("Generation Status")]
+    public bool isDoneGenerating = false;
 
     private List<Vector2Int> giftBoxLocations = new List<Vector2Int>();
     private List<Vector2Int> trashcanLocations = new List<Vector2Int>();
@@ -123,7 +126,9 @@ public class LevelGenerator : MonoBehaviour
         concrete.transform.localPosition = new Vector3(4.5f, -4.2f, 10);
         concrete.transform.localScale = new Vector3(15, 1f, 15);
         concrete.layer = LayerMask.NameToLayer("Assets");
+        Renderer concreteRenderer = concrete.GetComponent<Renderer>();
 
+        concreteRenderer.receiveShadows = false;
         if (concreteMaterial != null) concrete.GetComponent<Renderer>().material = concreteMaterial;
     }
 
@@ -194,6 +199,8 @@ public class LevelGenerator : MonoBehaviour
         {
             Instantiate(playerPrefab, new Vector3(0, 1, 0), Quaternion.identity);
         }
+
+        isDoneGenerating = true;
     }
 
     void TrySpawnRandomProp(Vector3 floorPos, int layerIndex)

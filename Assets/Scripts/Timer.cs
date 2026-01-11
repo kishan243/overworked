@@ -4,8 +4,9 @@ using System.Collections.Generic;
 
 public class Timer : MonoBehaviour
 {
-    [Header("UI Reference")]
+    [Header("UI and Level Generator Reference")]
     public TextMeshProUGUI timerText;
+    public LevelGenerator generator;
 
     [Header("Settings")]
     public float timeRemaining = 60f;
@@ -16,25 +17,28 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        if (timerIsRunning)
+        if (generator != null && generator.isDoneGenerating)
         {
-            if (timeRemaining > 0)
+            if (timerIsRunning)
             {
-                timeRemaining -= Time.deltaTime;
-                DisplayTime(timeRemaining);
-
-                if (timeRemaining <= lowTimeThreshold && !isFlashing)
+                if (timeRemaining > 0)
                 {
-                    StartCoroutine(FlashLowTime());
+                    timeRemaining -= Time.deltaTime;
+                    DisplayTime(timeRemaining);
+
+                    if (timeRemaining <= lowTimeThreshold && !isFlashing)
+                    {
+                        StartCoroutine(FlashLowTime());
+                    }
                 }
-            }
-            else
-            {
-                timeRemaining = 0;
-                timerIsRunning = false;
-                DisplayTime(0);
-                StopAllCoroutines();
-                timerText.color = Color.red;
+                else
+                {
+                    timeRemaining = 0;
+                    timerIsRunning = false;
+                    DisplayTime(0);
+                    StopAllCoroutines();
+                    timerText.color = Color.red;
+                }
             }
         }
     }
