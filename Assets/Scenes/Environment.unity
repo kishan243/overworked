@@ -467,9 +467,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 1443005468}
   generator: {fileID: 1544927382}
-  timeRemaining: 300
+  fadeCanvasGroup: {fileID: 1383147359}
+  musicSource: {fileID: 1993483736}
+  warningSource: {fileID: 1197678979}
+  timeRemaining: 10
   lowTimeThreshold: 30
-  endGameSceneName: EndGame
+  fadeDuration: 2
 --- !u!4 &810767742
 Transform:
   m_ObjectHideFlags: 0
@@ -795,8 +798,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1634,7 +1637,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navMeshSurfaces: []
   OOBPrefab: {fileID: 528083824290743375, guid: e027c65966f2c24d58245489c65b3852, type: 3}
-  OOBExtension: 1
+  OOBExtension: 13
   OOBHeightMin: -0.5
   OOBHeightMax: 0
   OOBRiseSpeed: 2
@@ -1698,8 +1701,8 @@ MonoBehaviour:
   wallOffset: 0.5
   wallHeightOffset: 0.5
   wallRotationOffset: {x: 0, y: 90, z: 0}
-  musicSource: {fileID: 0}
-  sfxSource: {fileID: 0}
+  musicSource: {fileID: 1993483736}
+  sfxSource: {fileID: 2114882839}
   tileSpawnClip: {fileID: 8300000, guid: 551d3175db6c80986ab48f514624347b, type: 3}
   sfxVolume: 0.5
   isDoneGenerating: 0
