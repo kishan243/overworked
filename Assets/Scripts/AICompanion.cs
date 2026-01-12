@@ -1,109 +1,72 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 using System.Collections.Generic;
-using System.Linq;
 
 public class AICompanion : MonoBehaviour
 {
     [Header("References")]
     public Transform leftHand;
     private RecipeManager recipeManager;
-    private Timer gameTimer;
-    private Quota quota;
 
     [Header("Settings")]
     public float interactRange = 3.5f;
-    public float moveSpeed = 8f;
-    public float recipeCheckInterval = 3f;
+    public float moveSpeed = 5f;
+    public float checkInterval = 2f;
+    public float stepTimeout = 15f;
+
+    [Header("Agent Mode")]
+    public AgentMode currentMode = AgentMode.Manual;
+
+    public enum AgentMode
+    {
+        PLAOnly,      // Only does PLA/printer toys
+        LeatherOnly,  // Only does leather/cutter toys
+        Manual        // User assigns specific recipe
+    }
 
     private NavMeshAgent agent;
-
-    // FSM States
-    private enum State
-    {
-        Idle,
-        DeterminingTask,
-        ExecutingTask,
-        FollowingCommand
-    }
-    private State currentState = State.Idle;
-
-    // Task types - now recipe-aware
-    private enum TaskType
-    {
-        None,
-        BuildBlueToy,       // Blue PLA -> Printer -> Blue Toy
-        BuildYellowToy,     // Yellow PLA -> Printer -> Yellow Toy
-        BuildGreenToy,      // Green PLA -> Printer -> Green Toy
-        BuildFootball,      // Brown+Purple Leather -> Cutter -> Football
-        BuildHat,           // Silver+Yellow Leather -> Cutter -> Hat
-        BuildBackpack       // Brown+Silver Leather -> Cutter -> Backpack
-    }
-    private TaskType currentTask = TaskType.None;
-    private string targetRecipeName = "";
-
-    // Task execution state
-    private enum ExecutionPhase
-    {
-        CollectingMaterial1,
-        LoadingMachine,
-        CollectingMaterial2,    // For leather items
-        StartingMachine,
-        WaitingForCompletion,
-        CollectingFinished,
-        DeliveringToGiftbox
-    }
-    private ExecutionPhase currentPhase = ExecutionPhase.CollectingMaterial1;
-
-    // Item holding
     private GameObject heldItem;
-    private ItemData.ItemType heldPLAType;
-    private LeatherData.LeatherType heldLeatherType;
     private bool holdingPLA = false;
     private bool holdingLeather = false;
     private bool holdingToy = false;
+    private ItemData.ItemType heldPLAType;
+    private LeatherData.LeatherType heldLeatherType;
 
-    // Pathfinding
-    private GameObject targetObject;
-    private float stateTimer = 0f;
-    private float recipeCheckTimer = 0f;
+    // State machine
+    private enum State { Idle, Working }
+    private State currentState = State.Idle;
+    private float idleTimer = 0f;
+    private float stepTimer = 0f;
 
-    // MDP - Advanced Task Scoring System
-    private Dictionary<TaskType, float> taskScores = new Dictionary<TaskType, float>();
+    // Current task
+    private string currentRecipeName = "";
+    private int currentStep = 0;
 
-    // N-gram tracking - learns patterns
-    private List<TaskType> taskHistory = new List<TaskType>();
-    private const int maxHistory = 10;
-    private Dictionary<TaskType, int> taskFrequency = new Dictionary<TaskType, int>();
-
-    // Player control
-    private bool playerControlled = false;
+    // Manual assignment
+    private int selectedRecipeIndex = -1;
+    private string manuallyAssignedRecipe = "";
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-
         if (agent == null)
         {
-            Debug.LogError("AICompanion: No NavMeshAgent component found!");
+            Debug.LogError("❌ AICompanion: No NavMeshAgent!");
             enabled = false;
             return;
         }
 
         agent.speed = moveSpeed;
-        agent.isStopped = false;
-        agent.updateRotation = true;
-        agent.updatePosition = true;
-        agent.stoppingDistance = 0.5f;
+        agent.stoppingDistance = interactRange - 0.5f;
         agent.autoBraking = true;
-        agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
 
-        // Find game managers
         recipeManager = FindObjectOfType<RecipeManager>();
-        gameTimer = FindObjectOfType<Timer>();
-        quota = FindObjectOfType<Quota>();
-
-        if (recipeManager == null) Debug.LogError("RecipeManager not found!");
+        if (recipeManager == null)
+        {
+            Debug.LogError("❌ AICompanion: No RecipeManager!");
+            enabled = false;
+            return;
+        }
 
         if (leftHand == null)
         {
@@ -113,649 +76,838 @@ public class AICompanion : MonoBehaviour
             leftHand = hand.transform;
         }
 
-        // Initialize task frequency tracking
-        foreach (TaskType task in System.Enum.GetValues(typeof(TaskType)))
-        {
-            taskFrequency[task] = 0;
-        }
-
-        // Ignore collision with player
-        StartCoroutine(SetupPlayerCollisionIgnore());
-
         currentState = State.Idle;
-        stateTimer = 2f;
+        idleTimer = checkInterval;
 
-        Debug.Log("🤖 AI Companion initialized - Smart Recipe System Active");
-    }
-
-    System.Collections.IEnumerator SetupPlayerCollisionIgnore()
-    {
-        yield return new WaitForSeconds(0.5f);
-
-        Movement player = FindObjectOfType<Movement>();
-        if (player != null)
-        {
-            Collider playerCollider = player.GetComponent<Collider>();
-            Collider aiCollider = GetComponent<Collider>();
-
-            if (playerCollider != null && aiCollider != null)
-            {
-                Physics.IgnoreCollision(playerCollider, aiCollider, true);
-                Debug.Log("✓ Player-AI collision ignored");
-            }
-        }
+        Debug.Log($"🤖 AI Companion Ready! Mode: {currentMode}");
     }
 
     void Update()
     {
-        if (agent == null) return;
+        if (agent == null || !agent.isOnNavMesh) return;
 
-        // Toggle player control with C
-        if (Input.GetKeyDown(KeyCode.C))
+        // Handle manual assignment input
+        HandleManualAssignmentInput();
+
+        if (currentState == State.Idle)
         {
-            playerControlled = !playerControlled;
-            if (playerControlled)
+            idleTimer -= Time.deltaTime;
+            if (idleTimer <= 0f)
             {
-                currentState = State.FollowingCommand;
-                Debug.Log("🎮 AI: Player control enabled");
-            }
-            else
-            {
-                currentState = State.Idle;
-                stateTimer = 0f;
-                Debug.Log("🤖 AI: Autonomous mode resumed");
+                idleTimer = checkInterval;
+                TryStartNewTask();
             }
         }
-
-        // Right-click to command AI
-        if (playerControlled && Input.GetMouseButtonDown(1))
+        else if (currentState == State.Working)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            stepTimer += Time.deltaTime;
+
+            if (stepTimer > stepTimeout)
             {
-                if (agent.isOnNavMesh)
-                {
-                    agent.isStopped = false;
-                    agent.SetDestination(hit.point);
-                    targetObject = hit.collider.gameObject;
-                }
+                Debug.LogWarning($"⏱️ AI timeout on step {currentStep}");
+                ResetTask();
+                return;
             }
-        }
 
-        // FSM Update
-        switch (currentState)
-        {
-            case State.Idle:
-                UpdateIdle();
-                break;
-            case State.DeterminingTask:
-                UpdateDeterminingTask();
-                break;
-            case State.ExecutingTask:
-                UpdateExecutingTask();
-                break;
-            case State.FollowingCommand:
-                UpdateFollowingCommand();
-                break;
+            UpdateCurrentTask();
         }
     }
 
-    // ===== FSM STATE: IDLE =====
-    void UpdateIdle()
+    void HandleManualAssignmentInput()
     {
-        if (playerControlled) return;
+        if (currentMode != AgentMode.Manual) return;
+        if (currentState == State.Working) return; // Don't allow changes while working
 
-        stateTimer -= Time.deltaTime;
-        if (stateTimer <= 0f)
+        List<Recipe> availableRecipes = GetActiveRecipes();
+        if (availableRecipes.Count == 0) return;
+
+        // Select recipe with 1, 2, 3
+        if (Input.GetKeyDown(KeyCode.Alpha1) && availableRecipes.Count >= 1)
         {
-            stateTimer = recipeCheckInterval;
-            currentState = State.DeterminingTask;
+            selectedRecipeIndex = 0;
+            Debug.Log($"📋 Selected Recipe 1: {availableRecipes[0].toyName}");
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && availableRecipes.Count >= 2)
+        {
+            selectedRecipeIndex = 1;
+            Debug.Log($"📋 Selected Recipe 2: {availableRecipes[1].toyName}");
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && availableRecipes.Count >= 3)
+        {
+            selectedRecipeIndex = 2;
+            Debug.Log($"📋 Selected Recipe 3: {availableRecipes[2].toyName}");
+        }
+
+        // Assign with K
+        if (Input.GetKeyDown(KeyCode.K) && selectedRecipeIndex >= 0 && selectedRecipeIndex < availableRecipes.Count)
+        {
+            manuallyAssignedRecipe = availableRecipes[selectedRecipeIndex].toyName;
+            Debug.Log($"✅ Assigned AI to: {manuallyAssignedRecipe}");
+
+            // Immediately start working on it
+            currentRecipeName = manuallyAssignedRecipe;
+            currentStep = 0;
+            stepTimer = 0f;
+            currentState = State.Working;
+            selectedRecipeIndex = -1; // Reset selection
         }
     }
 
-    // ===== FSM STATE: DETERMINING TASK (MDP) =====
-    void UpdateDeterminingTask()
+    void TryStartNewTask()
     {
-        if (recipeManager == null)
+        List<Recipe> recipes = GetFilteredRecipes();
+        if (recipes.Count == 0) return;
+
+        Recipe recipe = recipes[Random.Range(0, recipes.Count)];
+        currentRecipeName = recipe.toyName;
+        currentStep = 0;
+        stepTimer = 0f;
+        currentState = State.Working;
+
+        Debug.Log($"🎯 AI Starting: {currentRecipeName} (Mode: {currentMode})");
+    }
+
+    List<Recipe> GetFilteredRecipes()
+    {
+        List<Recipe> allRecipes = GetActiveRecipes();
+        List<Recipe> filtered = new List<Recipe>();
+
+        foreach (Recipe recipe in allRecipes)
         {
-            Debug.LogWarning("No RecipeManager - AI cannot function");
-            currentState = State.Idle;
+            string lower = recipe.toyName.ToLower();
+
+            switch (currentMode)
+            {
+                case AgentMode.PLAOnly:
+                    // Only PLA/printer tasks
+                    if (IsPrinterTask(lower))
+                        filtered.Add(recipe);
+                    break;
+
+                case AgentMode.LeatherOnly:
+                    // Only leather/cutter tasks
+                    if (!IsPrinterTask(lower))
+                        filtered.Add(recipe);
+                    break;
+
+                case AgentMode.Manual:
+                    // Only work on manually assigned recipe
+                    if (!string.IsNullOrEmpty(manuallyAssignedRecipe) &&
+                        recipe.toyName.Equals(manuallyAssignedRecipe, System.StringComparison.OrdinalIgnoreCase))
+                    {
+                        filtered.Add(recipe);
+                    }
+                    break;
+            }
+        }
+
+        return filtered;
+    }
+
+    bool IsPrinterTask(string recipeName)
+    {
+        string lower = recipeName.ToLower();
+        return lower.Contains("blue") || lower.Contains("yellow") || lower.Contains("green") ||
+               lower.Contains("toy") || lower.Contains("boat") || lower.Contains("steamroller") ||
+               lower.Contains("brick");
+    }
+
+    void UpdateCurrentTask()
+    {
+        if (!IsRecipeActive(currentRecipeName))
+        {
+            Debug.Log($"⚠️ Recipe {currentRecipeName} completed by someone else");
+
+            // If manual mode, clear the assignment
+            if (currentMode == AgentMode.Manual)
+            {
+                manuallyAssignedRecipe = "";
+            }
+
+            ResetTask();
             return;
         }
 
-        // Get all active recipes
-        List<Recipe> activeRecipes = GetActiveRecipes();
+        string lower = currentRecipeName.ToLower();
 
-        if (activeRecipes.Count == 0)
+        if (IsPrinterTask(lower))
         {
-            Debug.Log("📋 No active recipes - AI idle");
-            currentState = State.Idle;
-            return;
-        }
-
-        // MDP: Calculate scores for each recipe
-        CalculateTaskScores(activeRecipes);
-
-        // Choose best task
-        currentTask = ChooseBestTask();
-
-        if (currentTask != TaskType.None)
-        {
-            currentPhase = ExecutionPhase.CollectingMaterial1;
-            currentState = State.ExecutingTask;
-            Debug.Log($"🎯 AI chose task: {currentTask} for recipe: {targetRecipeName}");
+            ExecutePrinterTask();
         }
         else
         {
-            Debug.Log("❌ No valid tasks available");
-            currentState = State.Idle;
+            ExecuteCutterTask();
         }
     }
 
-    List<Recipe> GetActiveRecipes()
-    {
-        List<Recipe> recipes = new List<Recipe>();
-
-        foreach (Transform child in recipeManager.ticketTray)
-        {
-            Recipe recipe = child.GetComponent<Recipe>();
-            if (recipe != null)
-            {
-                recipes.Add(recipe);
-            }
-        }
-
-        return recipes;
-    }
-
-    void CalculateTaskScores(List<Recipe> recipes)
-    {
-        taskScores.Clear();
-
-        foreach (Recipe recipe in recipes)
-        {
-            TaskType task = GetTaskTypeFromRecipe(recipe.toyName);
-            if (task == TaskType.None) continue;
-
-            float score = 0f;
-
-            // ===== MDP FACTOR 1: Time Urgency =====
-            float timeElapsed = Time.time - recipe.spawnTime;
-            float urgency = Mathf.Clamp01(timeElapsed / recipe.maxTime);
-            float timeScore = urgency * 100f; // Higher score for older recipes
-            score += timeScore;
-
-            // ===== MDP FACTOR 2: Point Value =====
-            int pointValue = recipe.GetPointsForCompletion();
-            float pointScore = pointValue / 100f * 50f; // Normalize to 0-50
-            score += pointScore;
-
-            // ===== MDP FACTOR 3: Game State - Time Pressure =====
-            if (gameTimer != null && gameTimer.timeRemaining < 30f)
-            {
-                // Low time = prioritize ANY recipe completion
-                score *= 1.5f;
-            }
-
-            // ===== MDP FACTOR 4: Quota Progress =====
-            if (quota != null)
-            {
-                // If quota is far from goal, prioritize faster tasks
-                float quotaProgress = 0f; // You'd get this from quota
-                if (quotaProgress < 0.5f)
-                {
-                    // Prioritize simple printer tasks (faster)
-                    if (task == TaskType.BuildBlueToy || task == TaskType.BuildYellowToy || task == TaskType.BuildGreenToy)
-                    {
-                        score *= 1.2f;
-                    }
-                }
-            }
-
-            // ===== N-GRAM FACTOR: Task History Learning =====
-            // Penalize recently done tasks to create variety
-            if (taskHistory.Count > 0)
-            {
-                int recentCount = taskHistory.Take(5).Count(t => t == task);
-                if (recentCount > 0)
-                {
-                    score *= (1f - (recentCount * 0.15f)); // Up to -45% for repeated tasks
-                }
-            }
-
-            // ===== N-GRAM FACTOR: Balance Task Types =====
-            int totalFreq = taskFrequency.Values.Sum();
-            if (totalFreq > 0)
-            {
-                float thisFreq = taskFrequency[task];
-                float avgFreq = totalFreq / taskFrequency.Count;
-
-                if (thisFreq < avgFreq)
-                {
-                    score *= 1.15f; // Boost underutilized tasks
-                }
-            }
-
-            // ===== MDP FACTOR 5: Material Availability =====
-            if (!AreMaterialsAvailable(task))
-            {
-                score *= 0.3f; // Heavy penalty if materials missing
-            }
-
-            taskScores[task] = score;
-
-            Debug.Log($"📊 Task: {task} | Score: {score:F1} | Time: {timeScore:F1} | Points: {pointScore:F1} | Recipe: {recipe.toyName}");
-        }
-    }
-
-    TaskType GetTaskTypeFromRecipe(string recipeName)
-    {
-        switch (recipeName.ToLower())
-        {
-            case "bluetoy": return TaskType.BuildBlueToy;
-            case "yellowtoy": return TaskType.BuildYellowToy;
-            case "greentoy": return TaskType.BuildGreenToy;
-            case "football": return TaskType.BuildFootball;
-            case "hat": return TaskType.BuildHat;
-            case "backpack": return TaskType.BuildBackpack;
-            default: return TaskType.None;
-        }
-    }
-
-    bool AreMaterialsAvailable(TaskType task)
-    {
-        switch (task)
-        {
-            case TaskType.BuildBlueToy:
-                return FindItemByType(ItemData.ItemType.BluePLA) != null;
-            case TaskType.BuildYellowToy:
-                return FindItemByType(ItemData.ItemType.YellowPLA) != null;
-            case TaskType.BuildGreenToy:
-                return FindItemByType(ItemData.ItemType.GreenPLA) != null;
-            case TaskType.BuildFootball:
-                return FindLeatherByType(LeatherData.LeatherType.Brown) != null &&
-                       FindLeatherByType(LeatherData.LeatherType.Purple) != null;
-            case TaskType.BuildHat:
-                return FindLeatherByType(LeatherData.LeatherType.Silver) != null &&
-                       FindLeatherByType(LeatherData.LeatherType.Yellow) != null;
-            case TaskType.BuildBackpack:
-                return FindLeatherByType(LeatherData.LeatherType.Brown) != null &&
-                       FindLeatherByType(LeatherData.LeatherType.Silver) != null;
-            default:
-                return false;
-        }
-    }
-
-    TaskType ChooseBestTask()
-    {
-        if (taskScores.Count == 0) return TaskType.None;
-
-        // Find task with highest score
-        TaskType bestTask = TaskType.None;
-        float bestScore = -1f;
-
-        foreach (var kvp in taskScores)
-        {
-            if (kvp.Value > bestScore)
-            {
-                bestScore = kvp.Value;
-                bestTask = kvp.Key;
-            }
-        }
-
-        // Set target recipe name for verification
-        List<Recipe> recipes = GetActiveRecipes();
-        foreach (Recipe r in recipes)
-        {
-            if (GetTaskTypeFromRecipe(r.toyName) == bestTask)
-            {
-                targetRecipeName = r.toyName;
-                break;
-            }
-        }
-
-        return bestTask;
-    }
-
-    // ===== FSM STATE: EXECUTING TASK =====
-    void UpdateExecutingTask()
-    {
-        if (!agent.isOnNavMesh)
-        {
-            Debug.LogWarning("AI not on NavMesh, waiting...");
-            return;
-        }
-
-        agent.isStopped = false;
-
-        switch (currentTask)
-        {
-            case TaskType.BuildBlueToy:
-            case TaskType.BuildYellowToy:
-            case TaskType.BuildGreenToy:
-                ExecutePrinterTask();
-                break;
-            case TaskType.BuildFootball:
-            case TaskType.BuildHat:
-            case TaskType.BuildBackpack:
-                ExecuteCutterTask();
-                break;
-        }
-    }
-
+    // ==================== PRINTER TASK ====================
     void ExecutePrinterTask()
     {
-        switch (currentPhase)
+        switch (currentStep)
         {
-            case ExecutionPhase.CollectingMaterial1:
-                ItemData.ItemType neededPLA = GetPLATypeForTask(currentTask);
-                GameObject pla = FindItemByType(neededPLA);
+            case 0: // Pick up PLA
+                if (holdingPLA)
+                {
+                    currentStep = 1;
+                    stepTimer = 0f;
+                    return;
+                }
+
+                ItemData.ItemType plaType = GetPLAType(currentRecipeName);
+                GameObject pla = FindItemByType(plaType);
 
                 if (pla == null)
                 {
-                    Debug.Log($"❌ PLA {neededPLA} not found, aborting task");
-                    CompleteTask(false);
+                    Debug.Log($"❌ No {plaType} found on tables");
+                    ResetTask();
                     return;
                 }
 
-                NavigateAndInteract(pla, () => {
+                if (IsNear(pla))
+                {
+                    agent.isStopped = true;
                     PickUpPLA(pla);
-                    currentPhase = ExecutionPhase.LoadingMachine;
-                });
+                    Debug.Log($"✓ AI picked up {plaType}");
+                    currentStep = 1;
+                    stepTimer = 0f;
+                }
+                else
+                {
+                    agent.isStopped = false;
+                    agent.SetDestination(pla.transform.position);
+                }
                 break;
 
-            case ExecutionPhase.LoadingMachine:
+            case 1: // Load PLA into printer
+                if (!holdingPLA)
+                {
+                    Debug.Log("⚠️ Lost PLA, restarting");
+                    currentStep = 0;
+                    return;
+                }
+
                 GameObject printer = FindClosestByTag("Printer");
                 if (printer == null)
                 {
-                    Debug.Log("❌ No printer found");
-                    CompleteTask(false);
+                    Debug.Log("❌ No available printer found");
+                    ResetTask();
                     return;
                 }
 
-                NavigateAndInteract(printer, () => {
+                // Check if this printer is actually available (not loaded)
+                PrinterLogic printerCheck = printer.GetComponent<PrinterLogic>();
+                if (printerCheck != null && printerCheck.GetLoadedPLAType() != null)
+                {
+                    Debug.Log("⚠️ Printer already loaded, looking for another");
+                    ResetTask();
+                    return;
+                }
+
+                if (IsNear(printer))
+                {
+                    agent.isStopped = true;
                     PrinterLogic logic = printer.GetComponent<PrinterLogic>();
-                    if (logic != null && logic.CanBake() && holdingPLA)
+                    if (logic != null)
                     {
+                        // Load the PLA (this will transform the printer)
                         logic.ProcessItem(heldPLAType);
+
+                        // Destroy only the visual copy in AI's hand
                         Destroy(heldItem);
                         heldItem = null;
                         holdingPLA = false;
-                        currentPhase = ExecutionPhase.StartingMachine;
-                        Debug.Log("✓ PLA loaded into printer");
+
+                        Debug.Log("✓ AI loaded PLA into printer");
+                        currentStep = 2;
+                        stepTimer = 0f;
+
+                        // Wait for printer to transform
+                        StartCoroutine(WaitThenContinue(0.6f));
                     }
-                });
+                }
+                else
+                {
+                    agent.isStopped = false;
+                    agent.SetDestination(printer.transform.position);
+                }
                 break;
 
-            case ExecutionPhase.StartingMachine:
+            case 2: // Start printer
                 GameObject printerToStart = FindClosestByTag("Printer");
-                if (printerToStart == null) return;
+                if (printerToStart == null)
+                {
+                    Debug.Log("⚠️ Can't find loaded printer");
+                    ResetTask();
+                    return;
+                }
 
-                NavigateAndInteract(printerToStart, () => {
-                    PrinterLogic logic = printerToStart.GetComponent<PrinterLogic>();
-                    if (logic != null && logic.CanBake())
+                // Make sure this printer can actually bake
+                PrinterLogic startLogic = printerToStart.GetComponent<PrinterLogic>();
+                if (startLogic == null || !startLogic.CanBake())
+                {
+                    Debug.Log("⚠️ Printer not ready to bake");
+                    return; // Keep waiting
+                }
+
+                if (IsNear(printerToStart))
+                {
+                    agent.isStopped = true;
+
+                    if (startLogic.CanBake())
                     {
-                        // Press J to start (player would do this, AI simulates)
-                        logic.GetType().GetMethod("StartCoroutine", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
-                            ?.Invoke(logic, new object[] { logic.GetType().GetMethod("BakeItem", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).Invoke(logic, null) });
-                        currentPhase = ExecutionPhase.WaitingForCompletion;
-                        Debug.Log("✓ Printer started");
+                        startLogic.StartCoroutine("BakeItem");
+                        Debug.Log("✓ AI started printer");
+                        currentStep = 3;
+                        stepTimer = 0f;
                     }
-                });
-                break;
-
-            case ExecutionPhase.WaitingForCompletion:
-                GameObject finishedPrinter = FindClosestByTag("FinishedPrinter");
-                if (finishedPrinter != null)
+                }
+                else
                 {
-                    currentPhase = ExecutionPhase.CollectingFinished;
+                    agent.isStopped = false;
+                    agent.SetDestination(printerToStart.transform.position);
                 }
                 break;
 
-            case ExecutionPhase.CollectingFinished:
+            case 3: // Wait for printer to finish
                 GameObject finished = FindClosestByTag("FinishedPrinter");
-                if (finished == null)
+                if (finished != null)
                 {
-                    currentPhase = ExecutionPhase.WaitingForCompletion;
-                    return;
+                    Debug.Log("✓ Printer finished baking!");
+                    currentStep = 4;
+                    stepTimer = 0f;
                 }
-
-                NavigateAndInteract(finished, () => {
-                    PickUpToyFromPrinter(finished);
-                    currentPhase = ExecutionPhase.DeliveringToGiftbox;
-                });
+                else
+                {
+                    agent.isStopped = true;
+                }
                 break;
 
-            case ExecutionPhase.DeliveringToGiftbox:
-                GameObject giftbox = FindClosestByTag("Giftbox");
-                if (giftbox == null || !holdingToy)
+            case 4: // Pick up toy
+                if (holdingToy)
                 {
-                    CompleteTask(false);
+                    currentStep = 5;
+                    stepTimer = 0f;
                     return;
                 }
 
-                NavigateAndInteract(giftbox, () => {
+                GameObject finishedPrinter = FindClosestByTag("FinishedPrinter");
+                if (finishedPrinter == null)
+                {
+                    Debug.Log("⚠️ Finished printer disappeared");
+                    currentStep = 3;
+                    return;
+                }
+
+                if (IsNear(finishedPrinter))
+                {
+                    agent.isStopped = true;
+                    PickUpToyFromPrinter(finishedPrinter);
+                    Debug.Log("✓ AI picked up toy from printer");
+                    currentStep = 5;
+                    stepTimer = 0f;
+                }
+                else
+                {
+                    agent.isStopped = false;
+                    agent.SetDestination(finishedPrinter.transform.position);
+                }
+                break;
+
+            case 5: // Deliver to giftbox
+                if (!holdingToy)
+                {
+                    Debug.Log("⚠️ Lost toy!");
+                    ResetTask();
+                    return;
+                }
+
+                GameObject giftbox = FindClosestByTag("Giftbox");
+                if (giftbox == null)
+                {
+                    Debug.Log("❌ No giftbox found");
+                    ResetTask();
+                    return;
+                }
+
+                if (IsNear(giftbox))
+                {
+                    agent.isStopped = true;
                     DeliverToy();
-                    CompleteTask(true);
-                });
+                }
+                else
+                {
+                    agent.isStopped = false;
+                    agent.SetDestination(giftbox.transform.position);
+                }
                 break;
         }
     }
 
+    // ==================== CUTTER TASK ====================
     void ExecuteCutterTask()
     {
-        switch (currentPhase)
+        switch (currentStep)
         {
-            case ExecutionPhase.CollectingMaterial1:
-                var leatherTypes = GetLeatherTypesForTask(currentTask);
-                GameObject leather1 = FindLeatherByType(leatherTypes.Item1);
+            case 0: // Pick up first leather
+                if (holdingLeather)
+                {
+                    currentStep = 1;
+                    stepTimer = 0f;
+                    return;
+                }
+
+                var types = GetLeatherTypes(currentRecipeName);
+                GameObject leather1 = FindLeatherByType(types.Item1);
 
                 if (leather1 == null)
                 {
-                    Debug.Log($"❌ Leather {leatherTypes.Item1} not found");
-                    CompleteTask(false);
+                    Debug.Log($"❌ No {types.Item1} leather found");
+                    ResetTask();
                     return;
                 }
 
-                NavigateAndInteract(leather1, () => {
+                if (IsNear(leather1))
+                {
+                    agent.isStopped = true;
                     PickUpLeather(leather1);
-                    currentPhase = ExecutionPhase.LoadingMachine;
-                });
+                    Debug.Log($"✓ AI picked up first leather: {types.Item1}");
+                    currentStep = 1;
+                    stepTimer = 0f;
+                }
+                else
+                {
+                    agent.isStopped = false;
+                    agent.SetDestination(leather1.transform.position);
+                }
                 break;
 
-            case ExecutionPhase.LoadingMachine:
-                GameObject cutter1 = FindClosestByTag("LaserCutter");
-                if (cutter1 == null)
+            case 1: // Load first leather into cutter
+                if (!holdingLeather)
                 {
-                    CompleteTask(false);
+                    Debug.Log("⚠️ Lost leather, restarting");
+                    currentStep = 0;
                     return;
                 }
 
-                NavigateAndInteract(cutter1, () => {
+                GameObject cutter1 = FindAvailableCutter();
+                if (cutter1 == null)
+                {
+                    Debug.Log("❌ No available laser cutter found");
+                    ResetTask();
+                    return;
+                }
+
+                if (IsNear(cutter1))
+                {
+                    agent.isStopped = true;
                     LaserCutterLogic logic = cutter1.GetComponent<LaserCutterLogic>();
-                    if (logic != null && logic.CanLoadLeather() && holdingLeather)
+
+                    if (logic != null && logic.CanLoadLeather())
                     {
                         logic.LoadLeather(heldLeatherType);
+
+                        // Destroy only the visual copy in AI's hand
                         Destroy(heldItem);
                         heldItem = null;
                         holdingLeather = false;
-                        currentPhase = ExecutionPhase.CollectingMaterial2;
-                        Debug.Log("✓ First leather loaded");
+
+                        Debug.Log($"✓ AI loaded first leather into cutter");
+                        currentStep = 2;
+                        stepTimer = 0f;
                     }
-                });
+                    else
+                    {
+                        Debug.LogWarning("⚠️ Cutter can't accept leather - might be full!");
+                        ResetTask();
+                    }
+                }
+                else
+                {
+                    agent.isStopped = false;
+                    agent.SetDestination(cutter1.transform.position);
+                }
                 break;
 
-            case ExecutionPhase.CollectingMaterial2:
-                var types = GetLeatherTypesForTask(currentTask);
-                GameObject leather2 = FindLeatherByType(types.Item2);
+            case 2: // Pick up second leather
+                if (holdingLeather)
+                {
+                    currentStep = 3;
+                    stepTimer = 0f;
+                    return;
+                }
+
+                var types2 = GetLeatherTypes(currentRecipeName);
+                GameObject leather2 = FindLeatherByType(types2.Item2);
 
                 if (leather2 == null)
                 {
-                    Debug.Log($"❌ Second leather {types.Item2} not found");
-                    CompleteTask(false);
+                    Debug.Log($"❌ No {types2.Item2} leather found");
+                    ResetTask();
                     return;
                 }
 
-                NavigateAndInteract(leather2, () => {
+                if (IsNear(leather2))
+                {
+                    agent.isStopped = true;
                     PickUpLeather(leather2);
-                    currentPhase = ExecutionPhase.StartingMachine;
-                });
+                    Debug.Log($"✓ AI picked up second leather: {types2.Item2}");
+                    currentStep = 3;
+                    stepTimer = 0f;
+                }
+                else
+                {
+                    agent.isStopped = false;
+                    agent.SetDestination(leather2.transform.position);
+                }
                 break;
 
-            case ExecutionPhase.StartingMachine:
-                GameObject cutter2 = FindClosestByTag("LaserCutter");
-                if (cutter2 == null) return;
+            case 3: // Load second leather and start cutting
+                if (!holdingLeather)
+                {
+                    Debug.Log("⚠️ Lost second leather, going back");
+                    currentStep = 2;
+                    return;
+                }
 
-                NavigateAndInteract(cutter2, () => {
+                GameObject cutter2 = FindCutterWithOneLeather();
+                if (cutter2 == null)
+                {
+                    Debug.Log("❌ No cutter found with first leather loaded");
+                    ResetTask();
+                    return;
+                }
+
+                if (IsNear(cutter2))
+                {
+                    agent.isStopped = true;
                     LaserCutterLogic logic = cutter2.GetComponent<LaserCutterLogic>();
-                    if (logic != null && logic.CanLoadLeather() && holdingLeather)
+
+                    if (logic != null && logic.CanLoadLeather())
                     {
                         logic.LoadLeather(heldLeatherType);
+
+                        // Destroy only the visual copy in AI's hand
                         Destroy(heldItem);
                         heldItem = null;
                         holdingLeather = false;
 
-                        // Start cutting if ready
+                        Debug.Log($"✓ AI loaded second leather");
+
+                        // Now start cutting if possible
                         if (logic.CanStartCutting())
                         {
                             logic.StartCutting();
-                            currentPhase = ExecutionPhase.WaitingForCompletion;
-                            Debug.Log("✓ Laser cutter started");
+                            Debug.Log("✓ AI started cutting!");
+                            currentStep = 4;
+                            stepTimer = 0f;
+                        }
+                        else
+                        {
+                            Debug.LogWarning("⚠️ Can't start cutting - recipe mismatch?");
+                            ResetTask();
                         }
                     }
-                });
+                    else
+                    {
+                        Debug.LogWarning("⚠️ Cutter already has 2 items or can't accept more!");
+                        ResetTask();
+                    }
+                }
+                else
+                {
+                    agent.isStopped = false;
+                    agent.SetDestination(cutter2.transform.position);
+                }
                 break;
 
-            case ExecutionPhase.WaitingForCompletion:
+            case 4: // Wait for cutting to finish
                 GameObject cutter3 = FindClosestByTag("LaserCutter");
                 if (cutter3 != null)
                 {
                     LaserCutterLogic logic = cutter3.GetComponent<LaserCutterLogic>();
                     if (logic != null && logic.IsFinished())
                     {
-                        currentPhase = ExecutionPhase.CollectingFinished;
+                        Debug.Log("✓ Cutting finished!");
+                        currentStep = 5;
+                        stepTimer = 0f;
                     }
+                    else
+                    {
+                        agent.isStopped = true;
+                    }
+                }
+                else
+                {
+                    agent.isStopped = true;
                 }
                 break;
 
-            case ExecutionPhase.CollectingFinished:
-                GameObject finishedCutter = FindClosestByTag("LaserCutter");
-                if (finishedCutter == null) return;
-
-                NavigateAndInteract(finishedCutter, () => {
-                    PickUpCutterItem(finishedCutter);
-                    currentPhase = ExecutionPhase.DeliveringToGiftbox;
-                });
-                break;
-
-            case ExecutionPhase.DeliveringToGiftbox:
-                GameObject giftbox = FindClosestByTag("Giftbox");
-                if (giftbox == null || !holdingToy)
+            case 5: // Pick up finished item
+                if (holdingToy)
                 {
-                    CompleteTask(false);
+                    currentStep = 6;
+                    stepTimer = 0f;
                     return;
                 }
 
-                NavigateAndInteract(giftbox, () => {
+                GameObject finishedCutter = FindClosestByTag("LaserCutter");
+                if (finishedCutter == null)
+                {
+                    Debug.Log("❌ Can't find cutter");
+                    ResetTask();
+                    return;
+                }
+
+                LaserCutterLogic cutterLogic = finishedCutter.GetComponent<LaserCutterLogic>();
+                if (cutterLogic == null || !cutterLogic.IsFinished())
+                {
+                    Debug.Log("⚠️ Cutter not finished yet");
+                    currentStep = 4;
+                    return;
+                }
+
+                if (IsNear(finishedCutter))
+                {
+                    agent.isStopped = true;
+                    PickUpCutterItem(finishedCutter);
+                    Debug.Log("✓ AI picked up finished item");
+                    currentStep = 6;
+                    stepTimer = 0f;
+                }
+                else
+                {
+                    agent.isStopped = false;
+                    agent.SetDestination(finishedCutter.transform.position);
+                }
+                break;
+
+            case 6: // Deliver to giftbox
+                if (!holdingToy)
+                {
+                    Debug.Log("⚠️ Lost toy!");
+                    ResetTask();
+                    return;
+                }
+
+                GameObject giftbox = FindClosestByTag("Giftbox");
+                if (giftbox == null)
+                {
+                    Debug.Log("❌ No giftbox found");
+                    ResetTask();
+                    return;
+                }
+
+                if (IsNear(giftbox))
+                {
+                    agent.isStopped = true;
                     DeliverToy();
-                    CompleteTask(true);
-                });
+                }
+                else
+                {
+                    agent.isStopped = false;
+                    agent.SetDestination(giftbox.transform.position);
+                }
                 break;
         }
     }
 
-    void NavigateAndInteract(GameObject target, System.Action onReached)
+    // ==================== HELPERS ====================
+    bool IsNear(GameObject target)
     {
-        if (target == null) return;
-
-        float distance = Vector3.Distance(transform.position, target.transform.position);
-
-        if (distance > interactRange)
-        {
-            agent.SetDestination(target.transform.position);
-        }
-        else
-        {
-            onReached?.Invoke();
-        }
+        if (target == null) return false;
+        return Vector3.Distance(transform.position, target.transform.position) <= interactRange;
     }
 
-    ItemData.ItemType GetPLATypeForTask(TaskType task)
+    System.Collections.IEnumerator WaitThenContinue(float seconds)
     {
-        switch (task)
-        {
-            case TaskType.BuildBlueToy: return ItemData.ItemType.BluePLA;
-            case TaskType.BuildYellowToy: return ItemData.ItemType.YellowPLA;
-            case TaskType.BuildGreenToy: return ItemData.ItemType.GreenPLA;
-            default: return ItemData.ItemType.BluePLA;
-        }
+        yield return new WaitForSeconds(seconds);
     }
 
-    (LeatherData.LeatherType, LeatherData.LeatherType) GetLeatherTypesForTask(TaskType task)
+    void ResetTask()
     {
-        switch (task)
-        {
-            case TaskType.BuildFootball:
-                return (LeatherData.LeatherType.Brown, LeatherData.LeatherType.Purple);
-            case TaskType.BuildHat:
-                return (LeatherData.LeatherType.Silver, LeatherData.LeatherType.Yellow);
-            case TaskType.BuildBackpack:
-                return (LeatherData.LeatherType.Brown, LeatherData.LeatherType.Silver);
-            default:
-                return (LeatherData.LeatherType.Brown, LeatherData.LeatherType.Brown);
-        }
+        currentState = State.Idle;
+        idleTimer = checkInterval;
+        currentRecipeName = "";
+        currentStep = 0;
+        stepTimer = 0f;
+        agent.isStopped = true;
+        agent.ResetPath();
+
+        // In manual mode, keep the assignment until user changes it
+        // In auto modes, this gets cleared naturally
     }
 
+    // ==================== RECIPE HELPERS ====================
+    List<Recipe> GetActiveRecipes()
+    {
+        List<Recipe> recipes = new List<Recipe>();
+        foreach (Transform child in recipeManager.ticketTray)
+        {
+            Recipe recipe = child.GetComponent<Recipe>();
+            if (recipe != null) recipes.Add(recipe);
+        }
+        return recipes;
+    }
+
+    bool IsRecipeActive(string recipeName)
+    {
+        foreach (Transform child in recipeManager.ticketTray)
+        {
+            Recipe recipe = child.GetComponent<Recipe>();
+            if (recipe != null && recipe.toyName.Equals(recipeName, System.StringComparison.OrdinalIgnoreCase))
+                return true;
+        }
+        return false;
+    }
+
+    ItemData.ItemType GetPLAType(string recipeName)
+    {
+        string lower = recipeName.ToLower();
+        if (lower.Contains("blue") || lower.Contains("boat")) return ItemData.ItemType.BluePLA;
+        if (lower.Contains("yellow") || lower.Contains("steamroller")) return ItemData.ItemType.YellowPLA;
+        if (lower.Contains("green") || lower.Contains("brick")) return ItemData.ItemType.GreenPLA;
+        return ItemData.ItemType.BluePLA;
+    }
+
+    (LeatherData.LeatherType, LeatherData.LeatherType) GetLeatherTypes(string recipeName)
+    {
+        string lower = recipeName.ToLower();
+        if (lower.Contains("football"))
+            return (LeatherData.LeatherType.Brown, LeatherData.LeatherType.Brown);
+        if (lower.Contains("hat"))
+            return (LeatherData.LeatherType.Silver, LeatherData.LeatherType.Purple);
+        if (lower.Contains("backpack"))
+            return (LeatherData.LeatherType.Silver, LeatherData.LeatherType.Yellow);
+
+        Debug.LogWarning($"Unknown leather recipe: {recipeName}");
+        return (LeatherData.LeatherType.Brown, LeatherData.LeatherType.Brown);
+    }
+
+    // ==================== FIND OBJECTS ====================
     GameObject FindItemByType(ItemData.ItemType type)
     {
         GameObject[] items = GameObject.FindGameObjectsWithTag("PLA");
+        GameObject closest = null;
+        float minDist = float.MaxValue;
+
         foreach (var item in items)
         {
             ItemData data = item.GetComponent<ItemData>();
             if (data != null && data.itemType == type)
             {
-                return item;
+                float dist = Vector3.Distance(transform.position, item.transform.position);
+                if (dist < minDist)
+                {
+                    minDist = dist;
+                    closest = item;
+                }
             }
         }
-        return null;
+        return closest;
     }
 
     GameObject FindLeatherByType(LeatherData.LeatherType type)
     {
         GameObject[] leathers = GameObject.FindGameObjectsWithTag("Leather");
+        GameObject closest = null;
+        float minDist = float.MaxValue;
+
         foreach (var leather in leathers)
         {
             LeatherData data = leather.GetComponent<LeatherData>();
             if (data != null && data.leatherType == type)
             {
-                return leather;
+                float dist = Vector3.Distance(transform.position, leather.transform.position);
+                if (dist < minDist)
+                {
+                    minDist = dist;
+                    closest = leather;
+                }
             }
         }
-        return null;
+        return closest;
     }
 
-    void CompleteTask(bool success)
+    GameObject FindClosestByTag(string tag)
     {
-        if (success)
+        try
         {
-            // N-gram: Track task completion
-            AddToHistory(currentTask);
-            taskFrequency[currentTask]++;
-            Debug.Log($"✅ Task {currentTask} completed successfully!");
-        }
-        else
-        {
-            Debug.Log($"❌ Task {currentTask} failed");
-        }
+            GameObject[] objects = GameObject.FindGameObjectsWithTag(tag);
+            GameObject closest = null;
+            float minDist = float.MaxValue;
 
-        currentTask = TaskType.None;
-        targetRecipeName = "";
-        currentPhase = ExecutionPhase.CollectingMaterial1;
-        currentState = State.Idle;
-        stateTimer = 1f;
+            foreach (var obj in objects)
+            {
+                float dist = Vector3.Distance(transform.position, obj.transform.position);
+                if (dist < minDist)
+                {
+                    minDist = dist;
+                    closest = obj;
+                }
+            }
+            return closest;
+        }
+        catch { return null; }
     }
 
-    // ===== ITEM INTERACTION =====
+    GameObject FindAvailableCutter()
+    {
+        try
+        {
+            GameObject[] cutters = GameObject.FindGameObjectsWithTag("LaserCutter");
+            GameObject closest = null;
+            float minDist = float.MaxValue;
+
+            foreach (var cutter in cutters)
+            {
+                LaserCutterLogic logic = cutter.GetComponent<LaserCutterLogic>();
+
+                // Only consider cutters that can load leather (empty or has 1 slot free)
+                if (logic != null && logic.CanLoadLeather() && !logic.IsCutting() && !logic.IsFinished())
+                {
+                    float dist = Vector3.Distance(transform.position, cutter.transform.position);
+                    if (dist < minDist)
+                    {
+                        minDist = dist;
+                        closest = cutter;
+                    }
+                }
+            }
+            return closest;
+        }
+        catch { return null; }
+    }
+
+    GameObject FindCutterWithOneLeather()
+    {
+        try
+        {
+            GameObject[] cutters = GameObject.FindGameObjectsWithTag("LaserCutter");
+            GameObject closest = null;
+            float minDist = float.MaxValue;
+
+            foreach (var cutter in cutters)
+            {
+                LaserCutterLogic logic = cutter.GetComponent<LaserCutterLogic>();
+
+                // Find a cutter that can still load leather (meaning it has exactly 1 leather)
+                // and is not currently cutting or finished
+                if (logic != null && logic.CanLoadLeather() && !logic.IsCutting() && !logic.IsFinished())
+                {
+                    float dist = Vector3.Distance(transform.position, cutter.transform.position);
+                    if (dist < minDist)
+                    {
+                        minDist = dist;
+                        closest = cutter;
+                    }
+                }
+            }
+            return closest;
+        }
+        catch { return null; }
+    }
+
+    // ==================== PICKUP FUNCTIONS ====================
     void PickUpPLA(GameObject plaObject)
     {
         ItemData data = plaObject.GetComponent<ItemData>();
@@ -764,7 +916,9 @@ public class AICompanion : MonoBehaviour
         heldPLAType = data.itemType;
         holdingPLA = true;
         holdingToy = false;
+        holdingLeather = false;
 
+        // Just spawn a copy - NEVER destroy the source table item!
         GameObject prefab = data.itemPrefab != null ? data.itemPrefab : plaObject;
         heldItem = Instantiate(prefab, leftHand.position, leftHand.rotation, leftHand);
         heldItem.transform.localScale = Vector3.one * 0.4f;
@@ -772,7 +926,7 @@ public class AICompanion : MonoBehaviour
         heldItem.tag = "Untagged";
 
         DisablePhysics(heldItem);
-        Destroy(plaObject);
+        // NO DESTROYING - table items stay forever!
     }
 
     void PickUpLeather(GameObject leatherObject)
@@ -783,7 +937,9 @@ public class AICompanion : MonoBehaviour
         heldLeatherType = data.leatherType;
         holdingLeather = true;
         holdingToy = false;
+        holdingPLA = false;
 
+        // Just spawn a copy - NEVER destroy the source table item!
         GameObject prefab = data.leatherPrefab != null ? data.leatherPrefab : leatherObject;
         heldItem = Instantiate(prefab, leftHand.position, leftHand.rotation, leftHand);
         heldItem.transform.localScale = Vector3.one * 0.4f;
@@ -791,28 +947,77 @@ public class AICompanion : MonoBehaviour
         heldItem.tag = "Untagged";
 
         DisablePhysics(heldItem);
-        Destroy(leatherObject);
+        // NO DESTROYING - table items stay forever!
     }
 
     void PickUpToyFromPrinter(GameObject printer)
     {
         PrinterLogic logic = printer.GetComponent<PrinterLogic>();
-        if (logic == null) return;
+        if (logic == null)
+        {
+            Debug.LogError("❌ AI: Printer has no PrinterLogic!");
+            return;
+        }
 
         GameObject toyPrefab = logic.GetToyPrefab();
-        if (toyPrefab == null) return;
+        if (toyPrefab == null)
+        {
+            Debug.LogError("❌ AI: Printer has no toy prefab!");
+            return;
+        }
 
+        // Store the PLA type if available
+        if (logic.GetLoadedPLAType().HasValue)
+        {
+            heldPLAType = logic.GetLoadedPLAType().Value;
+        }
+
+        // Create the toy in AI's hand
         heldItem = Instantiate(toyPrefab, leftHand.position, leftHand.rotation, leftHand);
         heldItem.tag = "Untagged";
         holdingToy = true;
         holdingPLA = false;
         holdingLeather = false;
 
-        heldItem.transform.localScale = Vector3.one * 2.5f;
+        // Check if toy is fried
+        if (logic.IsFried())
+        {
+            FriedToyMarker marker = heldItem.GetComponent<FriedToyMarker>();
+            if (marker == null)
+            {
+                marker = heldItem.AddComponent<FriedToyMarker>();
+            }
+            marker.isFried = true;
+            Debug.Log("🔥 AI picked up FRIED toy!");
+        }
+
+        // Scale based on PLA type (GreenPLA toys are smaller)
+        if (heldPLAType == ItemData.ItemType.GreenPLA)
+        {
+            heldItem.transform.localScale = Vector3.one * 0.3f;
+        }
+        else
+        {
+            heldItem.transform.localScale = Vector3.one * 2.5f;
+        }
+
         heldItem.transform.localRotation = Quaternion.identity;
 
-        DisablePhysics(heldItem);
+        // Disable physics
+        Collider col = heldItem.GetComponent<Collider>();
+        if (col != null) col.enabled = false;
+
+        Rigidbody rb = heldItem.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.isKinematic = true;
+            rb.detectCollisions = false;
+        }
+
+        // Clear the printer
         logic.ClearAfterPickup();
+
+        Debug.Log($"✓ AI successfully picked up toy from printer");
     }
 
     void PickUpCutterItem(GameObject cutter)
@@ -840,54 +1045,39 @@ public class AICompanion : MonoBehaviour
     {
         if (!holdingToy || heldItem == null) return;
 
-        string toyName = GetToyNameFromItem(heldItem);
-
-        // Verify this matches our target recipe
-        if (!toyName.Equals(targetRecipeName, System.StringComparison.OrdinalIgnoreCase))
+        if (recipeManager != null && recipeManager.HasMatchingRecipe(currentRecipeName))
         {
-            Debug.LogWarning($"⚠️ AI made wrong toy! Expected: {targetRecipeName}, Made: {toyName}");
-            TrashItem();
-            return;
-        }
-
-        if (recipeManager != null && recipeManager.HasMatchingRecipe(toyName))
-        {
-            int points = recipeManager.CompleteRecipe(toyName);
+            int points = recipeManager.CompleteRecipe(currentRecipeName);
 
             Points pointsSystem = FindObjectOfType<Points>();
             if (pointsSystem != null) pointsSystem.AddPoints(points);
 
+            Quota quota = FindObjectOfType<Quota>();
             if (quota != null) quota.QuotaProgressOne(1);
 
-            Debug.Log($"🎁 AI delivered {toyName} for {points} points!");
+            Debug.Log($"🎁 AI Delivered {currentRecipeName} for {points} points!");
+
+            Destroy(heldItem);
+            heldItem = null;
+            holdingToy = false;
+
+            // Clear manual assignment after completion
+            if (currentMode == AgentMode.Manual)
+            {
+                manuallyAssignedRecipe = "";
+            }
+
+            currentState = State.Idle;
+            idleTimer = checkInterval;
+            currentRecipeName = "";
+            currentStep = 0;
+            stepTimer = 0f;
         }
-
-        Destroy(heldItem);
-        heldItem = null;
-        holdingToy = false;
-    }
-
-    void TrashItem()
-    {
-        Destroy(heldItem);
-        heldItem = null;
-        holdingPLA = false;
-        holdingLeather = false;
-        holdingToy = false;
-    }
-
-    string GetToyNameFromItem(GameObject item)
-    {
-        string name = item.name.Replace("(Clone)", "").Trim().ToLower();
-
-        if (name.Contains("boat")) return "BlueToy";
-        if (name.Contains("steamroller")) return "YellowToy";
-        if (name.Contains("bricks")) return "GreenToy";
-        if (name.Contains("football")) return "Football";
-        if (name.Contains("hat")) return "Hat";
-        if (name.Contains("backpack")) return "Backpack";
-
-        return name;
+        else
+        {
+            Debug.LogWarning($"⚠️ No matching recipe!");
+            ResetTask();
+        }
     }
 
     void DisablePhysics(GameObject obj)
@@ -897,73 +1087,6 @@ public class AICompanion : MonoBehaviour
         {
             r.isKinematic = true;
             r.detectCollisions = false;
-        }
-    }
-
-    // ===== FSM STATE: FOLLOWING COMMAND =====
-    void UpdateFollowingCommand()
-    {
-        if (!playerControlled)
-        {
-            currentState = State.Idle;
-            return;
-        }
-
-        if (agent.isOnNavMesh && !agent.pathPending && agent.remainingDistance < 0.5f && targetObject != null)
-        {
-            TryInteractWithTarget();
-        }
-    }
-
-    void TryInteractWithTarget()
-    {
-        float dist = Vector3.Distance(transform.position, targetObject.transform.position);
-        if (dist > interactRange) return;
-
-        if (targetObject.CompareTag("PLA") && !holdingPLA && !holdingLeather)
-        {
-            PickUpPLA(targetObject);
-        }
-        else if (targetObject.CompareTag("Leather") && !holdingLeather && !holdingPLA)
-        {
-            PickUpLeather(targetObject);
-        }
-
-        targetObject = null;
-    }
-
-    // ===== HELPER FUNCTIONS =====
-    GameObject FindClosestByTag(string tag)
-    {
-        try
-        {
-            GameObject[] objects = GameObject.FindGameObjectsWithTag(tag);
-            GameObject closest = null;
-            float minDist = float.MaxValue;
-
-            foreach (var obj in objects)
-            {
-                float dist = Vector3.Distance(transform.position, obj.transform.position);
-                if (dist < minDist)
-                {
-                    minDist = dist;
-                    closest = obj;
-                }
-            }
-            return closest;
-        }
-        catch
-        {
-            return null;
-        }
-    }
-
-    void AddToHistory(TaskType task)
-    {
-        taskHistory.Add(task);
-        if (taskHistory.Count > maxHistory)
-        {
-            taskHistory.RemoveAt(0);
         }
     }
 }

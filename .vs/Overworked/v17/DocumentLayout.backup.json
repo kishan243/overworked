@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\L1ght\\overworked\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|C:\\Users\\L1ght\\overworked\\assets\\scripts\\levelgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|C:\\Users\\L1ght\\overworked\\assets\\scripts\\aicompanion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\aicompanion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|c:\\users\\l1ght\\overworked\\assets\\scripts\\levelgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\levelgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|C:\\Users\\L1ght\\overworked\\assets\\scripts\\lasercutterlogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\lasercutterlogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|c:\\users\\l1ght\\overworked\\assets\\scripts\\aicompanion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\aicompanion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|C:\\Users\\L1ght\\overworked\\assets\\scripts\\itempreviewui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -62,17 +62,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "AICompanion.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\AICompanion.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\AICompanion.cs",
               "ToolTip": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\AICompanion.cs",
               "RelativeToolTip": "Assets\\Scripts\\AICompanion.cs",
-              "ViewState": "AgIAAPQBAAAAAAAAAAAqwA8CAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAK0DAAAAAAAAAAAqwLwDAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-12T01:55:24.198Z",
               "EditorCaption": ""
@@ -99,8 +99,7 @@
               "RelativeToolTip": "Assets\\Scripts\\ItemPreviewUI.cs",
               "ViewState": "AgIAAKcAAAAAAAAAAAAgwLMAAABUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-12T00:01:19.056Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-12T00:01:19.056Z"
             },
             {
               "$type": "Document",
@@ -201,20 +200,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "LevelGenerator.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\LevelGenerator.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\LevelGenerator.cs",
               "ToolTip": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\LevelGenerator.cs",
               "RelativeToolTip": "Assets\\Scripts\\LevelGenerator.cs",
-              "ViewState": "AgIAAAYBAAAAAAAAAAAAABcBAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAAEYBAAAAAAAAAAAqwFQBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-06T01:31:34.574Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "LaserCutterLogic.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\LaserCutterLogic.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\LaserCutterLogic.cs",
@@ -222,8 +221,7 @@
               "RelativeToolTip": "Assets\\Scripts\\LaserCutterLogic.cs",
               "ViewState": "AgIAAOAAAAAAAAAAAADwv/oAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-08T05:24:59.884Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-08T05:24:59.884Z"
             }
           ]
         }

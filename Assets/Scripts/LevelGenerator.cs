@@ -1,6 +1,8 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AI;
+using Unity.AI.Navigation;
 
 public class LevelGenerator : MonoBehaviour
 {
@@ -12,6 +14,9 @@ public class LevelGenerator : MonoBehaviour
         public float heightOffset = 0.0f;
         [HideInInspector] public int currentSpawned = 0;
     }
+
+    [Header("NavMesh Settings")]
+    [SerializeField] private NavMeshSurface[] navMeshSurfaces;
 
     [Header("Out of Bounds Prop Settings")]
     public GameObject OOBPrefab;
@@ -66,6 +71,15 @@ public class LevelGenerator : MonoBehaviour
 
     void Start()
     {
+        if (navMeshSurfaces == null || navMeshSurfaces.Length == 0)
+        {
+            navMeshSurfaces = GetComponentsInChildren<NavMeshSurface>();
+            if (navMeshSurfaces.Length == 0)
+            {
+                Debug.LogWarning("No NavMeshSurface found! Add one to LevelGenerator.");
+            }
+        }
+
         if (musicSource != null)
         {
             musicSource.Stop();
@@ -263,6 +277,16 @@ public class LevelGenerator : MonoBehaviour
 
                 yield return delay;
             }
+        }
+
+        // BAKE NAVMESH FIRST - Before spawning AI!
+        if (navMeshSurfaces != null && navMeshSurfaces.Length > 0)
+        {
+            for (int i = 0; i < navMeshSurfaces.Length; i++)
+            {
+                navMeshSurfaces[i].BuildNavMesh();
+            }
+            Debug.Log("✅ NavMesh baked!");
         }
 
         // Spawn Player at ground level

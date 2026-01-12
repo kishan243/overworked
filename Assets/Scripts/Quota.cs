@@ -8,7 +8,7 @@ public class Quota : MonoBehaviour
 
     [Header("Settings")]
     public int quotaGoal = 10;
-    private int quotaFulfilled = 0;
+    public int quotaFulfilled = 0;
 
     void Start()
     {
