@@ -10,6 +10,7 @@ public class Points : MonoBehaviour
 
     [Header("Settings")]
     public int totalPoints = 0;
+    public int giftsCompleted = 0;
     public float displayDuration = 1.0f;
 
     void Start()
@@ -22,7 +23,11 @@ public class Points : MonoBehaviour
     public void AddPoints(int points)
     {
         totalPoints += points;
+        giftsCompleted++;
         UpdateDisplay();
+
+        PlayerPrefs.SetInt("GiftsCompleted", giftsCompleted);
+        PlayerPrefs.SetInt("FinalPoints", totalPoints);
 
         if (feedbackText != null)
         {

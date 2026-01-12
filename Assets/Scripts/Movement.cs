@@ -19,6 +19,7 @@ public class Movement : MonoBehaviour
     [Header("Sound Effects")]
     public List<AudioClip> footsteps;
     public float footstepDelay = 0.5f;
+    public List<AudioClip> interactionSounds;
 
     private AudioSource audioSource;
     private float footstepTimer;
@@ -318,6 +319,13 @@ public class Movement : MonoBehaviour
 
     void Interact()
     {
+        bool isNearSomething = GetClosestInteractable() != null;
+
+        if (isNearSomething)
+        {
+            PlayRandomSound(interactionSounds);
+        }
+
         if (heldItem == null)
         {
             GameObject closestFinished = FindClosestByTag("FinishedPrinter");
@@ -628,5 +636,17 @@ public class Movement : MonoBehaviour
             int randomIndex = Random.Range(0, soundEffectsList.Count);
             PlaySound(soundEffectsList[randomIndex]);
         }
+    }
+
+    GameObject GetClosestInteractable()
+    {
+        string[] tags = { "FinishedPrinter", "PLA", "Leather", "LaserCutter", "Printer", "Giftbox", "Trashcan" };
+
+        foreach (string tag in tags)
+        {
+            GameObject obj = FindClosestByTag(tag);
+            if (obj != null) return obj;
+        }
+        return null;
     }
 }

@@ -152,7 +152,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 658bba969fc3dae5bb1530ad3ea58953, type: 3}
   - {fileID: 8300000, guid: e0d35c10b3388b63e9084f6f1e39c410, type: 3}
   footstepDelay: 0.2
-  itemPreviewUI: {fileID: 0}
+  interactionSounds:
+  - {fileID: 8300000, guid: f1edd82bd2d41912f889f10e882bbee6, type: 3}
+  - {fileID: 8300000, guid: c64ea42bd2f291911a51cd500e890963, type: 3}
 --- !u!65 &7324898782425917250
 BoxCollider:
   m_ObjectHideFlags: 0
