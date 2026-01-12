@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\EndGameDisplay.cs" />
     <Compile Include="Assets\Scripts\Timer.cs" />
     <Compile Include="Assets\Scripts\RotatePreview.cs" />
+    <Compile Include="Assets\Scripts\AIModeDisplay.cs" />
     <Compile Include="Assets\Free 2D Cartoon Parallax Background\Demo\Script\ParallaxBackground_0.cs" />
     <Compile Include="Assets\Scripts\FriedToyMarker.cs" />
     <Compile Include="Assets\Scripts\Recipe.cs" />

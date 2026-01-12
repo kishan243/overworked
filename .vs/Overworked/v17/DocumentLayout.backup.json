@@ -3,11 +3,15 @@
   "WorkspaceRootPath": "C:\\Users\\L1ght\\overworked\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|c:\\users\\l1ght\\overworked\\assets\\scripts\\endgamedisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\endgamedisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|c:\\users\\l1ght\\overworked\\assets\\scripts\\gamedatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamedatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|c:\\users\\l1ght\\overworked\\assets\\scripts\\timer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|C:\\Users\\L1ght\\overworked\\assets\\scripts\\timer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\timer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -75,6 +79,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "EndGameDisplay.cs",
+              "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\EndGameDisplay.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\EndGameDisplay.cs",
+              "ToolTip": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\EndGameDisplay.cs",
+              "RelativeToolTip": "Assets\\Scripts\\EndGameDisplay.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAwBEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-12T06:40:31.857Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "GameDataManager.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\GameDataManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GameDataManager.cs",
@@ -87,7 +104,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Timer.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\Timer.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Timer.cs",
@@ -95,12 +112,11 @@
               "RelativeToolTip": "Assets\\Scripts\\Timer.cs",
               "ViewState": "AgIAAE0AAAAAAAAAAAAgwGoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-12T06:28:17.223Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-12T06:28:17.223Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "AICompanion.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\AICompanion.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\AICompanion.cs",
@@ -112,7 +128,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "RotatePreview.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\RotatePreview.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\RotatePreview.cs",
@@ -124,7 +140,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "ItemPreviewUI.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\ItemPreviewUI.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\ItemPreviewUI.cs",
@@ -136,7 +152,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Points.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\Points.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Points.cs",
@@ -148,7 +164,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "LeatherData.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\LeatherData.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\LeatherData.cs",
@@ -160,7 +176,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "Recipe.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\Recipe.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Recipe.cs",
@@ -172,7 +188,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Standard-Metallic.shader",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Library\\PackageCache\\com.siccity.gltfutility@dfdc50830c\\Materials\\Built-in\\Standard-Metallic.shader",
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.siccity.gltfutility@dfdc50830c\\Materials\\Built-in\\Standard-Metallic.shader",
@@ -185,7 +201,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Quota.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\Quota.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Quota.cs",
@@ -197,7 +213,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "RecipeManager.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\RecipeManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\RecipeManager.cs",
@@ -209,7 +225,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "Movement.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\Movement.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Movement.cs",
@@ -221,7 +237,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "MainMenuManager.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\MainMenuManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\MainMenuManager.cs",
@@ -233,7 +249,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "LevelGenerator.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\LevelGenerator.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\LevelGenerator.cs",
@@ -245,7 +261,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "LaserCutterLogic.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\LaserCutterLogic.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\LaserCutterLogic.cs",

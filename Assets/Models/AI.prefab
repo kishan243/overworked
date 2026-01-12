@@ -137,7 +137,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1268131767293772631}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Speed: 8
   m_Acceleration: 10
   avoidancePriority: 50
@@ -167,7 +167,9 @@ MonoBehaviour:
   moveSpeed: 7
   checkInterval: 2
   stepTimeout: 13
+  stuckThreshold: 0.3
   currentMode: 1
+  selectedRecipeIndex: -1
 --- !u!65 &7682193444273110825
 BoxCollider:
   m_ObjectHideFlags: 0

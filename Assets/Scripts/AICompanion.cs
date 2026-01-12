@@ -44,7 +44,7 @@ public class AICompanion : MonoBehaviour
     private int currentStep = 0;
 
     // Manual assignment
-    private int selectedRecipeIndex = -1;
+    public int selectedRecipeIndex = -1;
     private string manuallyAssignedRecipe = "";
 
     // Stuck detection
@@ -93,6 +93,9 @@ public class AICompanion : MonoBehaviour
     {
         if (agent == null || !agent.isOnNavMesh) return;
 
+        // ALWAYS check for mode switching first (NEW - THIS IS WHAT WAS MISSING!)
+        HandleModeSwitching();
+
         // Handle manual assignment input
         HandleManualAssignmentInput();
 
@@ -126,7 +129,6 @@ public class AICompanion : MonoBehaviour
             {
                 Debug.LogWarning($"⏱️ AI timeout on step {currentStep}");
 
-                // If holding something, trash it instead of just resetting
                 if (heldItem != null)
                 {
                     Debug.Log("🗑️ AI timed out with item, going to trash");
@@ -139,6 +141,55 @@ public class AICompanion : MonoBehaviour
             }
 
             UpdateCurrentTask();
+        }
+    }
+
+    void HandleModeSwitching()
+    {
+        // P = PLA Only Mode
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            // Only switch if idle OR cancel current task
+            if (currentState == State.Working)
+            {
+                Debug.Log("🛑 Canceling current task to switch modes");
+                ResetTask();
+            }
+
+            currentMode = AgentMode.PLAOnly;
+            manuallyAssignedRecipe = "";
+            selectedRecipeIndex = -1;
+            Debug.Log("🔵 AI Mode: PLA TOYS ONLY");
+        }
+
+        // O = Leather Only Mode
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            if (currentState == State.Working)
+            {
+                Debug.Log("🛑 Canceling current task to switch modes");
+                ResetTask();
+            }
+
+            currentMode = AgentMode.LeatherOnly;
+            manuallyAssignedRecipe = "";
+            selectedRecipeIndex = -1;
+            Debug.Log("🟡 AI Mode: LEATHER TOYS ONLY");
+        }
+
+        // I = Manual Command Mode
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if (currentState == State.Working)
+            {
+                Debug.Log("🛑 Canceling current task to switch modes");
+                ResetTask();
+            }
+
+            currentMode = AgentMode.Manual;
+            manuallyAssignedRecipe = "";
+            selectedRecipeIndex = -1;
+            Debug.Log("🟢 AI Mode: MANUAL COMMAND - Press 1-4 to select recipe, then K to assign");
         }
     }
 
@@ -217,35 +268,40 @@ public class AICompanion : MonoBehaviour
         List<Recipe> availableRecipes = GetActiveRecipes();
         if (availableRecipes.Count == 0) return;
 
-        // Select recipe with 1, 2, 3
+        // Select recipe with 1, 2, 3, 4
         if (Input.GetKeyDown(KeyCode.Alpha1) && availableRecipes.Count >= 1)
         {
             selectedRecipeIndex = 0;
-            Debug.Log($"📋 Selected Recipe 1: {availableRecipes[0].toyName}");
+            Debug.Log($"📋 [1] Selected Recipe: {availableRecipes[0].toyName}");
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2) && availableRecipes.Count >= 2)
         {
             selectedRecipeIndex = 1;
-            Debug.Log($"📋 Selected Recipe 2: {availableRecipes[1].toyName}");
+            Debug.Log($"📋 [2] Selected Recipe: {availableRecipes[1].toyName}");
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3) && availableRecipes.Count >= 3)
         {
             selectedRecipeIndex = 2;
-            Debug.Log($"📋 Selected Recipe 3: {availableRecipes[2].toyName}");
+            Debug.Log($"📋 [3] Selected Recipe: {availableRecipes[2].toyName}");
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4) && availableRecipes.Count >= 4)
+        {
+            selectedRecipeIndex = 3;
+            Debug.Log($"📋 [4] Selected Recipe: {availableRecipes[3].toyName}");
         }
 
-        // Assign with K
+        // K = Assign the selected recipe to AI
         if (Input.GetKeyDown(KeyCode.K) && selectedRecipeIndex >= 0 && selectedRecipeIndex < availableRecipes.Count)
         {
             manuallyAssignedRecipe = availableRecipes[selectedRecipeIndex].toyName;
-            Debug.Log($"✅ Assigned AI to: {manuallyAssignedRecipe}");
+            Debug.Log($"✅ ASSIGNED AI TO: {manuallyAssignedRecipe}");
 
             // Immediately start working on it
             currentRecipeName = manuallyAssignedRecipe;
             currentStep = 0;
             stepTimer = 0f;
             currentState = State.Working;
-            selectedRecipeIndex = -1; // Reset selection
+            selectedRecipeIndex = -1; // Reset selection after assignment
         }
     }
 

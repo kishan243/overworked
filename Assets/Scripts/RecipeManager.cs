@@ -8,7 +8,7 @@ public class RecipeManager : MonoBehaviour
     public List<GameObject> recipePrefabs;
 
     [Header("Settings")]
-    public int maxTickets = 3;
+    public int maxTickets = 4;
 
     void Start()
     {
