@@ -8,7 +8,7 @@ public class Quota : MonoBehaviour
 
     [Header("Settings")]
     public int quotaGoal = 10;
-    public int quotaFulfilled = 0;
+    public int sessionQuota = 0; // Quota in this session only
 
     void Start()
     {
@@ -17,14 +17,32 @@ public class Quota : MonoBehaviour
 
     public void QuotaProgressOne(int amount = 1)
     {
-        quotaFulfilled += amount;
-        if (quotaFulfilled > quotaGoal) quotaFulfilled = quotaGoal;
+        sessionQuota += amount;
+
+        // Also add to persistent GameDataManager
+        if (GameDataManager.Instance != null)
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                GameDataManager.Instance.AddGift();
+            }
+        }
+
+        if (sessionQuota > quotaGoal) sessionQuota = quotaGoal;
 
         UpdateDisplay();
     }
 
     private void UpdateDisplay()
     {
-        quotaText.text = $"{quotaFulfilled}/{quotaGoal}";
+        // Show total from GameDataManager if available
+        int displayQuota = sessionQuota;
+        if (GameDataManager.Instance != null)
+        {
+            displayQuota = GameDataManager.Instance.totalGiftsDelivered;
+            if (displayQuota > quotaGoal) displayQuota = quotaGoal;
+        }
+
+        quotaText.text = $"{displayQuota}/{quotaGoal}";
     }
 }

@@ -12,7 +12,8 @@ public class AICompanion : MonoBehaviour
     public float interactRange = 3.5f;
     public float moveSpeed = 5f;
     public float checkInterval = 2f;
-    public float stepTimeout = 15f;
+    public float stepTimeout = 20f; // Increased timeout
+    public float stuckThreshold = 0.3f; // If AI moves less than this in 3 seconds, it's stuck
 
     [Header("Agent Mode")]
     public AgentMode currentMode = AgentMode.Manual;
@@ -46,6 +47,11 @@ public class AICompanion : MonoBehaviour
     private int selectedRecipeIndex = -1;
     private string manuallyAssignedRecipe = "";
 
+    // Stuck detection
+    private Vector3 lastPosition;
+    private float stuckTimer = 0f;
+    private bool isGoingToTrash = false;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -78,6 +84,7 @@ public class AICompanion : MonoBehaviour
 
         currentState = State.Idle;
         idleTimer = checkInterval;
+        lastPosition = transform.position;
 
         Debug.Log($"🤖 AI Companion Ready! Mode: {currentMode}");
     }
@@ -88,6 +95,19 @@ public class AICompanion : MonoBehaviour
 
         // Handle manual assignment input
         HandleManualAssignmentInput();
+
+        // Check if AI is stuck while holding an item
+        if (currentState == State.Working && heldItem != null)
+        {
+            DetectStuck();
+        }
+
+        // If going to trash, handle that first
+        if (isGoingToTrash)
+        {
+            HandleTrashItem();
+            return;
+        }
 
         if (currentState == State.Idle)
         {
@@ -105,11 +125,87 @@ public class AICompanion : MonoBehaviour
             if (stepTimer > stepTimeout)
             {
                 Debug.LogWarning($"⏱️ AI timeout on step {currentStep}");
+
+                // If holding something, trash it instead of just resetting
+                if (heldItem != null)
+                {
+                    Debug.Log("🗑️ AI timed out with item, going to trash");
+                    isGoingToTrash = true;
+                    return;
+                }
+
                 ResetTask();
                 return;
             }
 
             UpdateCurrentTask();
+        }
+    }
+
+    void DetectStuck()
+    {
+        // Check if AI hasn't moved much
+        float distanceMoved = Vector3.Distance(transform.position, lastPosition);
+
+        if (distanceMoved < stuckThreshold)
+        {
+            stuckTimer += Time.deltaTime;
+
+            // If stuck for 3 seconds, go to trash
+            if (stuckTimer > 3f)
+            {
+                Debug.LogWarning("⚠️ AI is stuck! Going to trash item.");
+                isGoingToTrash = true;
+                stuckTimer = 0f;
+            }
+        }
+        else
+        {
+            stuckTimer = 0f;
+            lastPosition = transform.position;
+        }
+    }
+
+    void HandleTrashItem()
+    {
+        GameObject trashcan = FindClosestByTag("Trashcan");
+
+        if (trashcan == null)
+        {
+            Debug.LogWarning("❌ No trashcan found!");
+            // Just destroy the item and reset
+            if (heldItem != null) Destroy(heldItem);
+            heldItem = null;
+            holdingPLA = false;
+            holdingLeather = false;
+            holdingToy = false;
+            isGoingToTrash = false;
+            ResetTask();
+            return;
+        }
+
+        if (IsNear(trashcan))
+        {
+            agent.isStopped = true;
+
+            // Trash the item
+            if (heldItem != null)
+            {
+                Debug.Log("🗑️ AI trashed item");
+                Destroy(heldItem);
+                heldItem = null;
+                holdingPLA = false;
+                holdingLeather = false;
+                holdingToy = false;
+            }
+
+            isGoingToTrash = false;
+            ResetTask();
+        }
+        else
+        {
+            agent.isStopped = false;
+            agent.SetDestination(trashcan.transform.position);
         }
     }
 
@@ -730,6 +826,8 @@ public class AICompanion : MonoBehaviour
         currentRecipeName = "";
         currentStep = 0;
         stepTimer = 0f;
+        stuckTimer = 0f;
+        isGoingToTrash = false;
         agent.isStopped = true;
         agent.ResetPath();
 

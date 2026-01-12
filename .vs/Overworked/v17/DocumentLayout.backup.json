@@ -3,11 +3,27 @@
   "WorkspaceRootPath": "C:\\Users\\L1ght\\overworked\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|c:\\users\\l1ght\\overworked\\assets\\scripts\\gamedatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamedatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|c:\\users\\l1ght\\overworked\\assets\\scripts\\timer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\timer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|C:\\Users\\L1ght\\overworked\\assets\\scripts\\quota.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\quota.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|C:\\Users\\L1ght\\overworked\\assets\\scripts\\points.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\points.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|C:\\Users\\L1ght\\overworked\\assets\\scripts\\aicompanion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\aicompanion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|c:\\users\\l1ght\\overworked\\assets\\scripts\\levelgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|C:\\Users\\L1ght\\overworked\\assets\\scripts\\levelgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\levelgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -31,10 +47,6 @@
       "RelativeMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\movement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|C:\\Users\\L1ght\\overworked\\assets\\scripts\\points.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\points.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|C:\\Users\\L1ght\\overworked\\assets\\scripts\\recipemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\recipemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -49,10 +61,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|C:\\Users\\L1ght\\overworked\\assets\\scripts\\mainmenumanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mainmenumanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|C:\\Users\\L1ght\\overworked\\assets\\scripts\\quota.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD47122B-A6E0-13E5-6439-136776CC3DAB}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\quota.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -67,19 +75,44 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "GameDataManager.cs",
+              "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\GameDataManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GameDataManager.cs",
+              "ToolTip": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\GameDataManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GameDataManager.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAgwDIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-12T06:32:00.252Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Timer.cs",
+              "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\Timer.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Timer.cs",
+              "ToolTip": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\Timer.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Timer.cs",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAgwGoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-12T06:28:17.223Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "AICompanion.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\AICompanion.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\AICompanion.cs",
               "ToolTip": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\AICompanion.cs",
               "RelativeToolTip": "Assets\\Scripts\\AICompanion.cs",
-              "ViewState": "AgIAAK0DAAAAAAAAAAAqwLwDAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAIgEAAAAAAAAAAAgwKUEAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-12T01:55:24.198Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-12T01:55:24.198Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "RotatePreview.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\RotatePreview.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\RotatePreview.cs",
@@ -91,7 +124,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "ItemPreviewUI.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\ItemPreviewUI.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\ItemPreviewUI.cs",
@@ -103,19 +136,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
               "Title": "Points.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\Points.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Points.cs",
               "ToolTip": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\Points.cs",
               "RelativeToolTip": "Assets\\Scripts\\Points.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAgwEwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-11T23:36:04.869Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "LeatherData.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\LeatherData.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\LeatherData.cs",
@@ -127,7 +160,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "Recipe.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\Recipe.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Recipe.cs",
@@ -139,7 +172,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "Standard-Metallic.shader",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Library\\PackageCache\\com.siccity.gltfutility@dfdc50830c\\Materials\\Built-in\\Standard-Metallic.shader",
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.siccity.gltfutility@dfdc50830c\\Materials\\Built-in\\Standard-Metallic.shader",
@@ -152,19 +185,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 2,
               "Title": "Quota.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\Quota.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Quota.cs",
               "ToolTip": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\Quota.cs",
               "RelativeToolTip": "Assets\\Scripts\\Quota.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAcwC8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-07T06:33:10.797Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "RecipeManager.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\RecipeManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\RecipeManager.cs",
@@ -176,7 +209,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 10,
               "Title": "Movement.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\Movement.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Movement.cs",
@@ -188,7 +221,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 14,
               "Title": "MainMenuManager.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\MainMenuManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\MainMenuManager.cs",
@@ -200,20 +233,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "LevelGenerator.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\LevelGenerator.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\LevelGenerator.cs",
               "ToolTip": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\LevelGenerator.cs",
               "RelativeToolTip": "Assets\\Scripts\\LevelGenerator.cs",
-              "ViewState": "AgIAAEYBAAAAAAAAAAAqwFQBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGkBAAAAAAAAAAAcwIYBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-06T01:31:34.574Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-06T01:31:34.574Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "LaserCutterLogic.cs",
               "DocumentMoniker": "C:\\Users\\L1ght\\overworked\\Assets\\Scripts\\LaserCutterLogic.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\LaserCutterLogic.cs",

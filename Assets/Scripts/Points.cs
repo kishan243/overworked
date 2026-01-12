@@ -9,7 +9,7 @@ public class Points : MonoBehaviour
     public TextMeshProUGUI feedbackText;
 
     [Header("Settings")]
-    public int totalPoints = 0;
+    public int sessionPoints = 0; // Points in this session only
     public float displayDuration = 1.0f;
 
     void Start()
@@ -21,7 +21,14 @@ public class Points : MonoBehaviour
 
     public void AddPoints(int points)
     {
-        totalPoints += points;
+        sessionPoints += points;
+
+        // Also add to persistent GameDataManager
+        if (GameDataManager.Instance != null)
+        {
+            GameDataManager.Instance.AddPoints(points);
+        }
+
         UpdateDisplay();
 
         if (feedbackText != null)
@@ -58,6 +65,13 @@ public class Points : MonoBehaviour
 
     private void UpdateDisplay()
     {
-        pointsText.text = $"{totalPoints} points";
+        // Show total points from GameDataManager if available
+        int displayPoints = sessionPoints;
+        if (GameDataManager.Instance != null)
+        {
+            displayPoints = GameDataManager.Instance.totalPoints;
+        }
+
+        pointsText.text = $"{displayPoints} points";
     }
 }

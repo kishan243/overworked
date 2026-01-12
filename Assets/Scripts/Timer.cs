@@ -1,6 +1,6 @@
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
-using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
@@ -11,9 +11,11 @@ public class Timer : MonoBehaviour
     [Header("Settings")]
     public float timeRemaining = 60f;
     public float lowTimeThreshold = 30f;
+    public string endGameSceneName = "EndGame"; // Name of your end game scene
 
     private bool timerIsRunning = true;
     private bool isFlashing = false;
+    private bool gameEnded = false;
 
     void Update()
     {
@@ -38,8 +40,36 @@ public class Timer : MonoBehaviour
                     DisplayTime(0);
                     StopAllCoroutines();
                     timerText.color = Color.red;
+
+                    // End the game
+                    if (!gameEnded)
+                    {
+                        gameEnded = true;
+                        EndGame();
+                    }
                 }
             }
+        }
+    }
+
+    void EndGame()
+    {
+        Debug.Log("⏰ Time's up! Going to end game scene...");
+
+        // Wait a brief moment so player can see the timer hit zero
+        Invoke("LoadEndGameScene", 1.5f);
+    }
+
+    void LoadEndGameScene()
+    {
+        if (GameDataManager.Instance != null)
+        {
+            GameDataManager.Instance.GoToEndGame();
+        }
+        else
+        {
+            // Fallback if GameDataManager doesn't exist
+            SceneManager.LoadScene(endGameSceneName);
         }
     }
 

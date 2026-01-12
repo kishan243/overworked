@@ -151,6 +151,7 @@ MonoBehaviour:
   greenFriedItemPrefab: {fileID: 2568942456423296689, guid: ede9f898081622a42a708237ccae3c76, type: 3}
   bakeTime: 10
   friedTime: 5
+  interactRange: 3.5
   basePrinterPrefab: {fileID: 2308610648379806443}
 --- !u!65 &7053271912407765048
 BoxCollider:
@@ -171,5 +172,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 2}
+  m_Size: {x: 2.5, y: 2.5, z: 2.5}
   m_Center: {x: 0, y: 0, z: 0}

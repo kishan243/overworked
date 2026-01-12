@@ -97,7 +97,7 @@ public class LevelGenerator : MonoBehaviour
         giftBoxLocations.Clear();
         trashcanLocations.Clear();
 
-        // Reserve 2x2 for player
+        // Reserve 2x2 for player (bottom-left corner)
         for (int x = 0; x <= 1; x++)
         {
             for (int z = 0; z <= 1; z++)
@@ -126,13 +126,15 @@ public class LevelGenerator : MonoBehaviour
         while (placed < count && attempts < 100)
         {
             attempts++;
-            int rx = Random.Range(2, length - 1);
-            int rz = Random.Range(2, width - 1);
+            // Keep props away from edges (at least 2 tiles from walls)
+            int rx = Random.Range(2, length - 2);
+            int rz = Random.Range(2, width - 2);
             Vector2Int pos = new Vector2Int(rx, rz);
 
             if (!IsAreaReserved(rx, rz))
             {
                 locationList.Add(pos);
+                // Reserve 3x3 area around special props
                 for (int x = -1; x <= 1; x++)
                 {
                     for (int z = -1; z <= 1; z++)
@@ -219,10 +221,11 @@ public class LevelGenerator : MonoBehaviour
             }
         }
 
+        // Collect all available tiles for props (excluding walls and special locations)
         List<Vector2Int> availableTiles = new List<Vector2Int>();
-        for (int x = 0; x < length; x++)
+        for (int x = 1; x < length - 1; x++) // Keep away from walls
         {
-            for (int z = 0; z < width; z++)
+            for (int z = 1; z < width - 1; z++) // Keep away from walls
             {
                 if (!IsAreaReserved(x, z) &&
                     !giftBoxLocations.Contains(new Vector2Int(x, z)) &&
@@ -233,6 +236,7 @@ public class LevelGenerator : MonoBehaviour
             }
         }
 
+        // Shuffle available tiles
         for (int i = availableTiles.Count - 1; i > 0; i--)
         {
             int randomIndex = Random.Range(0, i + 1);
@@ -241,6 +245,7 @@ public class LevelGenerator : MonoBehaviour
             availableTiles[randomIndex] = temp;
         }
 
+        // Assign props to tiles
         Dictionary<Vector2Int, PropSettings> propAssignments = new Dictionary<Vector2Int, PropSettings>();
         int tileIndex = 0;
         foreach (PropSettings settings in propPool)
@@ -254,6 +259,7 @@ public class LevelGenerator : MonoBehaviour
             }
         }
 
+        // Spawn floor, walls, and props
         for (int x = 0; x < length; x++)
         {
             for (int z = 0; z < width; z++)
@@ -261,6 +267,7 @@ public class LevelGenerator : MonoBehaviour
                 Vector3 pos = new Vector3(x * tileSize, 0, z * tileSize);
                 SpawnWithScale(floorPrefab, pos, Quaternion.identity, layerIndex);
 
+                // Spawn walls on edges
                 if (z == 0) SpawnWithScale(wallPrefab, pos + new Vector3(0, wallHeightOffset, -wallOffset), Quaternion.Euler(0, 0, 0) * rotationOffset, layerIndex);
                 if (z == width - 1) SpawnWithScale(wallPrefab, pos + new Vector3(0, wallHeightOffset, wallOffset), Quaternion.Euler(0, 180, 0) * rotationOffset, layerIndex);
                 if (x == 0) SpawnWithScale(wallPrefab, pos + new Vector3(-wallOffset, wallHeightOffset, 0), Quaternion.Euler(0, 90, 0) * rotationOffset, layerIndex);
@@ -268,6 +275,7 @@ public class LevelGenerator : MonoBehaviour
 
                 Vector2Int currentCoord = new Vector2Int(x, z);
 
+                // Spawn special props or regular props
                 if (giftBoxLocations.Contains(currentCoord))
                     SpawnWithScale(giftBoxPrefab, pos, Quaternion.identity, layerIndex);
                 else if (trashcanLocations.Contains(currentCoord))
@@ -279,7 +287,10 @@ public class LevelGenerator : MonoBehaviour
             }
         }
 
-        // BAKE NAVMESH FIRST - Before spawning AI!
+        // Wait a frame for all objects to settle
+        yield return new WaitForSeconds(0.5f);
+
+        // BAKE NAVMESH AFTER everything is spawned
         if (navMeshSurfaces != null && navMeshSurfaces.Length > 0)
         {
             for (int i = 0; i < navMeshSurfaces.Length; i++)
@@ -289,16 +300,18 @@ public class LevelGenerator : MonoBehaviour
             Debug.Log("✅ NavMesh baked!");
         }
 
-        // Spawn Player at ground level
+        // Wait another frame for NavMesh to fully process
+        yield return new WaitForSeconds(0.2f);
+
+        // NOW spawn Player and AI at ground level
         if (playerPrefab != null)
         {
-            Instantiate(playerPrefab, new Vector3(0, 0.1f, 0), Quaternion.identity);
+            Instantiate(playerPrefab, new Vector3(0.5f, 0.1f, 0.5f), Quaternion.identity);
         }
 
-        // Spawn AI at ground level
         if (aiCompanionPrefab != null)
         {
-            Instantiate(aiCompanionPrefab, new Vector3(2.5f, 0.1f, 0), Quaternion.identity);
+            Instantiate(aiCompanionPrefab, new Vector3(2.5f, 0.1f, 0.5f), Quaternion.identity);
         }
 
         isDoneGenerating = true;

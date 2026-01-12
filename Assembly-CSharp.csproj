@@ -58,6 +58,7 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\EndgameSceneController.cs" />
     <Compile Include="Assets\Scripts\SimpleSnow.cs" />
     <Compile Include="Assets\Free 2D Cartoon Parallax Background\Demo\Script\BackgroundControl_0.cs" />
     <Compile Include="Assets\Scripts\Quota.cs" />
@@ -65,13 +66,17 @@
     <Compile Include="Assets\Scripts\PrinterLogic.cs" />
     <Compile Include="Assets\Scripts\Points.cs" />
     <Compile Include="Assets\Scripts\MusicFader.cs" />
+    <Compile Include="Assets\Scripts\EndgameGiftDisplay.cs" />
+    <Compile Include="Assets\Scripts\EndgamePointsDisplay.cs" />
     <Compile Include="Assets\Scripts\ItemData.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
     <Compile Include="Assets\Scripts\LevelGenerator.cs" />
     <Compile Include="Assets\Scripts\LeatherData.cs" />
+    <Compile Include="Assets\Scripts\GameDataManager.cs" />
     <Compile Include="Assets\Scripts\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\LaserCutterLogic.cs" />
     <Compile Include="Assets\Scripts\AICompanion.cs" />
+    <Compile Include="Assets\Scripts\EndGameDisplay.cs" />
     <Compile Include="Assets\Scripts\Timer.cs" />
     <Compile Include="Assets\Scripts\RotatePreview.cs" />
     <Compile Include="Assets\Free 2D Cartoon Parallax Background\Demo\Script\ParallaxBackground_0.cs" />
