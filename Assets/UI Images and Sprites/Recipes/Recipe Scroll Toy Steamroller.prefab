@@ -89,7 +89,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d85be0a5c66dd224d85d98ce010e148a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toyName: YellowToy
+  toyName: ToySteamroller
+  maxPoints: 100
+  minPoints: 20
+  maxTime: 60
+  spawnTime: 0
 --- !u!1 &7698196715938153344
 GameObject:
   m_ObjectHideFlags: 0

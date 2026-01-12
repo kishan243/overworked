@@ -16,6 +16,7 @@ TagManager:
   - Leather
   - LaserCutter
   - 'ItemTable '
+  - ItemPreview
   layers:
   - Default
   - TransparentFX

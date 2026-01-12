@@ -28,8 +28,8 @@ public class Movement : MonoBehaviour
     private LeatherData.LeatherType heldLeatherType;
     private bool heldItemIsToy = false;
     private bool heldItemIsLeather = false;
-    private bool heldItemIsFromPrinter = false; // Track if toy is from printer vs laser cutter
     private TextMeshProUGUI interactionText;
+    private ItemPreviewUI itemPreviewUI; // Auto-found, no manual assignment needed
 
     void Start()
     {
@@ -57,6 +57,13 @@ public class Movement : MonoBehaviour
             pObj.transform.SetParent(this.transform);
             pObj.transform.localPosition = new Vector3(0, 0.2f, 0);
             movementParticles = pObj.GetComponent<ParticleSystem>();
+        }
+
+        // Auto-find ItemPreviewUI in the scene
+        itemPreviewUI = FindObjectOfType<ItemPreviewUI>();
+        if (itemPreviewUI == null)
+        {
+            Debug.LogWarning("ItemPreviewUI not found in scene. Preview feature will be disabled.");
         }
     }
 
@@ -97,11 +104,82 @@ public class Movement : MonoBehaviour
         controller.Move(Vector3.down * 9.81f * Time.deltaTime);
 
         UpdateInteractionUI();
+        UpdateItemPreview();
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Interact();
         }
+    }
+
+    void UpdateItemPreview()
+    {
+        if (itemPreviewUI == null) return;
+
+        // If holding an item, show it as "held"
+        if (heldItem != null)
+        {
+            itemPreviewUI.ShowPreview(heldItem, true);
+            return;
+        }
+
+        // Otherwise check what's nearby to pick up
+        GameObject closestFinished = FindClosestByTag("FinishedPrinter");
+        if (closestFinished != null)
+        {
+            PrinterLogic logic = closestFinished.GetComponent<PrinterLogic>();
+            if (logic != null)
+            {
+                GameObject toyPrefab = logic.GetToyPrefab();
+                if (toyPrefab != null)
+                {
+                    itemPreviewUI.ShowPreview(toyPrefab, false);
+                    return;
+                }
+            }
+        }
+
+        GameObject closestPLA = FindClosestByTag("PLA");
+        if (closestPLA != null)
+        {
+            ItemData data = closestPLA.GetComponent<ItemData>();
+            if (data != null)
+            {
+                GameObject prefab = data.itemPrefab != null ? data.itemPrefab : closestPLA;
+                itemPreviewUI.ShowPreview(prefab, false);
+                return;
+            }
+        }
+
+        GameObject closestLeather = FindClosestByTag("Leather");
+        if (closestLeather != null)
+        {
+            LeatherData data = closestLeather.GetComponent<LeatherData>();
+            if (data != null)
+            {
+                GameObject prefab = data.leatherPrefab != null ? data.leatherPrefab : closestLeather;
+                itemPreviewUI.ShowPreview(prefab, false);
+                return;
+            }
+        }
+
+        GameObject closestCutter = FindClosestByTag("LaserCutter");
+        if (closestCutter != null)
+        {
+            LaserCutterLogic logic = closestCutter.GetComponent<LaserCutterLogic>();
+            if (logic != null && logic.IsFinished())
+            {
+                GameObject itemPrefab = logic.GetFinishedItem();
+                if (itemPrefab != null)
+                {
+                    itemPreviewUI.ShowPreview(itemPrefab, false);
+                    return;
+                }
+            }
+        }
+
+        // Nothing nearby, hide preview
+        itemPreviewUI.HidePreview();
     }
 
     void UpdateInteractionUI()
@@ -312,7 +390,6 @@ public class Movement : MonoBehaviour
         GameObject toyPrefab = logic.GetToyPrefab();
         if (toyPrefab == null) return;
 
-        // IMPORTANT: Get the PLA type BEFORE clearing the printer
         if (logic.GetLoadedPLAType().HasValue)
         {
             heldItemType = logic.GetLoadedPLAType().Value;
@@ -322,7 +399,6 @@ public class Movement : MonoBehaviour
         heldItem.tag = "Untagged";
         heldItemIsToy = true;
         heldItemIsLeather = false;
-        heldItemIsFromPrinter = true; // THIS IS A PRINTER TOY
 
         if (logic.IsFried())
         {
@@ -365,7 +441,6 @@ public class Movement : MonoBehaviour
         heldItemType = data.itemType;
         heldItemIsToy = false;
         heldItemIsLeather = false;
-        heldItemIsFromPrinter = false;
 
         heldItem = Instantiate(data.itemPrefab != null ? data.itemPrefab : plaObject, leftHand.position, leftHand.rotation, leftHand);
         heldItem.transform.localScale = Vector3.one * 0.4f;
@@ -389,7 +464,6 @@ public class Movement : MonoBehaviour
         heldLeatherType = data.leatherType;
         heldItemIsToy = false;
         heldItemIsLeather = true;
-        heldItemIsFromPrinter = false;
 
         heldItem = Instantiate(data.leatherPrefab != null ? data.leatherPrefab : leatherObject, leftHand.position, leftHand.rotation, leftHand);
         heldItem.transform.localScale = Vector3.one * 0.4f;
@@ -417,7 +491,6 @@ public class Movement : MonoBehaviour
         heldItem.tag = "Untagged";
         heldItemIsToy = true;
         heldItemIsLeather = false;
-        heldItemIsFromPrinter = false; // THIS IS A LASER CUTTER ITEM
 
         string itemName = itemPrefab.name.ToLower();
         if (itemName.Contains("hat") || itemName.Contains("backpack"))
@@ -453,7 +526,6 @@ public class Movement : MonoBehaviour
             heldItem = null;
             heldItemIsToy = false;
             heldItemIsLeather = false;
-            heldItemIsFromPrinter = false;
         }
     }
 
@@ -466,7 +538,6 @@ public class Movement : MonoBehaviour
             Destroy(heldItem);
             heldItem = null;
             heldItemIsLeather = false;
-            heldItemIsFromPrinter = false;
         }
     }
 
@@ -475,9 +546,18 @@ public class Movement : MonoBehaviour
         RecipeManager recipeManager = FindObjectOfType<RecipeManager>();
         string toyName = GetToyName();
 
+        // Get points from recipe completion
+        int pointsEarned = 0;
         if (recipeManager != null)
         {
-            recipeManager.CompleteRecipe(toyName);
+            pointsEarned = recipeManager.CompleteRecipe(toyName);
+        }
+
+        // Add points to Points system
+        Points pointsSystem = FindObjectOfType<Points>();
+        if (pointsSystem != null)
+        {
+            pointsSystem.AddPoints(pointsEarned);
         }
 
         // Update quota
@@ -494,14 +574,12 @@ public class Movement : MonoBehaviour
         heldItemIsLeather = false;
     }
 
-    // Get the toy name for recipe matching
     string GetToyName()
     {
         ItemData itemData = heldItem.GetComponent<ItemData>();
 
         if (itemData != null)
         {
-            // Printer toy - convert ItemType to toy name
             switch (heldItemType)
             {
                 case ItemData.ItemType.BluePLA: return "BlueToy";
@@ -512,7 +590,6 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            // Laser cutter item - get name from prefab
             return GetItemName(heldItem);
         }
     }
@@ -534,7 +611,6 @@ public class Movement : MonoBehaviour
         heldItem = null;
         heldItemIsToy = false;
         heldItemIsLeather = false;
-        heldItemIsFromPrinter = false;
     }
 
     public void PlaySound(AudioClip clip)

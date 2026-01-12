@@ -10,7 +10,6 @@ public class LevelGenerator : MonoBehaviour
         public GameObject prefab;
         public int maxAmount = 5;
         public float heightOffset = 0.0f;
-        [Range(0, 100)] public float spawnChance = 10f;
         [HideInInspector] public int currentSpawned = 0;
     }
 
@@ -22,8 +21,9 @@ public class LevelGenerator : MonoBehaviour
     public float OOBRiseSpeed = 15.0f;
     public float riseDistance = 5.0f;
 
-    [Header("Player & Special Prefabs")]
+    [Header("Player & AI & Special Prefabs")]
     public GameObject playerPrefab;
+    public GameObject aiCompanionPrefab;
     public GameObject giftBoxPrefab;
     public int giftBoxCount = 3;
     public GameObject trashcanPrefab;
@@ -83,7 +83,17 @@ public class LevelGenerator : MonoBehaviour
         giftBoxLocations.Clear();
         trashcanLocations.Clear();
 
+        // Reserve 2x2 for player
         for (int x = 0; x <= 1; x++)
+        {
+            for (int z = 0; z <= 1; z++)
+            {
+                reservedTiles.Add(new Vector2Int(x, z));
+            }
+        }
+
+        // Reserve 2x2 for AI (next to player)
+        for (int x = 2; x <= 3; x++)
         {
             for (int z = 0; z <= 1; z++)
             {
@@ -195,6 +205,41 @@ public class LevelGenerator : MonoBehaviour
             }
         }
 
+        List<Vector2Int> availableTiles = new List<Vector2Int>();
+        for (int x = 0; x < length; x++)
+        {
+            for (int z = 0; z < width; z++)
+            {
+                if (!IsAreaReserved(x, z) &&
+                    !giftBoxLocations.Contains(new Vector2Int(x, z)) &&
+                    !trashcanLocations.Contains(new Vector2Int(x, z)))
+                {
+                    availableTiles.Add(new Vector2Int(x, z));
+                }
+            }
+        }
+
+        for (int i = availableTiles.Count - 1; i > 0; i--)
+        {
+            int randomIndex = Random.Range(0, i + 1);
+            Vector2Int temp = availableTiles[i];
+            availableTiles[i] = availableTiles[randomIndex];
+            availableTiles[randomIndex] = temp;
+        }
+
+        Dictionary<Vector2Int, PropSettings> propAssignments = new Dictionary<Vector2Int, PropSettings>();
+        int tileIndex = 0;
+        foreach (PropSettings settings in propPool)
+        {
+            if (settings.prefab == null) continue;
+
+            for (int i = 0; i < settings.maxAmount && tileIndex < availableTiles.Count; i++)
+            {
+                propAssignments[availableTiles[tileIndex]] = settings;
+                tileIndex++;
+            }
+        }
+
         for (int x = 0; x < length; x++)
         {
             for (int z = 0; z < width; z++)
@@ -213,16 +258,23 @@ public class LevelGenerator : MonoBehaviour
                     SpawnWithScale(giftBoxPrefab, pos, Quaternion.identity, layerIndex);
                 else if (trashcanLocations.Contains(currentCoord))
                     SpawnWithScale(trashcanPrefab, pos, Quaternion.identity, layerIndex);
-                else if (!IsAreaReserved(x, z))
-                    TrySpawnRandomProp(pos, layerIndex);
+                else if (propAssignments.ContainsKey(currentCoord))
+                    SpawnProp(pos, layerIndex, propAssignments[currentCoord]);
 
                 yield return delay;
             }
         }
 
+        // Spawn Player at ground level
         if (playerPrefab != null)
         {
-            Instantiate(playerPrefab, new Vector3(0, 1, 0), Quaternion.identity);
+            Instantiate(playerPrefab, new Vector3(0, 0.1f, 0), Quaternion.identity);
+        }
+
+        // Spawn AI at ground level
+        if (aiCompanionPrefab != null)
+        {
+            Instantiate(aiCompanionPrefab, new Vector3(2.5f, 0.1f, 0), Quaternion.identity);
         }
 
         isDoneGenerating = true;
@@ -232,35 +284,25 @@ public class LevelGenerator : MonoBehaviour
             musicSource.Play();
             StartCoroutine(MusicFader.FadeIn(musicSource, 3f, 0.3f));
         }
-
     }
 
-    void TrySpawnRandomProp(Vector3 floorPos, int layerIndex)
+    void SpawnProp(Vector3 floorPos, int layerIndex, PropSettings settings)
     {
-        if (propPool.Count == 0) return;
-        int randomIndex = Random.Range(0, propPool.Count);
-        PropSettings settings = propPool[randomIndex];
+        if (settings.prefab == null) return;
 
-        if (settings.currentSpawned < settings.maxAmount && settings.prefab != null)
+        Vector3 propPos = new Vector3(floorPos.x, settings.heightOffset, floorPos.z);
+
+        Quaternion rotation;
+        if (settings.prefab.name.Contains("Printer") || settings.prefab.name.Contains("Laser") || settings.prefab.name.Contains("Cutter"))
         {
-            if (Random.Range(0f, 100f) < settings.spawnChance)
-            {
-                Vector3 propPos = new Vector3(floorPos.x, settings.heightOffset, floorPos.z);
-
-                Quaternion rotation;
-                if (settings.prefab.name.Contains("Printer") || settings.prefab.name.Contains("Laser") || settings.prefab.name.Contains("Cutter"))
-                {
-                    rotation = Quaternion.Euler(0, 180, 0);
-                }
-                else
-                {
-                    rotation = Quaternion.Euler(0, Random.Range(0, 4) * 90, 0);
-                }
-
-                SpawnWithScale(settings.prefab, propPos, rotation, layerIndex);
-                settings.currentSpawned++;
-            }
+            rotation = Quaternion.Euler(0, 180, 0);
         }
+        else
+        {
+            rotation = Quaternion.Euler(0, Random.Range(0, 4) * 90, 0);
+        }
+
+        SpawnWithScale(settings.prefab, propPos, rotation, layerIndex);
     }
 
     void SpawnWithScale(GameObject prefab, Vector3 pos, Quaternion rot, int layer)
