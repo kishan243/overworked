@@ -76,7 +76,7 @@ public class LevelGenerator : MonoBehaviour
             navMeshSurfaces = GetComponentsInChildren<NavMeshSurface>();
             if (navMeshSurfaces.Length == 0)
             {
-                Debug.LogWarning("No NavMeshSurface found! Add one to LevelGenerator.");
+                Debug.LogWarning("No NavMeshSurface found. Add one to LevelGenerator.");
             }
         }
 
@@ -297,7 +297,7 @@ public class LevelGenerator : MonoBehaviour
             {
                 navMeshSurfaces[i].BuildNavMesh();
             }
-            Debug.Log("✅ NavMesh baked!");
+            Debug.Log("NavMesh baked.");
         }
 
         // Wait another frame for NavMesh to fully process
