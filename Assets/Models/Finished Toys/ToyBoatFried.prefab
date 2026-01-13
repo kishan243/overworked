@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7932927233604255122
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -7949136978043226412, guid: ff25a6b5cec2f30c5b5bc80d8ab5c550, type: 3}
+      propertyPath: m_Name
+      value: ToyBoatFried
+      objectReference: {fileID: 0}
+    - target: {fileID: -7731121341793783326, guid: ff25a6b5cec2f30c5b5bc80d8ab5c550, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 71927995517e6384e87360d69d4ab938, type: 2}
+    - target: {fileID: -5567817806752166354, guid: ff25a6b5cec2f30c5b5bc80d8ab5c550, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 71927995517e6384e87360d69d4ab938, type: 2}
+    - target: {fileID: -4231358593559082939, guid: ff25a6b5cec2f30c5b5bc80d8ab5c550, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 71927995517e6384e87360d69d4ab938, type: 2}
+    - target: {fileID: -3124914424127336872, guid: ff25a6b5cec2f30c5b5bc80d8ab5c550, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3124914424127336872, guid: ff25a6b5cec2f30c5b5bc80d8ab5c550, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3124914424127336872, guid: ff25a6b5cec2f30c5b5bc80d8ab5c550, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3124914424127336872, guid: ff25a6b5cec2f30c5b5bc80d8ab5c550, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3124914424127336872, guid: ff25a6b5cec2f30c5b5bc80d8ab5c550, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3124914424127336872, guid: ff25a6b5cec2f30c5b5bc80d8ab5c550, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3124914424127336872, guid: ff25a6b5cec2f30c5b5bc80d8ab5c550, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3124914424127336872, guid: ff25a6b5cec2f30c5b5bc80d8ab5c550, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3124914424127336872, guid: ff25a6b5cec2f30c5b5bc80d8ab5c550, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3124914424127336872, guid: ff25a6b5cec2f30c5b5bc80d8ab5c550, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -7949136978043226412, guid: ff25a6b5cec2f30c5b5bc80d8ab5c550, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4644496216535383119}
+  m_SourcePrefab: {fileID: 9199261849990390558, guid: ff25a6b5cec2f30c5b5bc80d8ab5c550, type: 3}
+--- !u!1 &9203551420799732550 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7949136978043226412, guid: ff25a6b5cec2f30c5b5bc80d8ab5c550, type: 3}
+  m_PrefabInstance: {fileID: 7932927233604255122}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4644496216535383119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9203551420799732550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86dc649edc5a87d47914517d77c46b67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFried: 1

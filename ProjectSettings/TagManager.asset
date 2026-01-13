@@ -3,15 +3,28 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - PLA
+  - Printer
+  - FinishedPrinter
+  - Toy
+  - Table
+  - Green
+  - Giftbox
+  - Trashcan
+  - 'EmptyTable '
+  - Leather
+  - LaserCutter
+  - 'ItemTable '
+  - ItemPreview
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Assets
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 
@@ -40,4 +53,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: title
+    uniqueID: 178500809
+    locked: 0
+  - name: Back
+    uniqueID: 540733195
+    locked: 0
+  - name: Front
+    uniqueID: 1177689883
     locked: 0

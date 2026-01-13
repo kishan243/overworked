@@ -1,0 +1,372 @@
+﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.AI;
+using Unity.AI.Navigation;
+
+public class LevelGenerator : MonoBehaviour
+{
+    [System.Serializable]
+    public class PropSettings
+    {
+        public GameObject prefab;
+        public int maxAmount = 5;
+        public float heightOffset = 0.0f;
+        [HideInInspector] public int currentSpawned = 0;
+    }
+
+    [Header("NavMesh Settings")]
+    [SerializeField] private NavMeshSurface[] navMeshSurfaces;
+
+    [Header("Out of Bounds Prop Settings")]
+    public GameObject OOBPrefab;
+    public int OOBExtension = 10;
+    public float OOBHeightMin = -0.2f;
+    public float OOBHeightMax = 0.0f;
+    public float OOBRiseSpeed = 15.0f;
+    public float riseDistance = 5.0f;
+
+    [Header("Player & AI & Special Prefabs")]
+    public GameObject playerPrefab;
+    public GameObject aiCompanionPrefab;
+    public GameObject giftBoxPrefab;
+    public int giftBoxCount = 3;
+    public GameObject trashcanPrefab;
+    public int trashcanCount = 2;
+
+    [Header("Prefabs")]
+    public GameObject floorPrefab;
+    public GameObject wallPrefab;
+    public List<PropSettings> propPool;
+    public Material concreteMaterial;
+
+    [Header("Animation Settings")]
+    public float spawnDelay = 0.02f;
+    public float scaleSpeed = 5.0f;
+    public float riseSpeed = 3.0f;
+
+    [Header("Floor Settings")]
+    public int length = 13;
+    public int width = 9;
+    public float tileSize = 1.0f;
+
+    [Header("Wall Settings")]
+    public float wallOffset = 0.5f;
+    public float wallHeightOffset = 0.5f;
+    public Vector3 wallRotationOffset = new Vector3(0, 90, 0);
+
+    [Header("Audio Sources")]
+    [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioSource sfxSource;
+    public AudioClip tileSpawnClip;
+    [Range(0, 1)] public float sfxVolume = 0.5f;
+
+    [Header("Generation Status")]
+    public bool isDoneGenerating = false;
+
+    private List<Vector2Int> giftBoxLocations = new List<Vector2Int>();
+    private List<Vector2Int> trashcanLocations = new List<Vector2Int>();
+    private List<Vector2Int> reservedTiles = new List<Vector2Int>();
+    private int tilesPlaced = 0;
+
+    void Start()
+    {
+        if (navMeshSurfaces == null || navMeshSurfaces.Length == 0)
+        {
+            navMeshSurfaces = GetComponentsInChildren<NavMeshSurface>();
+        }
+
+        if (musicSource != null)
+        {
+            musicSource.Stop();
+            musicSource.volume = 0;
+        }
+
+        GenerateStreet();
+        PrecalculateLevelLayout();
+        StartCoroutine(GenerateGrid());
+    }
+
+    void PrecalculateLevelLayout()
+    {
+        reservedTiles.Clear();
+        giftBoxLocations.Clear();
+        trashcanLocations.Clear();
+
+        for (int x = 0; x <= 1; x++)
+        {
+            for (int z = 0; z <= 1; z++)
+            {
+                reservedTiles.Add(new Vector2Int(x, z));
+            }
+        }
+
+        for (int x = 2; x <= 3; x++)
+        {
+            for (int z = 0; z <= 1; z++)
+            {
+                reservedTiles.Add(new Vector2Int(x, z));
+            }
+        }
+
+        PlaceSpecialProps(giftBoxCount, giftBoxLocations);
+        PlaceSpecialProps(trashcanCount, trashcanLocations);
+    }
+
+    void PlaceSpecialProps(int count, List<Vector2Int> locationList)
+    {
+        int placed = 0;
+        int attempts = 0;
+        while (placed < count && attempts < 100)
+        {
+            attempts++;
+            int rx = Random.Range(2, length - 2);
+            int rz = Random.Range(2, width - 2);
+            Vector2Int pos = new Vector2Int(rx, rz);
+
+            if (!IsAreaReserved(rx, rz))
+            {
+                locationList.Add(pos);
+                for (int x = -1; x <= 1; x++)
+                {
+                    for (int z = -1; z <= 1; z++)
+                    {
+                        reservedTiles.Add(new Vector2Int(rx + x, rz + z));
+                    }
+                }
+                placed++;
+            }
+        }
+    }
+
+    bool IsAreaReserved(int x, int z)
+    {
+        Vector2Int current = new Vector2Int(x, z);
+        foreach (var tile in reservedTiles)
+        {
+            if (tile == current) return true;
+        }
+        return false;
+    }
+
+    void GenerateStreet()
+    {
+        GameObject concrete = GameObject.CreatePrimitive(PrimitiveType.Plane);
+        concrete.name = "Concrete Street";
+        concrete.transform.parent = this.transform;
+        concrete.transform.localPosition = new Vector3(4.5f, -4.2f, 10);
+        concrete.transform.localScale = new Vector3(15, 1f, 15);
+        concrete.layer = LayerMask.NameToLayer("Assets");
+        Renderer concreteRenderer = concrete.GetComponent<Renderer>();
+
+        concreteRenderer.receiveShadows = false;
+        if (concreteMaterial != null) concrete.GetComponent<Renderer>().material = concreteMaterial;
+    }
+
+    IEnumerator GenerateGrid()
+    {
+        Quaternion rotationOffset = Quaternion.Euler(wallRotationOffset);
+        int layerIndex = LayerMask.NameToLayer("Assets");
+        WaitForSeconds delay = new WaitForSeconds(spawnDelay);
+
+        if (OOBPrefab != null)
+        {
+            List<Vector2Int> OOBCoords = new List<Vector2Int>();
+            for (int x = -OOBExtension; x < length + OOBExtension; x++)
+            {
+                for (int z = -OOBExtension; z < width + OOBExtension; z++)
+                {
+                    bool isPlayableArea = (x >= 0 && x < length && z >= 0 && z < width);
+                    if (!isPlayableArea)
+                    {
+                        OOBCoords.Add(new Vector2Int(x, z));
+                    }
+                }
+            }
+
+            Vector2 centerPoint = new Vector2((length - 1) / 2f, (width - 1) / 2f);
+            OOBCoords.Sort((a, b) =>
+                Vector2.Distance(new Vector2(a.x, a.y), centerPoint).CompareTo(
+                Vector2.Distance(new Vector2(b.x, b.y), centerPoint)));
+
+            foreach (var coord in OOBCoords)
+            {
+                float targetHeight = Random.Range(OOBHeightMin, OOBHeightMax);
+                Vector3 targetPos = new Vector3(coord.x * tileSize, targetHeight, coord.y * tileSize);
+
+                GameObject obj = Instantiate(OOBPrefab, targetPos - Vector3.up * riseDistance, Quaternion.identity, transform);
+                obj.layer = layerIndex;
+
+                tilesPlaced++;
+
+                if (tilesPlaced % 5 == 0)
+                {
+                    if (sfxSource != null && tileSpawnClip != null)
+                    {
+                        sfxSource.pitch = Random.Range(0.9f, 1.1f);
+                        sfxSource.PlayOneShot(tileSpawnClip, sfxVolume * 0.5f);
+                    }
+                }
+
+                StartCoroutine(RiseUpLerp(obj, targetPos, OOBRiseSpeed));
+                yield return delay;
+            }
+        }
+
+        List<Vector2Int> availableTiles = new List<Vector2Int>();
+        for (int x = 1; x < length - 1; x++) 
+        {
+            for (int z = 1; z < width - 1; z++) 
+            {
+                if (!IsAreaReserved(x, z) &&
+                    !giftBoxLocations.Contains(new Vector2Int(x, z)) &&
+                    !trashcanLocations.Contains(new Vector2Int(x, z)))
+                {
+                    availableTiles.Add(new Vector2Int(x, z));
+                }
+            }
+        }
+
+        for (int i = availableTiles.Count - 1; i > 0; i--)
+        {
+            int randomIndex = Random.Range(0, i + 1);
+            Vector2Int temp = availableTiles[i];
+            availableTiles[i] = availableTiles[randomIndex];
+            availableTiles[randomIndex] = temp;
+        }
+
+        Dictionary<Vector2Int, PropSettings> propAssignments = new Dictionary<Vector2Int, PropSettings>();
+        int tileIndex = 0;
+        foreach (PropSettings settings in propPool)
+        {
+            if (settings.prefab == null) continue;
+
+            for (int i = 0; i < settings.maxAmount && tileIndex < availableTiles.Count; i++)
+            {
+                propAssignments[availableTiles[tileIndex]] = settings;
+                tileIndex++;
+            }
+        }
+
+        for (int x = 0; x < length; x++)
+        {
+            for (int z = 0; z < width; z++)
+            {
+                Vector3 pos = new Vector3(x * tileSize, 0, z * tileSize);
+                SpawnWithScale(floorPrefab, pos, Quaternion.identity, layerIndex);
+
+                if (z == 0) SpawnWithScale(wallPrefab, pos + new Vector3(0, wallHeightOffset, -wallOffset), Quaternion.Euler(0, 0, 0) * rotationOffset, layerIndex);
+                if (z == width - 1) SpawnWithScale(wallPrefab, pos + new Vector3(0, wallHeightOffset, wallOffset), Quaternion.Euler(0, 180, 0) * rotationOffset, layerIndex);
+                if (x == 0) SpawnWithScale(wallPrefab, pos + new Vector3(-wallOffset, wallHeightOffset, 0), Quaternion.Euler(0, 90, 0) * rotationOffset, layerIndex);
+                if (x == length - 1) SpawnWithScale(wallPrefab, pos + new Vector3(wallOffset, wallHeightOffset, 0), Quaternion.Euler(0, 270, 0) * rotationOffset, layerIndex);
+
+                Vector2Int currentCoord = new Vector2Int(x, z);
+
+                if (giftBoxLocations.Contains(currentCoord))
+                    SpawnWithScale(giftBoxPrefab, pos, Quaternion.identity, layerIndex);
+                else if (trashcanLocations.Contains(currentCoord))
+                    SpawnWithScale(trashcanPrefab, pos, Quaternion.identity, layerIndex);
+                else if (propAssignments.ContainsKey(currentCoord))
+                    SpawnProp(pos, layerIndex, propAssignments[currentCoord]);
+
+                yield return delay;
+            }
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        if (navMeshSurfaces != null && navMeshSurfaces.Length > 0)
+        {
+            for (int i = 0; i < navMeshSurfaces.Length; i++)
+            {
+                navMeshSurfaces[i].BuildNavMesh();
+            }
+        }
+
+        yield return new WaitForSeconds(0.2f);
+
+        if (playerPrefab != null)
+        {
+            Instantiate(playerPrefab, new Vector3(0.5f, 0.1f, 0.5f), Quaternion.identity);
+        }
+
+        if (aiCompanionPrefab != null)
+        {
+            Instantiate(aiCompanionPrefab, new Vector3(2.5f, 0.1f, 0.5f), Quaternion.identity);
+        }
+
+        isDoneGenerating = true;
+
+        if (musicSource != null)
+        {
+            musicSource.Play();
+            StartCoroutine(MusicFader.FadeIn(musicSource, 3f, 0.3f));
+        }
+    }
+
+    void SpawnProp(Vector3 floorPos, int layerIndex, PropSettings settings)
+    {
+        if (settings.prefab == null) return;
+
+        Vector3 propPos = new Vector3(floorPos.x, settings.heightOffset, floorPos.z);
+
+        Quaternion rotation;
+        if (settings.prefab.name.Contains("Printer") || settings.prefab.name.Contains("Laser") || settings.prefab.name.Contains("Cutter"))
+        {
+            rotation = Quaternion.Euler(0, 180, 0);
+        }
+        else
+        {
+            rotation = Quaternion.Euler(0, Random.Range(0, 4) * 90, 0);
+        }
+
+        SpawnWithScale(settings.prefab, propPos, rotation, layerIndex);
+    }
+
+    void SpawnWithScale(GameObject prefab, Vector3 pos, Quaternion rot, int layer)
+    {
+        if (prefab == null) return;
+        GameObject obj = Instantiate(prefab, pos, rot, transform);
+        obj.layer = layer;
+
+        tilesPlaced++;
+
+        if (tilesPlaced % 5 == 0)
+        {
+            if (sfxSource != null && tileSpawnClip != null)
+            {
+                sfxSource.pitch = Random.Range(0.9f, 1.1f);
+                sfxSource.PlayOneShot(tileSpawnClip, sfxVolume);
+            }
+        }
+
+        StartCoroutine(ScaleUpLerp(obj));
+    }
+
+    IEnumerator ScaleUpLerp(GameObject target)
+    {
+        Vector3 targetScale = target.transform.localScale;
+        target.transform.localScale = Vector3.zero;
+        float t = 0;
+        while (t < 1.0f)
+        {
+            t += Time.deltaTime * scaleSpeed;
+            target.transform.localScale = Vector3.Lerp(Vector3.zero, targetScale, t);
+            yield return null;
+        }
+        target.transform.localScale = targetScale;
+    }
+
+    IEnumerator RiseUpLerp(GameObject target, Vector3 targetPos, float speed)
+    {
+        Vector3 startPos = target.transform.position;
+        float t = 0;
+        while (t < 1.0f)
+        {
+            t += Time.deltaTime * speed;
+            target.transform.position = Vector3.Lerp(startPos, targetPos, t);
+            yield return null;
+        }
+        target.transform.position = targetPos;
+    }
+}
