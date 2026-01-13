@@ -15,7 +15,7 @@ public class ItemPreviewUI : MonoBehaviour
     public Vector3 cameraOffset = new Vector3(0, 0, -3f);
     public float cameraSize = 1.5f;
 
-    [Header("Item Sprites - Assign All Possible Items Here")]
+    [Header("Item Sprites")]
     public Sprite blueToySprite;
     public Sprite yellowToySprite;
     public Sprite greenToySprite;
@@ -33,7 +33,7 @@ public class ItemPreviewUI : MonoBehaviour
 
     [Header("Use Sprites Instead of 3D?")]
     public bool useSpriteMode = false;
-    public Image spriteImage; // Assign if using sprite mode
+    public Image spriteImage;
 
     private Camera renderCamera;
     private RenderTexture renderTexture;
@@ -60,14 +60,8 @@ public class ItemPreviewUI : MonoBehaviour
             renderCamera.enabled = true;
         }
 
-        if (borderRect != null)
-        {
-            borderImage = borderRect.GetComponent<Image>();
-        }
-
+        if (borderRect != null) borderImage = borderRect.GetComponent<Image>();
         HidePreview();
-
-        Debug.Log($"ItemPreviewUI Setup - Sprite Mode: {useSpriteMode}, Sprite Image: {spriteImage != null}, Border: {borderImage != null}");
     }
 
     public void ShowPreview(GameObject prefab, bool isHeld)
@@ -80,10 +74,7 @@ public class ItemPreviewUI : MonoBehaviour
 
         if (useSpriteMode && spriteImage != null)
         {
-            // Sprite mode
             Sprite sprite = GetSpriteForItem(prefab.name);
-
-            Debug.Log($"ShowPreview: {prefab.name}, Found sprite: {sprite != null}, IsHeld: {isHeld}");
 
             if (sprite != null)
             {
@@ -100,17 +91,12 @@ public class ItemPreviewUI : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning($"No sprite found for: {prefab.name}");
                 HidePreview();
             }
         }
         else
         {
-            // 3D mode (original)
-            if (currentPreviewObject != null)
-            {
-                Destroy(currentPreviewObject);
-            }
+            if (currentPreviewObject != null) Destroy(currentPreviewObject);
 
             currentPreviewObject = Instantiate(prefab);
             currentPreviewObject.transform.position = renderCamera.transform.position + cameraOffset;
@@ -127,10 +113,7 @@ public class ItemPreviewUI : MonoBehaviour
             RotatePreview rotator = currentPreviewObject.AddComponent<RotatePreview>();
             rotator.rotationSpeed = 30f;
 
-            if (borderImage != null)
-            {
-                borderImage.color = isHeld ? heldColor : nearbyColor;
-            }
+            if (borderImage != null) borderImage.color = isHeld ? heldColor : nearbyColor;
 
             previewImage.gameObject.SetActive(true);
             if (borderRect != null) borderRect.gameObject.SetActive(true);
@@ -160,33 +143,26 @@ public class ItemPreviewUI : MonoBehaviour
             borderImage.enabled = false;
             borderImage.gameObject.SetActive(false);
         }
-        if (borderRect != null)
-        {
-            borderRect.gameObject.SetActive(false);
-        }
+        if (borderRect != null) borderRect.gameObject.SetActive(false);
     }
 
     Sprite GetSpriteForItem(string itemName)
     {
         string name = itemName.ToLower().Replace("(clone)", "").Trim();
 
-        // Toys
-        if (name.Contains("ToyBoat")) return blueToySprite;
-        if (name.Contains("ToySteamroller")) return yellowToySprite;
-        if (name.Contains("ToyBricks")) return greenToySprite;
+        if (name.Contains("toyboat")) return blueToySprite;
+        if (name.Contains("toysteamroller")) return yellowToySprite;
+        if (name.Contains("toybricks")) return greenToySprite;
 
-        // PLA
         if (name.Contains("pla") && name.Contains("blue")) return bluePLASprite;
         if (name.Contains("pla") && name.Contains("yellow")) return yellowPLASprite;
         if (name.Contains("pla") && name.Contains("green")) return greenPLASprite;
 
-        // Leather
         if (name.Contains("brown") && name.Contains("leather")) return brownLeatherSprite;
         if (name.Contains("purple") && name.Contains("leather")) return purpleLeatherSprite;
         if (name.Contains("silver") && name.Contains("leather")) return silverLeatherSprite;
         if (name.Contains("gold") && name.Contains("leather")) return yellowLeatherSprite;
 
-        // Finished items
         if (name.Contains("football")) return footballSprite;
         if (name.Contains("hat")) return hatSprite;
         if (name.Contains("backpack")) return backpackSprite;
@@ -197,21 +173,12 @@ public class ItemPreviewUI : MonoBehaviour
     void SetLayerRecursively(GameObject obj, int layer)
     {
         obj.layer = layer;
-        foreach (Transform child in obj.transform)
-        {
-            SetLayerRecursively(child.gameObject, layer);
-        }
+        foreach (Transform child in obj.transform) SetLayerRecursively(child.gameObject, layer);
     }
 
     void OnDestroy()
     {
-        if (currentPreviewObject != null)
-        {
-            Destroy(currentPreviewObject);
-        }
-        if (renderTexture != null)
-        {
-            renderTexture.Release();
-        }
+        if (currentPreviewObject != null) Destroy(currentPreviewObject);
+        if (renderTexture != null) renderTexture.Release();
     }
 }

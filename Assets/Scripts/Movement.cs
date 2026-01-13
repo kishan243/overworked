@@ -30,13 +30,13 @@ public class Movement : MonoBehaviour
     private bool heldItemIsToy = false;
     private bool heldItemIsLeather = false;
     private TextMeshProUGUI interactionText;
-    private ItemPreviewUI itemPreviewUI; // Auto-found, no manual assignment needed
+    private ItemPreviewUI itemPreviewUI;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-
         controller = GetComponent<CharacterController>();
+
         if (controller == null)
         {
             controller = gameObject.AddComponent<CharacterController>();
@@ -46,11 +46,7 @@ public class Movement : MonoBehaviour
         }
 
         GameObject textObj = GameObject.Find("InteractionText");
-
-        if (textObj != null)
-        {
-            interactionText = textObj.GetComponent<TextMeshProUGUI>();
-        }
+        if (textObj != null) interactionText = textObj.GetComponent<TextMeshProUGUI>();
 
         if (particlePrefab != null)
         {
@@ -60,12 +56,7 @@ public class Movement : MonoBehaviour
             movementParticles = pObj.GetComponent<ParticleSystem>();
         }
 
-        // Auto-find ItemPreviewUI in the scene
         itemPreviewUI = FindObjectOfType<ItemPreviewUI>();
-        if (itemPreviewUI == null)
-        {
-            Debug.LogWarning("ItemPreviewUI not found in scene. Preview feature will be disabled.");
-        }
     }
 
     void Update()
@@ -80,10 +71,7 @@ public class Movement : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(moveDir);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-            if (movementParticles != null && !movementParticles.isEmitting)
-            {
-                movementParticles.Play();
-            }
+            if (movementParticles != null && !movementParticles.isEmitting) movementParticles.Play();
 
             footstepTimer -= Time.deltaTime;
             if (footstepTimer <= 0f)
@@ -95,36 +83,26 @@ public class Movement : MonoBehaviour
         else
         {
             footstepTimer = 0f;
-
-            if (movementParticles != null && movementParticles.isEmitting)
-            {
-                movementParticles.Stop();
-            }
+            if (movementParticles != null && movementParticles.isEmitting) movementParticles.Stop();
         }
 
         controller.Move(Vector3.down * 9.81f * Time.deltaTime);
-
         UpdateInteractionUI();
         UpdateItemPreview();
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Interact();
-        }
+        if (Input.GetKeyDown(KeyCode.Space)) Interact();
     }
 
     void UpdateItemPreview()
     {
         if (itemPreviewUI == null) return;
 
-        // If holding an item, show it as "held"
         if (heldItem != null)
         {
             itemPreviewUI.ShowPreview(heldItem, true);
             return;
         }
 
-        // Otherwise check what's nearby to pick up
         GameObject closestFinished = FindClosestByTag("FinishedPrinter");
         if (closestFinished != null)
         {
@@ -146,8 +124,7 @@ public class Movement : MonoBehaviour
             ItemData data = closestPLA.GetComponent<ItemData>();
             if (data != null)
             {
-                GameObject prefab = data.itemPrefab != null ? data.itemPrefab : closestPLA;
-                itemPreviewUI.ShowPreview(prefab, false);
+                itemPreviewUI.ShowPreview(data.itemPrefab != null ? data.itemPrefab : closestPLA, false);
                 return;
             }
         }
@@ -158,8 +135,7 @@ public class Movement : MonoBehaviour
             LeatherData data = closestLeather.GetComponent<LeatherData>();
             if (data != null)
             {
-                GameObject prefab = data.leatherPrefab != null ? data.leatherPrefab : closestLeather;
-                itemPreviewUI.ShowPreview(prefab, false);
+                itemPreviewUI.ShowPreview(data.leatherPrefab != null ? data.leatherPrefab : closestLeather, false);
                 return;
             }
         }
@@ -179,7 +155,6 @@ public class Movement : MonoBehaviour
             }
         }
 
-        // Nothing nearby, hide preview
         itemPreviewUI.HidePreview();
     }
 
@@ -189,14 +164,9 @@ public class Movement : MonoBehaviour
 
         if (heldItem == null)
         {
-            GameObject closestFinished = FindClosestByTag("FinishedPrinter");
-            if (closestFinished != null) { interactionText.text = "Press SPACE to pick up toy"; return; }
-
-            GameObject closestPLA = FindClosestByTag("PLA");
-            if (closestPLA != null) { interactionText.text = "Press SPACE to pick up PLA"; return; }
-
-            GameObject closestLeather = FindClosestByTag("Leather");
-            if (closestLeather != null) { interactionText.text = "Press SPACE to pick up leather"; return; }
+            if (FindClosestByTag("FinishedPrinter") != null) { interactionText.text = "Press SPACE to pick up toy"; return; }
+            if (FindClosestByTag("PLA") != null) { interactionText.text = "Press SPACE to pick up PLA"; return; }
+            if (FindClosestByTag("Leather") != null) { interactionText.text = "Press SPACE to pick up leather"; return; }
 
             GameObject closestPrinter = FindClosestByTag("Printer");
             if (closestPrinter != null)
@@ -211,35 +181,17 @@ public class Movement : MonoBehaviour
                 LaserCutterLogic logic = closestCutter.GetComponent<LaserCutterLogic>();
                 if (logic != null)
                 {
-                    if (logic.IsCutting())
-                    {
-                        interactionText.text = "Cutting...";
-                        return;
-                    }
-                    else if (logic.IsFinished())
-                    {
-                        interactionText.text = "Press SPACE to pick up item";
-                        return;
-                    }
-                    else if (logic.CanStartCutting())
-                    {
-                        interactionText.text = "Press J to cut";
-                        return;
-                    }
-                    else if (logic.CanLoadLeather())
-                    {
-                        interactionText.text = "Add leather to slots";
-                        return;
-                    }
+                    if (logic.IsCutting()) { interactionText.text = "Cutting..."; return; }
+                    if (logic.IsFinished()) { interactionText.text = "Press SPACE to pick up item"; return; }
+                    if (logic.CanStartCutting()) { interactionText.text = "Press J to cut"; return; }
+                    if (logic.CanLoadLeather()) { interactionText.text = "Add leather to slots"; return; }
                 }
             }
-
             interactionText.text = "";
         }
         else
         {
-            GameObject closestPrinter = FindClosestByTag("Printer");
-            if (closestPrinter != null && !heldItemIsToy && !heldItemIsLeather)
+            if (FindClosestByTag("Printer") != null && !heldItemIsToy && !heldItemIsLeather)
             {
                 interactionText.text = "Press SPACE to load printer";
                 return;
@@ -256,8 +208,7 @@ public class Movement : MonoBehaviour
                 }
             }
 
-            GameObject closestGiftbox = FindClosestByTag("Giftbox");
-            if (closestGiftbox != null && heldItemIsToy)
+            if (FindClosestByTag("Giftbox") != null && heldItemIsToy)
             {
                 FriedToyMarker friedMarker = heldItem.GetComponent<FriedToyMarker>();
                 if (friedMarker != null && friedMarker.isFried)
@@ -281,8 +232,7 @@ public class Movement : MonoBehaviour
                 }
             }
 
-            GameObject closestTrashcan = FindClosestByTag("Trashcan");
-            if (closestTrashcan != null)
+            if (FindClosestByTag("Trashcan") != null)
             {
                 interactionText.text = "Press SPACE to trash item";
                 return;
@@ -319,12 +269,7 @@ public class Movement : MonoBehaviour
 
     void Interact()
     {
-        bool isNearSomething = GetClosestInteractable() != null;
-
-        if (isNearSomething)
-        {
-            PlayRandomSound(interactionSounds);
-        }
+        if (GetClosestInteractable() != null) PlayRandomSound(interactionSounds);
 
         if (heldItem == null)
         {
@@ -398,10 +343,7 @@ public class Movement : MonoBehaviour
         GameObject toyPrefab = logic.GetToyPrefab();
         if (toyPrefab == null) return;
 
-        if (logic.GetLoadedPLAType().HasValue)
-        {
-            heldItemType = logic.GetLoadedPLAType().Value;
-        }
+        if (logic.GetLoadedPLAType().HasValue) heldItemType = logic.GetLoadedPLAType().Value;
 
         heldItem = Instantiate(toyPrefab, leftHand.position, leftHand.rotation, leftHand);
         heldItem.tag = "Untagged";
@@ -411,21 +353,11 @@ public class Movement : MonoBehaviour
         if (logic.IsFried())
         {
             FriedToyMarker marker = heldItem.GetComponent<FriedToyMarker>();
-            if (marker == null)
-            {
-                marker = heldItem.AddComponent<FriedToyMarker>();
-            }
+            if (marker == null) marker = heldItem.AddComponent<FriedToyMarker>();
             marker.isFried = true;
         }
 
-        if (heldItemType == ItemData.ItemType.GreenPLA)
-        {
-            heldItem.transform.localScale = Vector3.one * 0.3f;
-        }
-        else
-        {
-            heldItem.transform.localScale = Vector3.one * 2.5f;
-        }
+        heldItem.transform.localScale = heldItemType == ItemData.ItemType.GreenPLA ? Vector3.one * 0.3f : Vector3.one * 2.5f;
 
         Collider col = heldItem.GetComponent<Collider>();
         if (col != null) col.enabled = false;
@@ -501,14 +433,7 @@ public class Movement : MonoBehaviour
         heldItemIsLeather = false;
 
         string itemName = itemPrefab.name.ToLower();
-        if (itemName.Contains("hat") || itemName.Contains("backpack"))
-        {
-            heldItem.transform.localScale = Vector3.one * 3.5f;
-        }
-        else
-        {
-            heldItem.transform.localScale = Vector3.one * 2.0f;
-        }
+        heldItem.transform.localScale = (itemName.Contains("hat") || itemName.Contains("backpack")) ? Vector3.one * 3.5f : Vector3.one * 2.0f;
 
         Collider col = heldItem.GetComponent<Collider>();
         if (col != null) col.enabled = false;
@@ -554,28 +479,15 @@ public class Movement : MonoBehaviour
         RecipeManager recipeManager = FindObjectOfType<RecipeManager>();
         string toyName = GetToyName();
 
-        // Get points from recipe completion
         int pointsEarned = 0;
-        if (recipeManager != null)
-        {
-            pointsEarned = recipeManager.CompleteRecipe(toyName);
-        }
+        if (recipeManager != null) pointsEarned = recipeManager.CompleteRecipe(toyName);
 
-        // Add points to Points system
         Points pointsSystem = FindObjectOfType<Points>();
-        if (pointsSystem != null)
-        {
-            pointsSystem.AddPoints(pointsEarned);
-        }
+        if (pointsSystem != null) pointsSystem.AddPoints(pointsEarned);
 
-        // Update quota
         Quota quota = FindObjectOfType<Quota>();
-        if (quota != null)
-        {
-            quota.QuotaProgressOne(1);
-        }
+        if (quota != null) quota.QuotaProgressOne(1);
 
-        // Destroy the toy/item
         Destroy(heldItem);
         heldItem = null;
         heldItemIsToy = false;
@@ -605,11 +517,9 @@ public class Movement : MonoBehaviour
     string GetItemName(GameObject item)
     {
         string name = item.name.Replace("(Clone)", "").Trim();
-
         if (name.ToLower().Contains("football")) return "Football";
         if (name.ToLower().Contains("backpack")) return "Backpack";
         if (name.ToLower().Contains("hat")) return "Hat";
-
         return name;
     }
 
@@ -623,10 +533,7 @@ public class Movement : MonoBehaviour
 
     public void PlaySound(AudioClip clip)
     {
-        if (clip != null && audioSource != null)
-        {
-            audioSource.PlayOneShot(clip);
-        }
+        if (clip != null && audioSource != null) audioSource.PlayOneShot(clip);
     }
 
     public void PlayRandomSound(List<AudioClip> soundEffectsList)
@@ -641,7 +548,6 @@ public class Movement : MonoBehaviour
     GameObject GetClosestInteractable()
     {
         string[] tags = { "FinishedPrinter", "PLA", "Leather", "LaserCutter", "Printer", "Giftbox", "Trashcan" };
-
         foreach (string tag in tags)
         {
             GameObject obj = FindClosestByTag(tag);

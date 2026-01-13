@@ -12,18 +12,13 @@ public class AICompanion : MonoBehaviour
     public float interactRange = 3.5f;
     public float moveSpeed = 5f;
     public float checkInterval = 2f;
-    public float stepTimeout = 20f; // Increased timeout
-    public float stuckThreshold = 0.3f; // If AI moves less than this in 3 seconds, it's stuck
+    public float stepTimeout = 20f;
+    public float stuckThreshold = 0.3f;
 
     [Header("Agent Mode")]
     public AgentMode currentMode = AgentMode.Manual;
 
-    public enum AgentMode
-    {
-        PLAOnly,      // Only does PLA/printer toys
-        LeatherOnly,  // Only does leather/cutter toys
-        Manual        // User assigns specific recipe
-    }
+    public enum AgentMode { PLAOnly, LeatherOnly, Manual }
 
     private NavMeshAgent agent;
     private GameObject heldItem;
@@ -33,21 +28,17 @@ public class AICompanion : MonoBehaviour
     private ItemData.ItemType heldPLAType;
     private LeatherData.LeatherType heldLeatherType;
 
-    // State machine
     private enum State { Idle, Working }
     private State currentState = State.Idle;
     private float idleTimer = 0f;
     private float stepTimer = 0f;
 
-    // Current task
     private string currentRecipeName = "";
     private int currentStep = 0;
 
-    // Manual assignment
     public int selectedRecipeIndex = -1;
     private string manuallyAssignedRecipe = "";
 
-    // Stuck detection
     private Vector3 lastPosition;
     private float stuckTimer = 0f;
     private bool isGoingToTrash = false;
@@ -57,7 +48,6 @@ public class AICompanion : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         if (agent == null)
         {
-            Debug.LogError("❌ AICompanion: No NavMeshAgent!");
             enabled = false;
             return;
         }
@@ -69,7 +59,6 @@ public class AICompanion : MonoBehaviour
         recipeManager = FindObjectOfType<RecipeManager>();
         if (recipeManager == null)
         {
-            Debug.LogError("❌ AICompanion: No RecipeManager!");
             enabled = false;
             return;
         }
@@ -85,27 +74,17 @@ public class AICompanion : MonoBehaviour
         currentState = State.Idle;
         idleTimer = checkInterval;
         lastPosition = transform.position;
-
-        Debug.Log($"🤖 AI Companion Ready! Mode: {currentMode}");
     }
 
     void Update()
     {
         if (agent == null || !agent.isOnNavMesh) return;
 
-        // ALWAYS check for mode switching first (NEW - THIS IS WHAT WAS MISSING!)
         HandleModeSwitching();
-
-        // Handle manual assignment input
         HandleManualAssignmentInput();
 
-        // Check if AI is stuck while holding an item
-        if (currentState == State.Working && heldItem != null)
-        {
-            DetectStuck();
-        }
+        if (currentState == State.Working && heldItem != null) DetectStuck();
 
-        // If going to trash, handle that first
         if (isGoingToTrash)
         {
             HandleTrashItem();
@@ -127,11 +106,8 @@ public class AICompanion : MonoBehaviour
 
             if (stepTimer > stepTimeout)
             {
-                Debug.LogWarning($"⏱️ AI timeout on step {currentStep}");
-
                 if (heldItem != null)
                 {
-                    Debug.Log("🗑️ AI timed out with item, going to trash");
                     isGoingToTrash = true;
                     return;
                 }
@@ -146,66 +122,40 @@ public class AICompanion : MonoBehaviour
 
     void HandleModeSwitching()
     {
-        // P = PLA Only Mode
         if (Input.GetKeyDown(KeyCode.P))
         {
-            // Only switch if idle OR cancel current task
-            if (currentState == State.Working)
-            {
-                Debug.Log("🛑 Canceling current task to switch modes");
-                ResetTask();
-            }
-
+            if (currentState == State.Working) ResetTask();
             currentMode = AgentMode.PLAOnly;
             manuallyAssignedRecipe = "";
             selectedRecipeIndex = -1;
-            Debug.Log("🔵 AI Mode: PLA TOYS ONLY");
         }
 
-        // O = Leather Only Mode
         if (Input.GetKeyDown(KeyCode.O))
         {
-            if (currentState == State.Working)
-            {
-                Debug.Log("🛑 Canceling current task to switch modes");
-                ResetTask();
-            }
-
+            if (currentState == State.Working) ResetTask();
             currentMode = AgentMode.LeatherOnly;
             manuallyAssignedRecipe = "";
             selectedRecipeIndex = -1;
-            Debug.Log("🟡 AI Mode: LEATHER TOYS ONLY");
         }
 
-        // I = Manual Command Mode
         if (Input.GetKeyDown(KeyCode.I))
         {
-            if (currentState == State.Working)
-            {
-                Debug.Log("🛑 Canceling current task to switch modes");
-                ResetTask();
-            }
-
+            if (currentState == State.Working) ResetTask();
             currentMode = AgentMode.Manual;
             manuallyAssignedRecipe = "";
             selectedRecipeIndex = -1;
-            Debug.Log("🟢 AI Mode: MANUAL COMMAND - Press 1-4 to select recipe, then K to assign");
         }
     }
 
     void DetectStuck()
     {
-        // Check if AI hasn't moved much
         float distanceMoved = Vector3.Distance(transform.position, lastPosition);
 
         if (distanceMoved < stuckThreshold)
         {
             stuckTimer += Time.deltaTime;
-
-            // If stuck for 3 seconds, go to trash
             if (stuckTimer > 3f)
             {
-                Debug.LogWarning("⚠️ AI is stuck! Going to trash item.");
                 isGoingToTrash = true;
                 stuckTimer = 0f;
             }
@@ -223,8 +173,6 @@ public class AICompanion : MonoBehaviour
 
         if (trashcan == null)
         {
-            Debug.LogWarning("❌ No trashcan found!");
-            // Just destroy the item and reset
             if (heldItem != null) Destroy(heldItem);
             heldItem = null;
             holdingPLA = false;
@@ -239,10 +187,8 @@ public class AICompanion : MonoBehaviour
         {
             agent.isStopped = true;
 
-            // Trash the item
             if (heldItem != null)
             {
-                Debug.Log("🗑️ AI trashed item");
                 Destroy(heldItem);
                 heldItem = null;
                 holdingPLA = false;
@@ -263,45 +209,24 @@ public class AICompanion : MonoBehaviour
     void HandleManualAssignmentInput()
     {
         if (currentMode != AgentMode.Manual) return;
-        if (currentState == State.Working) return; // Don't allow changes while working
+        if (currentState == State.Working) return;
 
         List<Recipe> availableRecipes = GetActiveRecipes();
         if (availableRecipes.Count == 0) return;
 
-        // Select recipe with 1, 2, 3, 4
-        if (Input.GetKeyDown(KeyCode.Alpha1) && availableRecipes.Count >= 1)
-        {
-            selectedRecipeIndex = 0;
-            Debug.Log($"📋 [1] Selected Recipe: {availableRecipes[0].toyName}");
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && availableRecipes.Count >= 2)
-        {
-            selectedRecipeIndex = 1;
-            Debug.Log($"📋 [2] Selected Recipe: {availableRecipes[1].toyName}");
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3) && availableRecipes.Count >= 3)
-        {
-            selectedRecipeIndex = 2;
-            Debug.Log($"📋 [3] Selected Recipe: {availableRecipes[2].toyName}");
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4) && availableRecipes.Count >= 4)
-        {
-            selectedRecipeIndex = 3;
-            Debug.Log($"📋 [4] Selected Recipe: {availableRecipes[3].toyName}");
-        }
+        if (Input.GetKeyDown(KeyCode.Alpha1) && availableRecipes.Count >= 1) selectedRecipeIndex = 0;
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && availableRecipes.Count >= 2) selectedRecipeIndex = 1;
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && availableRecipes.Count >= 3) selectedRecipeIndex = 2;
+        else if (Input.GetKeyDown(KeyCode.Alpha4) && availableRecipes.Count >= 4) selectedRecipeIndex = 3;
 
-        // K = Assign the selected recipe to AI
         if (Input.GetKeyDown(KeyCode.K) && selectedRecipeIndex >= 0 && selectedRecipeIndex < availableRecipes.Count)
         {
             manuallyAssignedRecipe = availableRecipes[selectedRecipeIndex].toyName;
-            Debug.Log($"✅ ASSIGNED AI TO: {manuallyAssignedRecipe}");
-
-            // Immediately start working on it
             currentRecipeName = manuallyAssignedRecipe;
             currentStep = 0;
             stepTimer = 0f;
             currentState = State.Working;
-            selectedRecipeIndex = -1; // Reset selection after assignment
+            selectedRecipeIndex = -1;
         }
     }
 
@@ -315,8 +240,6 @@ public class AICompanion : MonoBehaviour
         currentStep = 0;
         stepTimer = 0f;
         currentState = State.Working;
-
-        Debug.Log($"🎯 AI Starting: {currentRecipeName} (Mode: {currentMode})");
     }
 
     List<Recipe> GetFilteredRecipes()
@@ -331,19 +254,14 @@ public class AICompanion : MonoBehaviour
             switch (currentMode)
             {
                 case AgentMode.PLAOnly:
-                    // Only PLA/printer tasks
-                    if (IsPrinterTask(lower))
-                        filtered.Add(recipe);
+                    if (IsPrinterTask(lower)) filtered.Add(recipe);
                     break;
 
                 case AgentMode.LeatherOnly:
-                    // Only leather/cutter tasks
-                    if (!IsPrinterTask(lower))
-                        filtered.Add(recipe);
+                    if (!IsPrinterTask(lower)) filtered.Add(recipe);
                     break;
 
                 case AgentMode.Manual:
-                    // Only work on manually assigned recipe
                     if (!string.IsNullOrEmpty(manuallyAssignedRecipe) &&
                         recipe.toyName.Equals(manuallyAssignedRecipe, System.StringComparison.OrdinalIgnoreCase))
                     {
@@ -368,36 +286,20 @@ public class AICompanion : MonoBehaviour
     {
         if (!IsRecipeActive(currentRecipeName))
         {
-            Debug.Log($"⚠️ Recipe {currentRecipeName} completed by someone else");
-
-            // If manual mode, clear the assignment
-            if (currentMode == AgentMode.Manual)
-            {
-                manuallyAssignedRecipe = "";
-            }
-
+            if (currentMode == AgentMode.Manual) manuallyAssignedRecipe = "";
             ResetTask();
             return;
         }
 
-        string lower = currentRecipeName.ToLower();
-
-        if (IsPrinterTask(lower))
-        {
-            ExecutePrinterTask();
-        }
-        else
-        {
-            ExecuteCutterTask();
-        }
+        if (IsPrinterTask(currentRecipeName.ToLower())) ExecutePrinterTask();
+        else ExecuteCutterTask();
     }
 
-    // ==================== PRINTER TASK ====================
     void ExecutePrinterTask()
     {
         switch (currentStep)
         {
-            case 0: // Pick up PLA
+            case 0:
                 if (holdingPLA)
                 {
                     currentStep = 1;
@@ -410,7 +312,6 @@ public class AICompanion : MonoBehaviour
 
                 if (pla == null)
                 {
-                    Debug.Log($"❌ No {plaType} found on tables");
                     ResetTask();
                     return;
                 }
@@ -419,7 +320,6 @@ public class AICompanion : MonoBehaviour
                 {
                     agent.isStopped = true;
                     PickUpPLA(pla);
-                    Debug.Log($"✓ AI picked up {plaType}");
                     currentStep = 1;
                     stepTimer = 0f;
                 }
@@ -430,10 +330,9 @@ public class AICompanion : MonoBehaviour
                 }
                 break;
 
-            case 1: // Load PLA into printer
+            case 1:
                 if (!holdingPLA)
                 {
-                    Debug.Log("⚠️ Lost PLA, restarting");
                     currentStep = 0;
                     return;
                 }
@@ -441,16 +340,13 @@ public class AICompanion : MonoBehaviour
                 GameObject printer = FindClosestByTag("Printer");
                 if (printer == null)
                 {
-                    Debug.Log("❌ No available printer found");
                     ResetTask();
                     return;
                 }
 
-                // Check if this printer is actually available (not loaded)
                 PrinterLogic printerCheck = printer.GetComponent<PrinterLogic>();
                 if (printerCheck != null && printerCheck.GetLoadedPLAType() != null)
                 {
-                    Debug.Log("⚠️ Printer already loaded, looking for another");
                     ResetTask();
                     return;
                 }
@@ -461,19 +357,12 @@ public class AICompanion : MonoBehaviour
                     PrinterLogic logic = printer.GetComponent<PrinterLogic>();
                     if (logic != null)
                     {
-                        // Load the PLA (this will transform the printer)
                         logic.ProcessItem(heldPLAType);
-
-                        // Destroy only the visual copy in AI's hand
                         Destroy(heldItem);
                         heldItem = null;
                         holdingPLA = false;
-
-                        Debug.Log("✓ AI loaded PLA into printer");
                         currentStep = 2;
                         stepTimer = 0f;
-
-                        // Wait for printer to transform
                         StartCoroutine(WaitThenContinue(0.6f));
                     }
                 }
@@ -484,31 +373,23 @@ public class AICompanion : MonoBehaviour
                 }
                 break;
 
-            case 2: // Start printer
+            case 2:
                 GameObject printerToStart = FindClosestByTag("Printer");
                 if (printerToStart == null)
                 {
-                    Debug.Log("⚠️ Can't find loaded printer");
                     ResetTask();
                     return;
                 }
 
-                // Make sure this printer can actually bake
                 PrinterLogic startLogic = printerToStart.GetComponent<PrinterLogic>();
-                if (startLogic == null || !startLogic.CanBake())
-                {
-                    Debug.Log("⚠️ Printer not ready to bake");
-                    return; // Keep waiting
-                }
+                if (startLogic == null || !startLogic.CanBake()) return;
 
                 if (IsNear(printerToStart))
                 {
                     agent.isStopped = true;
-
                     if (startLogic.CanBake())
                     {
                         startLogic.StartCoroutine("BakeItem");
-                        Debug.Log("✓ AI started printer");
                         currentStep = 3;
                         stepTimer = 0f;
                     }
@@ -520,11 +401,10 @@ public class AICompanion : MonoBehaviour
                 }
                 break;
 
-            case 3: // Wait for printer to finish
+            case 3:
                 GameObject finished = FindClosestByTag("FinishedPrinter");
                 if (finished != null)
                 {
-                    Debug.Log("✓ Printer finished baking!");
                     currentStep = 4;
                     stepTimer = 0f;
                 }
@@ -534,7 +414,7 @@ public class AICompanion : MonoBehaviour
                 }
                 break;
 
-            case 4: // Pick up toy
+            case 4:
                 if (holdingToy)
                 {
                     currentStep = 5;
@@ -545,7 +425,6 @@ public class AICompanion : MonoBehaviour
                 GameObject finishedPrinter = FindClosestByTag("FinishedPrinter");
                 if (finishedPrinter == null)
                 {
-                    Debug.Log("⚠️ Finished printer disappeared");
                     currentStep = 3;
                     return;
                 }
@@ -554,7 +433,6 @@ public class AICompanion : MonoBehaviour
                 {
                     agent.isStopped = true;
                     PickUpToyFromPrinter(finishedPrinter);
-                    Debug.Log("✓ AI picked up toy from printer");
                     currentStep = 5;
                     stepTimer = 0f;
                 }
@@ -565,10 +443,9 @@ public class AICompanion : MonoBehaviour
                 }
                 break;
 
-            case 5: // Deliver to giftbox
+            case 5:
                 if (!holdingToy)
                 {
-                    Debug.Log("⚠️ Lost toy!");
                     ResetTask();
                     return;
                 }
@@ -576,7 +453,6 @@ public class AICompanion : MonoBehaviour
                 GameObject giftbox = FindClosestByTag("Giftbox");
                 if (giftbox == null)
                 {
-                    Debug.Log("❌ No giftbox found");
                     ResetTask();
                     return;
                 }
@@ -595,12 +471,11 @@ public class AICompanion : MonoBehaviour
         }
     }
 
-    // ==================== CUTTER TASK ====================
     void ExecuteCutterTask()
     {
         switch (currentStep)
         {
-            case 0: // Pick up first leather
+            case 0:
                 if (holdingLeather)
                 {
                     currentStep = 1;
@@ -613,7 +488,6 @@ public class AICompanion : MonoBehaviour
 
                 if (leather1 == null)
                 {
-                    Debug.Log($"❌ No {types.Item1} leather found");
                     ResetTask();
                     return;
                 }
@@ -622,7 +496,6 @@ public class AICompanion : MonoBehaviour
                 {
                     agent.isStopped = true;
                     PickUpLeather(leather1);
-                    Debug.Log($"✓ AI picked up first leather: {types.Item1}");
                     currentStep = 1;
                     stepTimer = 0f;
                 }
@@ -633,10 +506,9 @@ public class AICompanion : MonoBehaviour
                 }
                 break;
 
-            case 1: // Load first leather into cutter
+            case 1:
                 if (!holdingLeather)
                 {
-                    Debug.Log("⚠️ Lost leather, restarting");
                     currentStep = 0;
                     return;
                 }
@@ -644,7 +516,6 @@ public class AICompanion : MonoBehaviour
                 GameObject cutter1 = FindAvailableCutter();
                 if (cutter1 == null)
                 {
-                    Debug.Log("❌ No available laser cutter found");
                     ResetTask();
                     return;
                 }
@@ -657,19 +528,14 @@ public class AICompanion : MonoBehaviour
                     if (logic != null && logic.CanLoadLeather())
                     {
                         logic.LoadLeather(heldLeatherType);
-
-                        // Destroy only the visual copy in AI's hand
                         Destroy(heldItem);
                         heldItem = null;
                         holdingLeather = false;
-
-                        Debug.Log($"✓ AI loaded first leather into cutter");
                         currentStep = 2;
                         stepTimer = 0f;
                     }
                     else
                     {
-                        Debug.LogWarning("⚠️ Cutter can't accept leather - might be full!");
                         ResetTask();
                     }
                 }
@@ -680,7 +546,7 @@ public class AICompanion : MonoBehaviour
                 }
                 break;
 
-            case 2: // Pick up second leather
+            case 2:
                 if (holdingLeather)
                 {
                     currentStep = 3;
@@ -693,7 +559,6 @@ public class AICompanion : MonoBehaviour
 
                 if (leather2 == null)
                 {
-                    Debug.Log($"❌ No {types2.Item2} leather found");
                     ResetTask();
                     return;
                 }
@@ -702,7 +567,6 @@ public class AICompanion : MonoBehaviour
                 {
                     agent.isStopped = true;
                     PickUpLeather(leather2);
-                    Debug.Log($"✓ AI picked up second leather: {types2.Item2}");
                     currentStep = 3;
                     stepTimer = 0f;
                 }
@@ -713,10 +577,9 @@ public class AICompanion : MonoBehaviour
                 }
                 break;
 
-            case 3: // Load second leather and start cutting
+            case 3:
                 if (!holdingLeather)
                 {
-                    Debug.Log("⚠️ Lost second leather, going back");
                     currentStep = 2;
                     return;
                 }
@@ -724,7 +587,6 @@ public class AICompanion : MonoBehaviour
                 GameObject cutter2 = FindCutterWithOneLeather();
                 if (cutter2 == null)
                 {
-                    Debug.Log("❌ No cutter found with first leather loaded");
                     ResetTask();
                     return;
                 }
@@ -737,31 +599,23 @@ public class AICompanion : MonoBehaviour
                     if (logic != null && logic.CanLoadLeather())
                     {
                         logic.LoadLeather(heldLeatherType);
-
-                        // Destroy only the visual copy in AI's hand
                         Destroy(heldItem);
                         heldItem = null;
                         holdingLeather = false;
 
-                        Debug.Log($"✓ AI loaded second leather");
-
-                        // Now start cutting if possible
                         if (logic.CanStartCutting())
                         {
                             logic.StartCutting();
-                            Debug.Log("✓ AI started cutting!");
                             currentStep = 4;
                             stepTimer = 0f;
                         }
                         else
                         {
-                            Debug.LogWarning("⚠️ Can't start cutting - recipe mismatch?");
                             ResetTask();
                         }
                     }
                     else
                     {
-                        Debug.LogWarning("⚠️ Cutter already has 2 items or can't accept more!");
                         ResetTask();
                     }
                 }
@@ -772,14 +626,13 @@ public class AICompanion : MonoBehaviour
                 }
                 break;
 
-            case 4: // Wait for cutting to finish
+            case 4:
                 GameObject cutter3 = FindClosestByTag("LaserCutter");
                 if (cutter3 != null)
                 {
                     LaserCutterLogic logic = cutter3.GetComponent<LaserCutterLogic>();
                     if (logic != null && logic.IsFinished())
                     {
-                        Debug.Log("✓ Cutting finished!");
                         currentStep = 5;
                         stepTimer = 0f;
                     }
@@ -794,7 +647,7 @@ public class AICompanion : MonoBehaviour
                 }
                 break;
 
-            case 5: // Pick up finished item
+            case 5:
                 if (holdingToy)
                 {
                     currentStep = 6;
@@ -805,7 +658,6 @@ public class AICompanion : MonoBehaviour
                 GameObject finishedCutter = FindClosestByTag("LaserCutter");
                 if (finishedCutter == null)
                 {
-                    Debug.Log("❌ Can't find cutter");
                     ResetTask();
                     return;
                 }
@@ -813,7 +665,6 @@ public class AICompanion : MonoBehaviour
                 LaserCutterLogic cutterLogic = finishedCutter.GetComponent<LaserCutterLogic>();
                 if (cutterLogic == null || !cutterLogic.IsFinished())
                 {
-                    Debug.Log("⚠️ Cutter not finished yet");
                     currentStep = 4;
                     return;
                 }
@@ -822,7 +673,6 @@ public class AICompanion : MonoBehaviour
                 {
                     agent.isStopped = true;
                     PickUpCutterItem(finishedCutter);
-                    Debug.Log("✓ AI picked up finished item");
                     currentStep = 6;
                     stepTimer = 0f;
                 }
@@ -833,10 +683,9 @@ public class AICompanion : MonoBehaviour
                 }
                 break;
 
-            case 6: // Deliver to giftbox
+            case 6:
                 if (!holdingToy)
                 {
-                    Debug.Log("⚠️ Lost toy!");
                     ResetTask();
                     return;
                 }
@@ -844,7 +693,6 @@ public class AICompanion : MonoBehaviour
                 GameObject giftbox = FindClosestByTag("Giftbox");
                 if (giftbox == null)
                 {
-                    Debug.Log("❌ No giftbox found");
                     ResetTask();
                     return;
                 }
@@ -863,7 +711,6 @@ public class AICompanion : MonoBehaviour
         }
     }
 
-    // ==================== HELPERS ====================
     bool IsNear(GameObject target)
     {
         if (target == null) return false;
@@ -886,12 +733,8 @@ public class AICompanion : MonoBehaviour
         isGoingToTrash = false;
         agent.isStopped = true;
         agent.ResetPath();
-
-        // In manual mode, keep the assignment until user changes it
-        // In auto modes, this gets cleared naturally
     }
 
-    // ==================== RECIPE HELPERS ====================
     List<Recipe> GetActiveRecipes()
     {
         List<Recipe> recipes = new List<Recipe>();
@@ -908,8 +751,7 @@ public class AICompanion : MonoBehaviour
         foreach (Transform child in recipeManager.ticketTray)
         {
             Recipe recipe = child.GetComponent<Recipe>();
-            if (recipe != null && recipe.toyName.Equals(recipeName, System.StringComparison.OrdinalIgnoreCase))
-                return true;
+            if (recipe != null && recipe.toyName.Equals(recipeName, System.StringComparison.OrdinalIgnoreCase)) return true;
         }
         return false;
     }
@@ -926,18 +768,12 @@ public class AICompanion : MonoBehaviour
     (LeatherData.LeatherType, LeatherData.LeatherType) GetLeatherTypes(string recipeName)
     {
         string lower = recipeName.ToLower();
-        if (lower.Contains("football"))
-            return (LeatherData.LeatherType.Brown, LeatherData.LeatherType.Brown);
-        if (lower.Contains("hat"))
-            return (LeatherData.LeatherType.Silver, LeatherData.LeatherType.Purple);
-        if (lower.Contains("backpack"))
-            return (LeatherData.LeatherType.Silver, LeatherData.LeatherType.Yellow);
-
-        Debug.LogWarning($"Unknown leather recipe: {recipeName}");
+        if (lower.Contains("football")) return (LeatherData.LeatherType.Brown, LeatherData.LeatherType.Brown);
+        if (lower.Contains("hat")) return (LeatherData.LeatherType.Silver, LeatherData.LeatherType.Purple);
+        if (lower.Contains("backpack")) return (LeatherData.LeatherType.Silver, LeatherData.LeatherType.Yellow);
         return (LeatherData.LeatherType.Brown, LeatherData.LeatherType.Brown);
     }
 
-    // ==================== FIND OBJECTS ====================
     GameObject FindItemByType(ItemData.ItemType type)
     {
         GameObject[] items = GameObject.FindGameObjectsWithTag("PLA");
@@ -1015,8 +851,6 @@ public class AICompanion : MonoBehaviour
             foreach (var cutter in cutters)
             {
                 LaserCutterLogic logic = cutter.GetComponent<LaserCutterLogic>();
-
-                // Only consider cutters that can load leather (empty or has 1 slot free)
                 if (logic != null && logic.CanLoadLeather() && !logic.IsCutting() && !logic.IsFinished())
                 {
                     float dist = Vector3.Distance(transform.position, cutter.transform.position);
@@ -1043,9 +877,6 @@ public class AICompanion : MonoBehaviour
             foreach (var cutter in cutters)
             {
                 LaserCutterLogic logic = cutter.GetComponent<LaserCutterLogic>();
-
-                // Find a cutter that can still load leather (meaning it has exactly 1 leather)
-                // and is not currently cutting or finished
                 if (logic != null && logic.CanLoadLeather() && !logic.IsCutting() && !logic.IsFinished())
                 {
                     float dist = Vector3.Distance(transform.position, cutter.transform.position);
@@ -1061,7 +892,6 @@ public class AICompanion : MonoBehaviour
         catch { return null; }
     }
 
-    // ==================== PICKUP FUNCTIONS ====================
     void PickUpPLA(GameObject plaObject)
     {
         ItemData data = plaObject.GetComponent<ItemData>();
@@ -1072,7 +902,6 @@ public class AICompanion : MonoBehaviour
         holdingToy = false;
         holdingLeather = false;
 
-        // Just spawn a copy - NEVER destroy the source table item!
         GameObject prefab = data.itemPrefab != null ? data.itemPrefab : plaObject;
         heldItem = Instantiate(prefab, leftHand.position, leftHand.rotation, leftHand);
         heldItem.transform.localScale = Vector3.one * 0.4f;
@@ -1080,7 +909,6 @@ public class AICompanion : MonoBehaviour
         heldItem.tag = "Untagged";
 
         DisablePhysics(heldItem);
-        // NO DESTROYING - table items stay forever!
     }
 
     void PickUpLeather(GameObject leatherObject)
@@ -1093,7 +921,6 @@ public class AICompanion : MonoBehaviour
         holdingToy = false;
         holdingPLA = false;
 
-        // Just spawn a copy - NEVER destroy the source table item!
         GameObject prefab = data.leatherPrefab != null ? data.leatherPrefab : leatherObject;
         heldItem = Instantiate(prefab, leftHand.position, leftHand.rotation, leftHand);
         heldItem.transform.localScale = Vector3.one * 0.4f;
@@ -1101,63 +928,34 @@ public class AICompanion : MonoBehaviour
         heldItem.tag = "Untagged";
 
         DisablePhysics(heldItem);
-        // NO DESTROYING - table items stay forever!
     }
 
     void PickUpToyFromPrinter(GameObject printer)
     {
         PrinterLogic logic = printer.GetComponent<PrinterLogic>();
-        if (logic == null)
-        {
-            Debug.LogError("❌ AI: Printer has no PrinterLogic!");
-            return;
-        }
+        if (logic == null) return;
 
         GameObject toyPrefab = logic.GetToyPrefab();
-        if (toyPrefab == null)
-        {
-            Debug.LogError("❌ AI: Printer has no toy prefab!");
-            return;
-        }
+        if (toyPrefab == null) return;
 
-        // Store the PLA type if available
-        if (logic.GetLoadedPLAType().HasValue)
-        {
-            heldPLAType = logic.GetLoadedPLAType().Value;
-        }
+        if (logic.GetLoadedPLAType().HasValue) heldPLAType = logic.GetLoadedPLAType().Value;
 
-        // Create the toy in AI's hand
         heldItem = Instantiate(toyPrefab, leftHand.position, leftHand.rotation, leftHand);
         heldItem.tag = "Untagged";
         holdingToy = true;
         holdingPLA = false;
         holdingLeather = false;
 
-        // Check if toy is fried
         if (logic.IsFried())
         {
             FriedToyMarker marker = heldItem.GetComponent<FriedToyMarker>();
-            if (marker == null)
-            {
-                marker = heldItem.AddComponent<FriedToyMarker>();
-            }
+            if (marker == null) marker = heldItem.AddComponent<FriedToyMarker>();
             marker.isFried = true;
-            Debug.Log("🔥 AI picked up FRIED toy!");
         }
 
-        // Scale based on PLA type (GreenPLA toys are smaller)
-        if (heldPLAType == ItemData.ItemType.GreenPLA)
-        {
-            heldItem.transform.localScale = Vector3.one * 0.3f;
-        }
-        else
-        {
-            heldItem.transform.localScale = Vector3.one * 2.5f;
-        }
-
+        heldItem.transform.localScale = heldPLAType == ItemData.ItemType.GreenPLA ? Vector3.one * 0.3f : Vector3.one * 2.5f;
         heldItem.transform.localRotation = Quaternion.identity;
 
-        // Disable physics
         Collider col = heldItem.GetComponent<Collider>();
         if (col != null) col.enabled = false;
 
@@ -1168,10 +966,7 @@ public class AICompanion : MonoBehaviour
             rb.detectCollisions = false;
         }
 
-        // Clear the printer
         logic.ClearAfterPickup();
-
-        Debug.Log($"✓ AI successfully picked up toy from printer");
     }
 
     void PickUpCutterItem(GameObject cutter)
@@ -1209,17 +1004,11 @@ public class AICompanion : MonoBehaviour
             Quota quota = FindObjectOfType<Quota>();
             if (quota != null) quota.QuotaProgressOne(1);
 
-            Debug.Log($"🎁 AI Delivered {currentRecipeName} for {points} points!");
-
             Destroy(heldItem);
             heldItem = null;
             holdingToy = false;
 
-            // Clear manual assignment after completion
-            if (currentMode == AgentMode.Manual)
-            {
-                manuallyAssignedRecipe = "";
-            }
+            if (currentMode == AgentMode.Manual) manuallyAssignedRecipe = "";
 
             currentState = State.Idle;
             idleTimer = checkInterval;
@@ -1229,7 +1018,6 @@ public class AICompanion : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"⚠️ No matching recipe!");
             ResetTask();
         }
     }

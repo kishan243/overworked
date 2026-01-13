@@ -61,7 +61,6 @@ public class Timer : MonoBehaviour
         if (warningSource != null) warningSource.Stop();
 
         timerText.color = Color.red;
-        Debug.Log("Time's up! Starting end sequence.");
         StartCoroutine(EndGameSequence());
     }
 

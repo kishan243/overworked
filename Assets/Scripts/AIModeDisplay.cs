@@ -9,13 +9,10 @@ public class AIModeDisplay : MonoBehaviour
 
     void Start()
     {
-        // Find AI every frame if needed
-        Debug.Log("🖥️ AIModeDisplay started");
     }
 
     void Update()
     {
-        // Always try to find AI if we don't have it
         if (ai == null)
         {
             ai = FindObjectOfType<AICompanion>();
@@ -24,11 +21,9 @@ public class AIModeDisplay : MonoBehaviour
 
         if (modeText == null)
         {
-            Debug.LogError("❌ Mode Text is not assigned!");
             return;
         }
 
-        // Update display
         UpdateDisplay();
     }
 

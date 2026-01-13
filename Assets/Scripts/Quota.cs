@@ -8,7 +8,7 @@ public class Quota : MonoBehaviour
 
     [Header("Settings")]
     public int quotaGoal = 10;
-    public int sessionQuota = 0; // Quota in this session only
+    public int sessionQuota = 0;
 
     void Start()
     {
@@ -19,7 +19,6 @@ public class Quota : MonoBehaviour
     {
         sessionQuota += amount;
 
-        // Also add to persistent GameDataManager
         if (GameDataManager.Instance != null)
         {
             for (int i = 0; i < amount; i++)
@@ -35,7 +34,6 @@ public class Quota : MonoBehaviour
 
     private void UpdateDisplay()
     {
-        // Show total from GameDataManager if available
         int displayQuota = sessionQuota;
         if (GameDataManager.Instance != null)
         {

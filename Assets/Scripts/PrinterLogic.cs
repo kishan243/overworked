@@ -37,10 +37,7 @@ public class PrinterLogic : MonoBehaviour
 
     void Start()
     {
-        if (isBaking)
-        {
-            StartCoroutine(FinishBaking());
-        }
+        if (isBaking) StartCoroutine(FinishBaking());
     }
 
     public void InitializeFromPrevious(PrinterLogic oldLogic, bool bakingState)
@@ -61,30 +58,21 @@ public class PrinterLogic : MonoBehaviour
         this.bakeTime = oldLogic.bakeTime;
         this.friedTime = oldLogic.friedTime;
         this.interactRange = oldLogic.interactRange;
-
         this.loadedPLAType = oldLogic.loadedPLAType;
         this.toyPrefab = oldLogic.toyPrefab;
         this.friedToyPrefab = oldLogic.friedToyPrefab;
         this.isBaking = bakingState;
 
-        if (this.isBaking)
-        {
-            StartCoroutine(FinishBaking());
-        }
+        if (this.isBaking) StartCoroutine(FinishBaking());
     }
 
     void Update()
     {
-        // Only allow J key if player is nearby
         if (loadedPLAType != null && !isBaking && !isFinished && Input.GetKeyDown(KeyCode.J))
         {
-            if (IsPlayerNearby())
-            {
-                StartCoroutine(BakeItem());
-            }
+            if (IsPlayerNearby()) StartCoroutine(BakeItem());
         }
 
-        // Make the cube bob up and down if it exists
         if (warningCube != null)
         {
             float bobAmount = Mathf.Sin(Time.time * 3f) * 0.15f;
@@ -94,7 +82,6 @@ public class PrinterLogic : MonoBehaviour
 
     bool IsPlayerNearby()
     {
-        // Find player using Movement component instead of tag
         Movement player = FindObjectOfType<Movement>();
         if (player != null)
         {
@@ -126,10 +113,7 @@ public class PrinterLogic : MonoBehaviour
                 break;
         }
 
-        if (targetPrefab != null)
-        {
-            StartCoroutine(TransformPrinter(targetPrefab));
-        }
+        if (targetPrefab != null) StartCoroutine(TransformPrinter(targetPrefab));
     }
 
     IEnumerator TransformPrinter(GameObject newPrefab)
@@ -162,11 +146,7 @@ public class PrinterLogic : MonoBehaviour
                 break;
         }
 
-        if (bakedPrefab != null)
-        {
-            SwapPrefab(bakedPrefab, true);
-        }
-
+        if (bakedPrefab != null) SwapPrefab(bakedPrefab, true);
         yield return null;
     }
 
@@ -177,14 +157,12 @@ public class PrinterLogic : MonoBehaviour
         isFinished = true;
         gameObject.tag = "FinishedPrinter";
 
-        // Only spawn warning cube if toy is still here
         if (isFinished)
         {
             warningCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
             warningCube.transform.SetParent(transform);
             warningCube.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             Destroy(warningCube.GetComponent<Collider>());
-
             StartCoroutine(FryTimerWithColorChange());
         }
     }
@@ -193,13 +171,11 @@ public class PrinterLogic : MonoBehaviour
     {
         float elapsed = 0f;
 
-        // Transition from green -> yellow -> orange -> red -> NEON RED
         while (elapsed < friedTime && warningCube != null)
         {
             elapsed += Time.deltaTime;
-            float t = elapsed / friedTime; // 0 to 1
+            float t = elapsed / friedTime;
 
-            // Check if cube still exists before accessing renderer
             if (warningCube == null) yield break;
 
             Renderer cubeRenderer = warningCube.GetComponent<Renderer>();
@@ -208,17 +184,14 @@ public class PrinterLogic : MonoBehaviour
             Color currentColor;
             if (t < 0.33f)
             {
-                // Green to Yellow
                 currentColor = Color.Lerp(Color.green, Color.yellow, t / 0.33f);
             }
             else if (t < 0.66f)
             {
-                // Yellow to Orange
                 currentColor = Color.Lerp(Color.yellow, new Color(1f, 0.5f, 0f), (t - 0.33f) / 0.33f);
             }
             else
             {
-                // Orange to Red
                 currentColor = Color.Lerp(new Color(1f, 0.5f, 0f), Color.red, (t - 0.66f) / 0.34f);
             }
 
@@ -226,28 +199,19 @@ public class PrinterLogic : MonoBehaviour
             yield return null;
         }
 
-        // Check if cube still exists before making it neon red
         if (warningCube == null) yield break;
 
         Renderer finalRenderer = warningCube.GetComponent<Renderer>();
         if (finalRenderer == null) yield break;
 
-        // NOW IT'S FRIED! Make it NEON RED
         isFried = true;
         toyPrefab = friedToyPrefab;
-
-        // Bright neon red
-        Color neonRed = new Color(1f, 0f, 0f) * 2f;
-        finalRenderer.material.color = neonRed;
-
-        Debug.Log("TOY IS FRIED! Neon red warning!");
+        finalRenderer.material.color = new Color(1f, 0f, 0f) * 2f;
     }
 
     public void ClearAfterPickup()
     {
-        // Stop all coroutines to prevent accessing destroyed objects
         StopAllCoroutines();
-
         isFinished = false;
         isBaking = false;
         isFried = false;
@@ -256,7 +220,6 @@ public class PrinterLogic : MonoBehaviour
         friedToyPrefab = null;
         gameObject.tag = "Printer";
 
-        // Remove the warning cube immediately
         if (warningCube != null)
         {
             Destroy(warningCube);
@@ -271,10 +234,7 @@ public class PrinterLogic : MonoBehaviour
         newPrinter.layer = gameObject.layer;
 
         PrinterLogic newLogic = newPrinter.GetComponent<PrinterLogic>();
-        if (newLogic != null)
-        {
-            newLogic.InitializeFromPrevious(this, bakingState);
-        }
+        if (newLogic != null) newLogic.InitializeFromPrevious(this, bakingState);
 
         Destroy(gameObject);
     }

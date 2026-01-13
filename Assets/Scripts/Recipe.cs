@@ -1,19 +1,17 @@
 using UnityEngine;
 
-// Attach this to each ORDER TICKET (recipe UI prefab)
-// This tells the player what toy they need to make and submit
 public class Recipe : MonoBehaviour
 {
     [Header("What Toy Is Needed?")]
-    public string toyName = ""; // e.g. "BlueToy", "YellowToy", "GreenToy", "Football", "Hat", "Backpack"
+    public string toyName = ""; 
 
     [Header("Points Settings")]
-    public int maxPoints = 100; // Points if completed instantly
-    public int minPoints = 20;  // Points if completed at max time
-    public float maxTime = 60f; // Time until points reach minimum
+    public int maxPoints = 100; 
+    public int minPoints = 20; 
+    public float maxTime = 60f; 
 
     [HideInInspector]
-    public float spawnTime; // When this recipe was created
+    public float spawnTime; 
 
     void Start()
     {
@@ -25,7 +23,6 @@ public class Recipe : MonoBehaviour
         float elapsed = Time.time - spawnTime;
         float t = Mathf.Clamp01(elapsed / maxTime);
 
-        // Lerp from maxPoints to minPoints based on time
         int points = Mathf.RoundToInt(Mathf.Lerp(maxPoints, minPoints, t));
         return points;
     }

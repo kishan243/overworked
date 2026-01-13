@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45138758, g: 0.50093085, b: 0.5726036, a: 1}
+  m_IndirectSpecularColor: {r: 0.45137763, g: 0.5009201, b: 0.57259685, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1835,7 +1835,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeCanvasGroup: {fileID: 1353128611}
   audioSource: {fileID: 1221119150}
-  delayTime: 1.85
+  delayTime: 1.9
 --- !u!4 &338678881
 Transform:
   m_ObjectHideFlags: 0

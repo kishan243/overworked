@@ -492,7 +492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 873957010}
   fadeCanvasGroup: {fileID: 66794450}
-  fadeDuration: 3
+  fadeDuration: 1
 --- !u!4 &795513383
 Transform:
   m_ObjectHideFlags: 0

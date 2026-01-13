@@ -25,8 +25,6 @@ public class LaserCutterLogic : MonoBehaviour
     private bool isCutting = false;
     private bool isFinished = false;
     private GameObject finishedItemPrefab;
-
-    // UI Elements
     private GameObject slot1Cube;
     private GameObject slot2Cube;
     private GameObject progressCube;
@@ -38,7 +36,6 @@ public class LaserCutterLogic : MonoBehaviour
 
     void CreateUI()
     {
-        // Slot 1 - Left side (flat colored cube)
         slot1Cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         slot1Cube.transform.SetParent(transform);
         slot1Cube.transform.localPosition = new Vector3(-0.6f, uiHeight, 0);
@@ -46,7 +43,6 @@ public class LaserCutterLogic : MonoBehaviour
         Destroy(slot1Cube.GetComponent<Collider>());
         slot1Cube.GetComponent<Renderer>().material.color = new Color(0.1f, 0.1f, 0.1f, 1f);
 
-        // Slot 2 - Right side (flat colored cube)
         slot2Cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         slot2Cube.transform.SetParent(transform);
         slot2Cube.transform.localPosition = new Vector3(0.6f, uiHeight, 0);
@@ -57,25 +53,16 @@ public class LaserCutterLogic : MonoBehaviour
 
     void Update()
     {
-        // Handle K key to remove leather (only if player nearby)
         if (Input.GetKeyDown(KeyCode.K) && !isCutting && !isFinished)
         {
-            if (IsPlayerNearby())
-            {
-                RemoveLastLeather();
-            }
+            if (IsPlayerNearby()) RemoveLastLeather();
         }
 
-        // Handle J key to start cutting (only if player nearby)
         if (Input.GetKeyDown(KeyCode.J) && CanStartCutting())
         {
-            if (IsPlayerNearby())
-            {
-                StartCutting();
-            }
+            if (IsPlayerNearby()) StartCutting();
         }
 
-        // Make progress cube bob
         if (progressCube != null)
         {
             float bobAmount = Mathf.Sin(Time.time * 3f) * 0.15f;
@@ -85,7 +72,6 @@ public class LaserCutterLogic : MonoBehaviour
 
     bool IsPlayerNearby()
     {
-        // Find player using Movement component instead of tag
         Movement player = FindObjectOfType<Movement>();
         if (player != null)
         {
@@ -97,7 +83,6 @@ public class LaserCutterLogic : MonoBehaviour
 
     void UpdateUI()
     {
-        // Update slot 1
         if (slot1.HasValue && slot1Cube != null)
         {
             slot1Cube.GetComponent<Renderer>().material.color = GetLeatherColor(slot1.Value);
@@ -107,7 +92,6 @@ public class LaserCutterLogic : MonoBehaviour
             slot1Cube.GetComponent<Renderer>().material.color = new Color(0.3f, 0.3f, 0.3f, 1f);
         }
 
-        // Update slot 2
         if (slot2.HasValue && slot2Cube != null)
         {
             slot2Cube.GetComponent<Renderer>().material.color = GetLeatherColor(slot2.Value);
@@ -137,62 +121,39 @@ public class LaserCutterLogic : MonoBehaviour
 
     public void LoadLeather(LeatherData.LeatherType type)
     {
-        if (!slot1.HasValue)
-        {
-            slot1 = type;
-        }
-        else if (!slot2.HasValue)
-        {
-            slot2 = type;
-        }
+        if (!slot1.HasValue) slot1 = type;
+        else if (!slot2.HasValue) slot2 = type;
         UpdateUI();
     }
 
     void RemoveLastLeather()
     {
-        if (slot2.HasValue)
-        {
-            slot2 = null;
-        }
-        else if (slot1.HasValue)
-        {
-            slot1 = null;
-        }
+        if (slot2.HasValue) slot2 = null;
+        else if (slot1.HasValue) slot1 = null;
         UpdateUI();
     }
 
     public bool CanStartCutting()
     {
-        if (!slot1.HasValue || !slot2.HasValue || isCutting || isFinished)
-        {
-            return false;
-        }
-
-        // Check if valid recipe exists
-        GameObject result = GetRecipeResult(slot1.Value, slot2.Value);
-        return result != null;
+        if (!slot1.HasValue || !slot2.HasValue || isCutting || isFinished) return false;
+        return GetRecipeResult(slot1.Value, slot2.Value) != null;
     }
 
     public void StartCutting()
     {
-        if (CanStartCutting())
-        {
-            StartCoroutine(CutItem());
-        }
+        if (CanStartCutting()) StartCoroutine(CutItem());
     }
 
     IEnumerator CutItem()
     {
         isCutting = true;
 
-        // Spawn progress cube
         progressCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         progressCube.transform.SetParent(transform);
         progressCube.transform.localPosition = new Vector3(0, uiHeight + 0.75f, 0);
         progressCube.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
         Destroy(progressCube.GetComponent<Collider>());
 
-        // Cutting progress
         float elapsed = 0f;
         Renderer cubeRenderer = progressCube.GetComponent<Renderer>();
 
@@ -210,11 +171,7 @@ public class LaserCutterLogic : MonoBehaviour
             yield return null;
         }
 
-        // Finished
-        if (cubeRenderer != null)
-        {
-            cubeRenderer.material.color = Color.green;
-        }
+        if (cubeRenderer != null) cubeRenderer.material.color = Color.green;
 
         isCutting = false;
         isFinished = true;
@@ -242,7 +199,6 @@ public class LaserCutterLogic : MonoBehaviour
     public void ClearAfterPickup()
     {
         StopAllCoroutines();
-
         slot1 = null;
         slot2 = null;
         isCutting = false;

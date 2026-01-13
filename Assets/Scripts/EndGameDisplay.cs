@@ -21,12 +21,9 @@ public class EndGameDisplay : MonoBehaviour
 
             if (pointsTotal != null)
                 pointsTotal.text = GameDataManager.Instance.totalPoints.ToString() + " Points";
-
-            Debug.Log($"📊 Displaying - Gifts: {GameDataManager.Instance.totalGiftsDelivered}, Points: {GameDataManager.Instance.totalPoints}");
         }
         else
         {
-            Debug.LogWarning("GameDataManager not found!");
             if (giftsTotal != null) giftsTotal.text = "0";
             if (pointsTotal != null) pointsTotal.text = "0";
         }

@@ -651,7 +651,7 @@ MonoBehaviour:
   warningSource: {fileID: 1197678979}
   timeRemaining: 300
   lowTimeThreshold: 30
-  fadeDuration: 2
+  fadeDuration: 1
 --- !u!4 &810767742
 Transform:
   m_ObjectHideFlags: 0
